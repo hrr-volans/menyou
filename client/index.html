@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>menYOU</title>
+</head>
+<body>
+  <!-- <div ng-view></div> -->
+  <div ng-app="app">
+
+    <div ng-controller="categoriesController">{{test}}</div>
+
+    <div ng-controller="chosenitemsController">{{test}}</div>
+
+    <div ng-controller="menulistController">{{test}}</div>
+
+    <div ng-controller="placeorderController">{{test}}</div>
+
+    <div ng-controller="totalController">{{test}}</div>
+
+  </div>
+
+
+  <script src="../node_modules/angular/angular.js"></script>
+
+  <script src="app/app.js"></script>
+
+  <script src="app/categories/categories.js"></script>
+  <script src="app/chosenitems/chosenitems.js"></script>
+  <script src="app/menulist/menulist.js"></script>
+  <script src="app/placeorder/placeorder.js"></script>
+  <script src="app/total/total.js"></script>
+
+</body>
+</html>
