@@ -3,7 +3,7 @@ var path = require('path');
 var pg = require('pg');
 var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
-var app = express();
+var routes = require('./routes');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
 
 var routes = require('./routes');
@@ -39,8 +39,6 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port ' + this.address().port);
 });
 
-
-// Routes
 app.get('/', function(req, res, next) {  
   res.sendfile('client/index.html');                  
 });
