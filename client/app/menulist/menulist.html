@@ -1,4 +1,12 @@
 <h1>{{name}} Menu</h1>
 <ul>
-  <li ng-repeat="item in data track by $index">{{item}}</li>
+  <li ng-repeat="item in data track by $index">
+    <div ng-click="click({item: item})" >{{item}} - CLICK ME</div>
+  </li>
+</ul>
+<h1>Order</h1>
+<ul>
+  <li ng-repeat="item in added track by $index">
+    <div ng-click="addedclick({index: $index})">{{item}} - CLICK ME</div>
+  </li>
 </ul>
