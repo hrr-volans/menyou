@@ -18,7 +18,10 @@ angular.module('services', [])
         "name": "drinks"
       }
     ];
+
     var menuItems = menuitemsService.getAllMenuItems();
+
+    //This section organizes the menu items by category name
     var menuItemsByCategory = {};
     menuItems.forEach(function(menuObj){
       var key = findCategoryById(menuObj.category_id)[0].name;
@@ -26,14 +29,17 @@ angular.module('services', [])
       menuItemsByCategory[formattedKey] = menuItemsByCategory[formattedKey] || [];
       menuItemsByCategory[formattedKey].push(menuObj);
     });
-
-    var currentMenuItems =  {items: []};
-    var currentCategory = {name: undefined};
     function findCategoryById(id){
       return categoryData.filter(function(category){
         return category['id'] === id;
       });
     }
+
+    //These variables hold the 'state' of current category & menu items in that category
+    var currentMenuItems =  {items: []};
+    var currentCategory = {name: undefined};
+
+    //Helper functions
     var getAllCategoryData = function(){
       return categoryData;
     }
@@ -62,7 +68,9 @@ angular.module('services', [])
     };
   })
   .factory('menuitemsService', function ($http) {
+    //This is the 'state' of all items added to current order
     var addedItems = {items: []};
+
     // data variable to hold on to all menu items
     // above creates state and below are functions which act on it (like setState)
     // this gets all menu items - not defined use yet
@@ -90,6 +98,7 @@ angular.module('services', [])
       }
     ];
 
+    //Helper functions
     var getAllMenuItems = function() {
       return data;
     };
