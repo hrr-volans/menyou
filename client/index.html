@@ -16,7 +16,7 @@
     </ul>
 
     <div ng-hide="category.name === undefined" ng-controller="menulistController">
-      <menu name={{category.name}} data="data.items" added="added.items" click="addMenuItemToOrder(item)" addedclick="removeMenuItemFromOrder(index)"></menu>
+      <menu name={{category.name}} data="data.items" added="added.items" click="addMenuItemToChosenList(item)" addedclick="removeMenuItemFromChosenList(index)"></menu>
     </div>
 
   </div>
