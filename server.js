@@ -8,12 +8,9 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/me
 
 var routes = require('./routes');
 
-var client = new pg.Client(connectionString);
-
 var app = express();
 
 var client = new pg.Client(connectionString);
-
 
 client.connect(function (err) {
   if (err) throw err;
