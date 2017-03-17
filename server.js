@@ -45,7 +45,7 @@ app.get('/', function(req, res, next) {
 
 app.get('/categories', function(req, res, next) {  
   client.query("SELECT * FROM categories", function(err, result) {   
-    res.send(result);
+    res.send(result.rows);
   });                  
 });
 
