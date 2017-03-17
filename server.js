@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static(path.join(__dirname, '/')));
+app.use(express.static(path.join(__dirname, '/client')));
 
 app.use(function(req, res, next){
   console.log(req.method, req.url);
@@ -40,7 +40,7 @@ app.listen(app.get('port'), function() {
 });
 
 app.get('/', function(req, res, next) {  
-  res.sendfile('client/index.html');                  
+  res.sendfile('index.html');                  
 });
 
 app.get('/categories', function(req, res, next) {  
@@ -53,6 +53,12 @@ app.get('/menuitems', function(req, res, next) {
   client.query("SELECT * FROM menuitems", function(err, result) {   
     res.send(result.rows);
   });                  
+});
+
+app.get('/orders', function(req, res, next) {
+  client.query("SELECT * FROM orders", function(err, result) {   
+    res.send(result);
+  });    
 });
 
 app.post('/orders', function(req, res, next) {
