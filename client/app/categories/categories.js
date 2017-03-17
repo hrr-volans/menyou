@@ -3,7 +3,7 @@ angular.module('categories', ['services'])
     $scope.data = ['Dinner', 'Breakfast'];
     $scope.setCurrentCategory = function(category){
       categoriesService.setCurrentCategory(category);
-      console.log('FROM CONTROLLER', category);
+      $scope.testCat = category;
     }
   })
   .directive('category', function(){
@@ -11,7 +11,7 @@ angular.module('categories', ['services'])
       restrict: 'E',
       templateUrl: 'app/categories/category.html',
       scope:{
-        name: '@name'
+        name: '@'
       }
     }
   });

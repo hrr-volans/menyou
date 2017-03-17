@@ -7,15 +7,16 @@
   <title>menYOU</title>
 </head>
 <body>
-  <!-- <div ng-view></div> -->
+
   <div ng-app="app">
+    <!-- NOTE: if needed we can use ng-init to pull in data that will be available globally -->
 
     <ul ng-controller='categoriesController'>
       <category ng-repeat="category in data" name={{category}} ng-click="setCurrentCategory(category)"></category>
     </ul>
 
-    <div ng-controller="menulistController">
-      <menu name={{category.name}} data=data.items></menu>
+    <div ng-hide="category.name === undefined" ng-controller="menulistController">
+      <menu name={{category.name}} data="data.items" added="added.items" click="addMenuItemToOrder(item)" addedclick="removeMenuItemFromOrder(index)"></menu>
     </div>
 
   </div>
