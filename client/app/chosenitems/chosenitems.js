@@ -19,7 +19,6 @@ angular.module('chosenitems', ['services'])
       scope:{
         name: '@',
         added: '=',
-        data: '=',
         click: '&',
         addedclick: '&'
       }

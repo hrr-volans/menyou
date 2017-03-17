@@ -94,10 +94,13 @@ angular.module('services', [])
       return data;
     };
     var addMenuItemToChosenList = function(item){
+      console.log('test');
+      console.log(item);
       addedItems.items.push(item);
     }
     // give access to chosenItemList module will eventually use to place order
     var getChosenList = function(){
+      console.log('in the getchosen function', addedItems);
       return addedItems;
     }
     var removeMenuItemFromChosenList = function(index){
