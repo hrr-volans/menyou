@@ -14,7 +14,7 @@ angular.module('services', [])
     var getMenuItemsInCurrentCategory = function() {
       return currentMenuItems;
     };
-    
+
     return {
       setCurrentCategory: setCurrentCategory,
       getCurrentCategory: getCurrentCategory,
@@ -23,14 +23,19 @@ angular.module('services', [])
   })
   .factory('menuitemsService', function ($http) {
     var addedItems = {items: []};
+    // data variable to hold on to all menu items
     var data = {Dinner: ['pizza', 'sandwich'], Breakfast: ['eggs', 'pancakes']};
 
+    // above creates state and below are functions which act on it (like setState)
+
+    // this gets all menu items - not defined use yet
     var getAllMenuItems = function() {
       return data;
     };
     var addMenuItemToChosenList = function(item){
       addedItems.items.push(item);
     }
+    // give access to chosenItemList module will eventually use to place order
     var getChosenList = function(){
       return addedItems;
     }
