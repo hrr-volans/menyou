@@ -4,10 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-<<<<<<< HEAD
     "start": "node server.js",
-=======
->>>>>>> ad0eb308e786e1de2f12b924b9ea3c0ec4a01de0
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
