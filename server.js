@@ -8,7 +8,7 @@ var app = express();
 
 //var connectionString = process.env.DATABASE_URL;
 var app = express();
-pg.defaults.ssl = true;
+
 // instantiate a new client 
 // the client will read connection information from 
 // the same environment variables used by postgres cli tools 
