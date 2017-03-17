@@ -23,11 +23,9 @@ client.connect(function (err) {
   client.query("INSERT INTO menuitems(name, description, price, category_id) VALUES('bigmac', 'the biggest burger', 122, 1), ('nuggets', 'little nuggets', 232, 3), ('fries', 'good fries', 23, 2)");                  
 });
 
-
 app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
-
 
 app.use(express.static(path.join(__dirname, '/')));
 
@@ -35,7 +33,6 @@ app.use(function(req, res, next){
   console.log(req.method, req.url);
   next();
 });
-
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port ' + this.address().port);
@@ -63,5 +60,4 @@ app.post('/orders', function(req, res, next) {
     console.log(err);
   });  
 });
-
 
