@@ -3,29 +3,20 @@ var path = require('path');
 var pg = require('pg');
 var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
-<<<<<<< HEAD
 var routes = require('./routes');
 var app = express();
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
-=======
 var app = express();
-
-
->>>>>>> ad0eb308e786e1de2f12b924b9ea3c0ec4a01de0
 
 // instantiate a new client 
 // the client will read connection information from 
 // the same environment variables used by postgres cli tools 
-<<<<<<< HEAD
 var client = new pg.Client(connectionString);
-=======
-var client = new pg.Client();
->>>>>>> ad0eb308e786e1de2f12b924b9ea3c0ec4a01de0
+
  
 // connect to our database 
 client.connect(function (err) {
   if (err) throw err;
-<<<<<<< HEAD
 
   client.query("CREATE TABLE categories(id SERIAL PRIMARY KEY, name VARCHAR(40) not null)"); 
   client.query("CREATE TABLE menuitems(id SERIAL PRIMARY KEY, name VARCHAR(40) not null, description VARCHAR(40) not null, price INTEGER not null, category_id INTEGER REFERENCES categories(id))")         
@@ -35,31 +26,11 @@ client.connect(function (err) {
   client.query("INSERT INTO categories(name) VALUES('burgers'), ('dinner'), ('breakfast'), ('drinks')");                  
   client.query("INSERT INTO menuitems(name, description, price, category_id) VALUES('bigmac', 'the biggest burger', 122, 1), ('nuggets', 'little nuggets', 232, 3), ('fries', 'good fries', 23, 2)");                  
 });
-=======
- 
-  
-  // client.query('SELECT $1::text as name', ['brianc'], function (err, result) {
-  //   if (err) throw err;
- 
-    
-  //   console.log(result.rows[0]); // outputs: { name: 'brianc' } 
- 
-    
-  //   client.end(function (err) {
-  //     if (err) throw err;
-  //   });
-  // });
-});
-
-
-
->>>>>>> ad0eb308e786e1de2f12b924b9ea3c0ec4a01de0
 
 app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
 
-<<<<<<< HEAD
 
 app.use(function(req, res, next){
   console.log(req.method, req.url);
@@ -96,11 +67,9 @@ app.post('/orders', function(req, res, next) {
 });
 
 
-
-=======
 app.use(express.static(path.join(__dirname, '/')));
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port');
 });
->>>>>>> ad0eb308e786e1de2f12b924b9ea3c0ec4a01de0
+
