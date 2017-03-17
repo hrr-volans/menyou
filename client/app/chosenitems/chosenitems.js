@@ -12,6 +12,7 @@ angular.module('chosenitems', ['services'])
 
   }) // directives are essentially react components
   // they are custom HTML
+
   .directive('chosenitem', function(){
     return {
       restrict: 'E',
