@@ -10,28 +10,28 @@
   <!-- <div ng-view></div> -->
   <div ng-app="app">
 
-    <div ng-controller="categoriesController">{{test}}</div>
+    <ul ng-controller='categoriesController'>
+      <category ng-repeat="category in data" name={{category}} ng-click="setCurrentCategory(category)"></category>
+    </ul>
 
-    <div ng-controller="chosenitemsController">{{test}}</div>
+    <div ng-controller="menulistController">{{category.name}}</div>
 
-    <div ng-controller="menulistController">{{test}}</div>
-
-    <div ng-controller="placeorderController">{{test}}</div>
-
-    <div ng-controller="totalController">{{test}}</div>
 
   </div>
 
 
   <script src="../node_modules/angular/angular.js"></script>
-
   <script src="app/app.js"></script>
-
+  <script src="app/services/services.js"></script>
   <script src="app/categories/categories.js"></script>
+  <script src="app/menulist/menulist.js"></script>
+
+
+  <!-- <script src="app/categories/categories.js"></script>
   <script src="app/chosenitems/chosenitems.js"></script>
   <script src="app/menulist/menulist.js"></script>
   <script src="app/placeorder/placeorder.js"></script>
-  <script src="app/total/total.js"></script>
+  <script src="app/total/total.js"></script> -->
 
 </body>
 </html>
