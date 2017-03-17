@@ -20,14 +20,19 @@
       <menu name={{category.name}} data="data.items" added="added.items" click="addMenuItemToChosenList(item)" addedclick="removeMenuItemFromChosenList(index)"></menu>
     </div>
 
+    <div ng-controller='chosenItemsController'>
+      <chosenitem name={{category.name}} added="data.items" click="addMenuItemToChosenList(item)" addedclick="removeMenuItemFromChosenList(index)"></chosenitem>
+    </div>
+
   </div>
 
 
-  
+
   <script src="app/app.js"></script>
   <script src="app/services/services.js"></script>
   <script src="app/categories/categories.js"></script>
   <script src="app/menulist/menulist.js"></script>
+  <script src="app/chosenitems/chosenitems.js"></script>
 
 
   <!-- <script src="app/categories/categories.js"></script>
