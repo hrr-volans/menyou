@@ -7,31 +7,33 @@
   <title>menYOU</title>
 </head>
 <body>
-  <!-- <div ng-view></div> -->
+
   <div ng-app="app">
+    <!-- NOTE: if needed we can use ng-init to pull in data that will be available globally -->
 
-    <div ng-controller="categoriesController">{{test}}</div>
+    <ul ng-controller='categoriesController'>
+      <category ng-repeat="category in data" name={{category}} ng-click="setCurrentCategory(category)"></category>
+    </ul>
 
-    <div ng-controller="chosenitemsController">{{test}}</div>
-
-    <div ng-controller="menulistController">{{test}}</div>
-
-    <div ng-controller="placeorderController">{{test}}</div>
-
-    <div ng-controller="totalController">{{test}}</div>
+    <div ng-hide="category.name === undefined" ng-controller="menulistController">
+      <menu name={{category.name}} data="data.items" added="added.items" click="addMenuItemToChosenList(item)" addedclick="removeMenuItemFromChosenList(index)"></menu>
+    </div>
 
   </div>
 
 
   <script src="../node_modules/angular/angular.js"></script>
-
   <script src="app/app.js"></script>
-
+  <script src="app/services/services.js"></script>
   <script src="app/categories/categories.js"></script>
+  <script src="app/menulist/menulist.js"></script>
+
+
+  <!-- <script src="app/categories/categories.js"></script>
   <script src="app/chosenitems/chosenitems.js"></script>
   <script src="app/menulist/menulist.js"></script>
   <script src="app/placeorder/placeorder.js"></script>
-  <script src="app/total/total.js"></script>
+  <script src="app/total/total.js"></script> -->
 
 </body>
 </html>
