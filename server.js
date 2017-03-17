@@ -5,7 +5,8 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 var app = express();
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
+//var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
+var connectionString = process.env.DATABASE_URL;
 var app = express();
 
 // instantiate a new client 
