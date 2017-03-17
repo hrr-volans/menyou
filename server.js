@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 var app = express();
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
 
 //var connectionString = process.env.DATABASE_URL;
 var app = express();
@@ -14,7 +15,6 @@ var app = express();
 // the same environment variables used by postgres cli tools 
 var client = new pg.Client(connectionString);
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
 // connect to our database 
 client.connect(function (err) {
   if (err) throw err;
