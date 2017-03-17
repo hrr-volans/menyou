@@ -43,8 +43,14 @@ app.listen(app.get('port'), function() {
 
 
 // Routes
-app.get('/categories', function(req, res, next) {
+app.get('/categories', function(req, res, next) {  
   client.query("SELECT * FROM categories", function(err, result) {   
+    res.send(result.rows);
+  });                  
+});
+
+app.get('/menuitems', function(req, res, next) {
+  client.query("SELECT * FROM menuitems", function(err, result) {   
     res.send(result.rows);
   });                  
 });
