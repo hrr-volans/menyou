@@ -1,6 +1,7 @@
 angular.module('categories', ['services'])
   .controller('categoriesController', function($scope, categoriesService){
-    $scope.data = ['Dinner', 'Breakfast'];
+    $scope.data = categoriesService.getAllCategoryNames();
+    // $scope.data = ['Dinner', 'Breakfast'];
     $scope.setCurrentCategory = function(category){
       categoriesService.setCurrentCategory(category);
       $scope.testCat = category;
