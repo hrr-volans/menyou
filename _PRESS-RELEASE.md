@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > menYOU
+  > Name the product in a way the reader (i.e. your target customers) will understand.
 
 ## Sub-Heading ##
-  > A waiter on your phone.
-  
+  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+
 ## Summary ##
-  > Allows customers to quickly and easily place and pay for orders on any device. 
-  
+  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+
 ## Problem ##
-  > Managing orders and be expensive, risky and cumbersome for restaurants. Placing orders can be a frusterating process for customers.
+  > Describe the problem your product solves.
 
 ## Solution ##
-  > menYOU provides a quick, modern and easy approach for placing food orders.
+  > Describe how your product elegantly solves the problem.
 
 ## Quote from You ##
-  > "You are one click away from your food."
+  > A quote from a spokesperson in your company.
 
 ## How to Get Started ##
-  > Visit the menYOU app and order!
+  > Describe how easy it is to get started.
 
 ## Customer Quote ##
-  > "I'll never have to wait in line, or talk to a waiter, again!" - Chuck Norris
+  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 
 ## Closing and Call to Action ##
-  > Try it, because Chuck Norris said so.
+  > Wrap it up and give pointers where the reader should go next.
