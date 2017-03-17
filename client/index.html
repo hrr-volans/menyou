@@ -14,8 +14,9 @@
       <category ng-repeat="category in data" name={{category}} ng-click="setCurrentCategory(category)"></category>
     </ul>
 
-    <div ng-controller="menulistController">{{category.name}}</div>
-
+    <div ng-controller="menulistController">
+      <menu name={{category.name}} data=data.items></menu>
+    </div>
 
   </div>
 
