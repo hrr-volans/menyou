@@ -1,14 +1,13 @@
 angular.module('menulist', ['services'])
   .controller('menulistController', function($scope, categoriesService, menuitemsService){
     $scope.category = categoriesService.getCurrentCategory();
-    $scope.data = categoriesService.getCurrentMenuItems();
-    $scope.added = menuitemsService.getAddedMenuItems();
-    console.log('addeditems from control', $scope.addedItems);
-    $scope.addMenuItemToOrder = function(item){
-      menuitemsService.addMenuItemToOrder(item);
+    $scope.data = categoriesService.getMenuItemsInCurrentCategory();
+    $scope.added = menuitemsService.getChosenList();
+    $scope.addMenuItemToChosenList = function(item){
+      menuitemsService.addMenuItemToChosenList(item);
     }
-    $scope.removeMenuItemFromOrder = function(index){
-      menuitemsService.removeMenuItemFromOrder(index);
+    $scope.removeMenuItemFromChosenList = function(index){
+      menuitemsService.removeMenuItemFromChosenList(index);
     }
   })
   .directive('menu', function(){
