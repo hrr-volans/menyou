@@ -4,15 +4,18 @@ angular.module('placeorder', ['services'])
     // var orderList =
     $scope.data = menuitemsService.getChosenList();
 
+
+
+
+    $scope.placeOrder = function(){
     console.log($scope.data);
 
 
+      menuitemsService.sendOrder();
 
-    // $scope.placeOrder = function(){
-    //   console.log('button clicked');
-    // $http.post('/orders', $scope.data)
-    //   .then()
-    // });
+    };
+
+
 
 
 

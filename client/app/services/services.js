@@ -124,6 +124,20 @@ angular.module('services', [])
     // });
 
     //Helper functions
+    function sendOrder() {
+      var orderObj = {
+        customername: 'Chuck Norris',
+        totalprice: total.total,
+        menuitems: addedItems.items
+      }
+
+      $http.post('/orders', JSON.stringify(orderObj)).then(function(response){
+        console.log(response);
+      }, function(err){
+        console.log('POST error: ', err);
+      });
+    }
+
     function updateTotalPrice(){
       total.total = addedItems.items.reduce(function(acc, curr){
         acc = acc + Number(curr.price);
@@ -152,6 +166,7 @@ angular.module('services', [])
     }
 
     return {
+      sendOrder: sendOrder,
       getAllMenuItems: getAllMenuItems,
       addMenuItemToChosenList: addMenuItemToChosenList,
       getChosenList: getChosenList,
