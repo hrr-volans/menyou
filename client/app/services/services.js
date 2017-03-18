@@ -1,34 +1,34 @@
 angular.module('services', [])
   .factory('categoriesService', function ($http, menuitemsService) {
-    // var categoryData = [
-    //   {
-    //     "id": 1,
-    //     "name": "burgers"
-    //   },
-    //   {
-    //     "id": 2,
-    //     "name": "dinner"
-    //   },
-    //   {
-    //     "id": 3,
-    //     "name": "breakfast"
-    //   },
-    //   {
-    //     "id": 4,
-    //     "name": "drinks"
-    //   }
-    // ];
+    var categoryData = [
+      {
+        "id": 1,
+        "name": "burgers"
+      },
+      {
+        "id": 2,
+        "name": "dinner"
+      },
+      {
+        "id": 3,
+        "name": "breakfast"
+      },
+      {
+        "id": 4,
+        "name": "drinks"
+      }
+    ];
 
-    var categoryData = [];
-
-    $http({
-      method: 'GET',
-      url: '/categories'
-      }).then(function successCallback(response) {
-        categoryData = response;
-      }, function errorCallback(response) {
-        console.log('Error getting data', response);
-    });
+    // var categoryData = [];
+    //
+    // $http({
+    //   method: 'GET',
+    //   url: '/categories'
+    //   }).then(function successCallback(response) {
+    //     categoryData = response;
+    //   }, function errorCallback(response) {
+    //     console.log('Error getting data', response);
+    // });
 
 
     var menuItems = menuitemsService.getAllMenuItems();
@@ -83,66 +83,79 @@ angular.module('services', [])
     //This is the 'state' of all items added to current order
     var addedItems = {items: []};
 
+    var total = {total: 0};
+
     // data variable to hold on to all menu items
     // above creates state and below are functions which act on it (like setState)
     // this gets all menu items - not defined use yet
-    // var data = [
-    //   {
-    //     "id": 1,
-    //     "name": "bigmac",
-    //     "description": "the biggest burger",
-    //     "price": 122,
-    //     "category_id": 1
-    //   },
-    //   {
-    //     "id": 2,
-    //     "name": "nuggets",
-    //     "description": "little nuggets",
-    //     "price": 232,
-    //     "category_id": 3
-    //   },
-    //   {
-    //     "id": 3,
-    //     "name": "fries",
-    //     "description": "good fries",
-    //     "price": 23,
-    //     "category_id": 2
-    //   }
-    // ];
+    var data = [
+      {
+        "id": 1,
+        "name": "bigmac",
+        "description": "the biggest burger",
+        "price": 122,
+        "category_id": 1
+      },
+      {
+        "id": 2,
+        "name": "nuggets",
+        "description": "little nuggets",
+        "price": 232,
+        "category_id": 3
+      },
+      {
+        "id": 3,
+        "name": "fries",
+        "description": "good fries",
+        "price": 23,
+        "category_id": 2
+      }
+    ];
 
-    var data = [];
-
-    $http({
-      method: 'GET',
-      url: '/menuitems'
-      }).then(function successCallback(response) {
-        data = response;
-      }, function errorCallback(response) {
-        console.log('Error getting data', response);
-    });
+    // var data = [];
+    //
+    // $http({
+    //   method: 'GET',
+    //   url: '/menuitems'
+    //   }).then(function successCallback(response) {
+    //     data = response;
+    //   }, function errorCallback(response) {
+    //     console.log('Error getting data', response);
+    // });
 
     //Helper functions
+    function updateTotalPrice(){
+      total.total = addedItems.items.reduce(function(acc, curr){
+        acc = acc + Number(curr.price);
+        return acc;
+      }, 0);
+      console.log('TOTAL FROM services', total.total);
+    }
+    function getTotalPrice(){
+      return total;
+    }
     var getAllMenuItems = function() {
       return data;
     };
     var addMenuItemToChosenList = function(item){
-      console.log('test');
-      console.log(item);
+      // console.log(item);
       addedItems.items.push(item);
+      updateTotalPrice();
     }
     // give access to chosenItemList module will eventually use to place order
     var getChosenList = function(){
-      console.log('in the getchosen function', addedItems);
       return addedItems;
     }
     var removeMenuItemFromChosenList = function(index){
       addedItems.items.splice(index, 1);
+      updateTotalPrice();
     }
 
     return {
       getAllMenuItems: getAllMenuItems,
       addMenuItemToChosenList: addMenuItemToChosenList,
       getChosenList: getChosenList,
-      removeMenuItemFromChosenList: removeMenuItemFromChosenList
+      removeMenuItemFromChosenList: removeMenuItemFromChosenList,
+      getTotalPrice: getTotalPrice
     };
   })

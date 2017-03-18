@@ -24,6 +24,10 @@
       <chosenitem name={{category.name}} added="data.items" click="addMenuItemToChosenList(item)" addedclick="removeMenuItemFromChosenList(index)"></chosenitem>
     </div>
 
+    <div ng-controller="totalController">
+      <totaldirective totaldirectivescope={{totalscope.total}}></totaldirective>
+    </div>
+
   </div>
 
 
@@ -33,6 +37,7 @@
   <script src="app/categories/categories.js"></script>
   <script src="app/menulist/menulist.js"></script>
   <script src="app/chosenitems/chosenitems.js"></script>
+  <script src="app/total/total.js"></script>
 
 
   <!-- <script src="app/categories/categories.js"></script>
