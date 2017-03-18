@@ -5,6 +5,8 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
+var neat = require('node-neat');
+neat.with('styles/styles.scss');
 
 var routes = require('./routes');
 
@@ -15,13 +17,47 @@ var client = new pg.Client(connectionString);
 client.connect(function (err) {
   if (err) throw err;
 
-  // client.query("CREATE TABLE categories(id SERIAL PRIMARY KEY, name VARCHAR(40) not null)"); 
-  // client.query("CREATE TABLE menuitems(id SERIAL PRIMARY KEY, name VARCHAR(40) not null, description VARCHAR(40) not null, price INTEGER not null, category_id INTEGER REFERENCES categories(id))")         
-  // client.query("CREATE TABLE orders(id SERIAL PRIMARY KEY, customer VARCHAR(40) not null, totalPrice INTEGER not null)"); 
-  // client.query("CREATE TABLE suborders(id SERIAL PRIMARY KEY, subtotalprice INTEGER not null, quantity INTEGER not null, totalPrice INTEGER not null, id_orders INTEGER REFERENCES orders(id), id_menuitems INTEGER REFERENCES menuitems(id))");
+  // client.query("CREATE TABLE \
+  //                 categories( \
+  //                   id SERIAL PRIMARY KEY, \
+  //                   name VARCHAR(40) not null)");
 
-  // client.query("INSERT INTO categories(name) VALUES('burgers'), ('dinner'), ('breakfast'), ('drinks')");                  
-  // client.query("INSERT INTO menuitems(name, description, price, category_id) VALUES('bigmac', 'the biggest burger', 122, 1), ('nuggets', 'little nuggets', 232, 3), ('fries', 'good fries', 23, 2)");                  
+  // client.query("CREATE TABLE \
+  //                 menuitems( \
+  //                   id SERIAL PRIMARY KEY, \
+  //                   name VARCHAR(40) not null, \
+  //                   description VARCHAR(40) not null, \
+  //                   price INTEGER not null, \
+  //                   category_id INTEGER REFERENCES categories(id))");
+
+  // client.query("CREATE TABLE \
+  //                 orders( \
+  //                   id SERIAL PRIMARY KEY, \
+  //                   customer VARCHAR(40) not null, \
+  //                   totalprice INTEGER not null)"); 
+
+  // client.query("CREATE TABLE \
+  //                 suborders( \
+  //                   id SERIAL PRIMARY KEY, \
+  //                   description VARCHAR(40) not null, \
+  //                   subtotalprice INTEGER not null, \
+  //                   quantity INTEGER not null, \
+  //                   id_orders INTEGER REFERENCES orders(id), \
+  //                   id_menuitems INTEGER REFERENCES menuitems(id))");
+
+  // client.query("INSERT INTO \
+  //                 categories(name) \
+  //                   VALUES('burgers'), \
+  //                         ('dinner'), \
+  //                         ('breakfast'), \
+  //                         ('drinks')");                  
+
+  // client.query("INSERT INTO \
+  //                 menuitems(name, description, price, category_id) \
+  //                   VALUES \
+  //                     ('bigmac', 'the biggest burger', 122, 1), \
+  //                     ('nuggets', 'little nuggets', 232, 3), \
+  //                     ('fries', 'good fries', 23, 2)");                  
 });
 
 app.use(bodyParser.json());
@@ -65,8 +101,24 @@ app.post('/orders', function(req, res, next) {
   console.log('order post request');
   console.log(typeof(req.body.customer), typeof(req.body.totalprice));
 
-  client.query("INSERT INTO orders(customer, totalprice) VALUES($1, $2)", [req.body.customer, req.body.totalprice], function(err, result) {   
-    console.log(err);
-  });  
+  var menuitems = req.body.menuitems;
+
+  client.query("INSERT INTO \
+                  orders(customer, totalprice) VALUES($1, $2) RETURNING id", [req.body.customer, req.body.totalprice], 
+                  function(err, result) {   
+    if(err) {
+      console.log(err);
+      res.send('FAIL POST');      
+    }
+
+    menuitems.forEach(function(suborder) {
+      client.query("INSERT INTO \
+                    suborders(description, subtotalprice, quantity, id_orders, id_menuitems) VALUES($1, $2, $3, $4, $5)", 
+                    [suborder.name, suborder.subtotalprice, suborder.quantity, result.rows[0].id, suborder.category_id], 
+                    function(err, result) {                       
+                    console.log(err);                    
+      });  
+    });    
+  }); 
 });
 

@@ -10,7 +10,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Ignaciopalma/menyou.git"
-  },  
+  },
   "author": "volans",
   "license": "ISC",
   "bugs": {
@@ -21,11 +21,19 @@
     "angular": "^1.6.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
+    "bourbon-neat": "^2.0.0",
     "express": "^4.4.5",
+    "grunt": "^0.4.4",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
     "install": "^0.8.7",
     "jwt-simple": "^0.5.0",
     "knex": "^0.12.8",
     "morgan": "^1.1.1",
+    "node-neat": "^2.0.0-beta.0",
     "npm": "^4.4.1",
     "path": "^0.12.7",
     "pg": "^6.1.4",
