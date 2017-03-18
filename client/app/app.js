@@ -1,1 +1,1 @@
-var app = angular.module('app', ['categories', 'menulist', 'chosenitems']);
+var app = angular.module('app', ['categories', 'menulist', 'chosenitems', 'totalmodule']);

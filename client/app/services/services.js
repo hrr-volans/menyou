@@ -83,6 +83,8 @@ angular.module('services', [])
     //This is the 'state' of all items added to current order
     var addedItems = {items: []};
 
+    var total = {total: 0};
+
     // data variable to hold on to all menu items
     // above creates state and below are functions which act on it (like setState)
     // this gets all menu items - not defined use yet
@@ -122,27 +124,38 @@ angular.module('services', [])
     });
 
     //Helper functions
+    function updateTotalPrice(){
+      total.total = addedItems.items.reduce(function(acc, curr){
+        acc = acc + Number(curr.price);
+        return acc;
+      }, 0);
+      console.log('TOTAL FROM services', total.total);
+    }
+    function getTotalPrice(){
+      return total;
+    }
     var getAllMenuItems = function() {
       return data;
     };
     var addMenuItemToChosenList = function(item){
-      console.log('test');
-      console.log(item);
+      // console.log(item);
       addedItems.items.push(item);
+      updateTotalPrice();
     }
     // give access to chosenItemList module will eventually use to place order
     var getChosenList = function(){
-      console.log('in the getchosen function', addedItems);
       return addedItems;
     }
     var removeMenuItemFromChosenList = function(index){
       addedItems.items.splice(index, 1);
+      updateTotalPrice();
     }
 
     return {
       getAllMenuItems: getAllMenuItems,
       addMenuItemToChosenList: addMenuItemToChosenList,
       getChosenList: getChosenList,
-      removeMenuItemFromChosenList: removeMenuItemFromChosenList
+      removeMenuItemFromChosenList: removeMenuItemFromChosenList,
+      getTotalPrice: getTotalPrice
     };
   })
