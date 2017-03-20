@@ -15,6 +15,7 @@ angular.module('services', [])
       }
       menuitemsService.getAllMenuItems().forEach(item => menuItems.push(item));
       createMenuItemsByCategory();
+      console.log(menuItems)
     }
     var createMenuItemsByCategory = function() {
       //This section organizes the menu items by category name
@@ -72,6 +73,7 @@ angular.module('services', [])
     }
 
     function sendOrder() {
+      console.log(addedItem)
       var orderObj = {
         customer: 'Chuck Norris',
         totalprice: total.total,
@@ -87,7 +89,7 @@ angular.module('services', [])
 
     function updateTotalPrice(){
       total.total = addedItems.items.reduce(function(acc, curr){
-        acc = acc + Number(curr.price * curr.quantity);
+        acc = acc + (Number(curr.price) * curr.quantity);
         return acc;
       }, 0);
       // console.log('TOTAL FROM services', total.total);
@@ -108,14 +110,17 @@ angular.module('services', [])
         addedItems.items.push(item);
       }
       updateTotalPrice();
+      console.log(addedItems);
     }
     // give access to chosenItemList module will eventually use to place order
     var getChosenList = function(){
       return addedItems;
     }
     var removeMenuItemFromChosenList = function(index){
+
       if(addedItems.items[index].quantity > 1) {
         addedItems.items[index].quantity -= 1;
+
       } else {
         addedItems.items.splice(index, 1);
       }
