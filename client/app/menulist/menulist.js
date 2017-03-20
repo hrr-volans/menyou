@@ -6,27 +6,17 @@ angular.module('menulist', ['services'])
       method: 'GET',
       url: '/menuitems'
       }).then(function successCallback(response) {
-        console.log('response in menu cont', response.data)
+
         menuitemsService.setAllMenuItems(response.data);
-
         // everything we need access to in the html, we're attaching to the $scope
-
+        categoriesService.setAllCategoryData('menucontl');
         $scope.category = categoriesService.getCurrentCategory();
         $scope.data = categoriesService.getMenuItemsInCurrentCategory();
         $scope.added = menuitemsService.getChosenList();
-
-
+        
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     });
-
-    // everything we need access to in the html, we're attaching to the $scope
-
-    // $scope.category = categoriesService.getCurrentCategory();
-    // $scope.data = categoriesService.getMenuItemsInCurrentCategory();
-    // $scope.added = menuitemsService.getChosenList();
-
-    // adding functions to $scope that will be used in html
 
     $scope.addMenuItemToChosenList = function(item){
       menuitemsService.addMenuItemToChosenList(item);
