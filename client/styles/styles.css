@@ -1,0 +1,23 @@
+/* line 4, neat/grid/_box-sizing.scss */
+html {
+  box-sizing: border-box;
+}
+
+/* line 9, neat/grid/_box-sizing.scss */
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+/* line 4, styles.scss */
+body {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: green;
+}
+/* line 20, neat/mixins/_clearfix.scss */
+body::after {
+  clear: both;
+  content: "";
+  display: block;
+}
