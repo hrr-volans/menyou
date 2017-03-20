@@ -28,6 +28,8 @@
 //   						quantity INTEGER not null, \  						
 //   						totalPrice INTEGER not null), \
 //   						order_id INTEGER not null REFERENCES order(id), \
-//   						menuItems_id INTEGER not null REFERENCES menuItems(id)"); 	  						 					
+//   						menuItems_id INTEGER not null REFERENCES menuItems(id)"); 	  						 	
+
+				
      
 // });
