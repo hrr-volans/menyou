@@ -14,7 +14,11 @@ var app = express();
 var client = new pg.Client(connectionString);
 
 client.connect(function (err) {
+
   if (err) throw err;
+
+//   if (err) throw err;
+
 
   // client.query("CREATE TABLE \
   //                 categories( \
@@ -74,7 +78,6 @@ client.connect(function (err) {
 
 
 });
-
 app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
@@ -113,37 +116,17 @@ app.get('/categories', function(req, res, next) {
       "name": "drinks"
     }
   ]
-  // client.query("SELECT * FROM categories", function(err, result) {
+
+  client.query("SELECT * FROM categories", function(err, result) {
+
     res.send(testdata);
   // });
 });
 
 app.get('/menuitems', function(req, res, next) {
-  var data = [
-    {
-      "id": 1,
-      "name": "bigmac",
-      "description": "the biggest burgerrrr",
-      "price": 122,
-      "category_id": 1
-    },
-    {
-      "id": 2,
-      "name": "nuggets",
-      "description": "little nuggets",
-      "price": 232,
-      "category_id": 3
-    },
-    {
-      "id": 3,
-      "name": "fries",
-      "description": "good fries",
-      "price": 23,
-      "category_id": 2
-    }
-  ];
-  // client.query("SELECT * FROM menuitems", function(err, result) {
-    res.send(data);
+  client.query("SELECT * FROM menuitems", function(err, result) {
+
+    res.send(result.rows);
   // });
 });
 
@@ -157,13 +140,6 @@ app.post('/orders', function(req, res, next) {
   console.log('order post request');
   console.log('request.body: ', req.body);
   var menuitems = req.body.menuitems;
-
-
-  // client.query('SQL', [a, s, c], function(err, res){
-  //   client.query('INSERT into aksk values ()', [], function(err, res){
-
-  //   })
-  // })
 
   client.query("INSERT INTO \
                   orders(customer, totalprice) VALUES($1, $2) RETURNING id", [req.body.customer, req.body.totalprice],

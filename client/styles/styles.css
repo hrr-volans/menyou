@@ -8,16 +8,21 @@ html {
   box-sizing: inherit;
 }
 
-/* line 4, styles.scss */
-body {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  background: green;
-}
-/* line 20, neat/mixins/_clearfix.scss */
-body::after {
-  clear: both;
-  content: "";
-  display: block;
+@media screen and (max-width: 740px) {
+  /* line 9, styles.scss */
+  body {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #020022;
+    color: #79d7f3;
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+  }
+  /* line 20, neat/mixins/_clearfix.scss */
+  body::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
 }

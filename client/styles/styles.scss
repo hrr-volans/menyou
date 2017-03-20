@@ -1,7 +1,17 @@
 @import "bourbon/bourbon";
 @import "neat/neat";
 
-body {
-	@include outer-container;
-	background: green;
+$dark-blue: #020022;
+$light-blue: #79d7f3;
+
+
+@include media(max-width 740px) {
+	body {
+		@include outer-container;
+		background: $dark-blue;
+		color: $light-blue;
+		font-family: 'Russo One', sans-serif;
+		text-align: center;
+	}
 }
+

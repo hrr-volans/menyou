@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
   <title>menYOU</title>
 </head>
@@ -12,6 +13,7 @@
 
   <div ng-app="app">
     <!-- NOTE: if needed we can use ng-init to pull in data that will be available globally -->
+    <h1>MENYOU</h1>
 
     <ul ng-controller='categoriesController'>
       <category ng-repeat="category in data" name={{category}} ng-click="setCurrentCategory(category)"></category>
