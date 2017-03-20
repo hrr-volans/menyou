@@ -50,7 +50,7 @@ var app = express();
   //                         ('lunch'), \
   //                         ('dinner'), \
   //                         ('desert'), \
-  //                         ('drinks')");                  
+  //                         ('drinks')");
 
   // client.query("INSERT INTO \
   //                 menuitems(name, description, price, category_id) \
@@ -59,17 +59,17 @@ var app = express();
   //                     ('Roundhouse Kick Burger', 'The way to a mans heart is a roundhouse kick to his gut', 12, 3), \
   //                     ('The Delta Four', 'Cheese Pizza', 14, 3), \
   //                     ('Kickin Grits and Taters', 'Healthy serving of grits and seasoned taters', 9, 1), \
-  //                     ('Magnus Stack', 'Large stack of your choice of waffles or pancakes', 9, 1), \                      
+  //                     ('Magnus Stack', 'Large stack of your choice of waffles or pancakes', 9, 1), \
   //                     ('Hearty Oats and Toast', 'Oatmean served with toast', 9, 1), \
   //                     ('Grilled Cheese Sandwich', 'Tasty grilled cheese with your choice of cheese', 7, 2), \
   //                     ('Philly Cheese Sandwich', 'Philly cheese style sandwich', 12, 2), \
   //                     ('Walker Kickin Chicken Salad', 'Grilled chicken salad served with walker dressing', 9, 2), \
   //                     ('Bucket O Oreos', 'Your favorite cookies served with a tall glass of milk', 5, 3), \
-  //                     ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5, 3), \                 
-  //                                      
+  //                     ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5, 3), \
+  //
 
 
-  //");                  
+  //");
 
 
 // });
@@ -95,56 +95,56 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/categories', function(req, res, next) {
-  var testdata = [
-    {
-      "id": 1,
-      "name": "burgers"
-    },
-    {
-      "id": 2,
-      "name": "dinner"
-    },
-    {
-      "id": 3,
-      "name": "breakfast"
-    },
-    {
-      "id": 4,
-      "name": "drinks"
-    }
-  ]
-  // client.query("SELECT * FROM categories", function(err, result) {
+  // var testdata = [
+  //   {
+  //     "id": 1,
+  //     "name": "burgers"
+  //   },
+  //   {
+  //     "id": 2,
+  //     "name": "dinner"
+  //   },
+  //   {
+  //     "id": 3,
+  //     "name": "breakfast"
+  //   },
+  //   {
+  //     "id": 4,
+  //     "name": "drinks"
+  //   }
+  // ]
+  client.query("SELECT * FROM categories", function(err, result) {
     res.send(testdata);
-  // });
+  });
 });
 
 app.get('/menuitems', function(req, res, next) {
-  var data = [
-    {
-      "id": 1,
-      "name": "bigmac",
-      "description": "the biggest burgerrrr",
-      "price": 122,
-      "category_id": 1
-    },
-    {
-      "id": 2,
-      "name": "nuggets",
-      "description": "little nuggets",
-      "price": 232,
-      "category_id": 3
-    },
-    {
-      "id": 3,
-      "name": "fries",
-      "description": "good fries",
-      "price": 23,
-      "category_id": 2
-    }
-  ];
-  // client.query("SELECT * FROM menuitems", function(err, result) {
+  // var data = [
+  //   {
+  //     "id": 1,
+  //     "name": "bigmac",
+  //     "description": "the biggest burgerrrr",
+  //     "price": 122,
+  //     "category_id": 1
+  //   },
+  //   {
+  //     "id": 2,
+  //     "name": "nuggets",
+  //     "description": "little nuggets",
+  //     "price": 232,
+  //     "category_id": 3
+  //   },
+  //   {
+  //     "id": 3,
+  //     "name": "fries",
+  //     "description": "good fries",
+  //     "price": 23,
+  //     "category_id": 2
+  //   }
+  // ];
+  client.query("SELECT * FROM menuitems", function(err, result) {
     res.send(data);
-  // });
+  });
 });
 
 app.get('/orders', function(req, res, next) {
@@ -186,25 +186,25 @@ app.post('/orders', function(req, res, next) {
 
 app.post('/createCategory', function(req, res, next) {
   //access the database....
-    //add a new category to table categories 
+    //add a new category to table categories
   var newCat = req.body.name;
   console.log(newCat);
   client.query("INSERT INTO \
-                  categories(name) VALUES($1)",[newCat], 
+                  categories(name) VALUES($1)",[newCat],
                     function(err, results) {
                       if(err) { res.send("POST FAILED") }
                     });
 });
 
 app.post('/createMenuItem', function(req, res, next) {
-  //add a new menue item to the database table, 'menueites' 
+  //add a new menue item to the database table, 'menueites'
     //each item needs  (name, description, price, category_id)
   var newItem = req.body;
   console.log(newItem);
   client.query("INSERT INTO \
                   menuitems(name, description, price, category_id) \
-                  VALUES ($1, $2, $3, $4)", [newItem.name, newItem.description, newItem.price, newItem.category_id], 
-                  function(err, results) { 
+                  VALUES ($1, $2, $3, $4)", [newItem.name, newItem.description, newItem.price, newItem.category_id],
+                  function(err, results) {
                     if(err) { res.send("POST FAILED") }
                   });
 });
