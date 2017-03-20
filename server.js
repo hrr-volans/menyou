@@ -4,8 +4,8 @@ var pg = require('pg');
 var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
-// neat.with('styles/styles.scss');
+
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/mydb';
 
 var routes = require('./routes');
 
@@ -46,18 +46,34 @@ var app = express();
 
   // client.query("INSERT INTO \
   //                 categories(name) \
-  //                   VALUES('burgers'), \
+  //                   VALUES('breakfast'), \
+  //                         ('lunch'), \
   //                         ('dinner'), \
-  //                         ('breakfast'), \
-  //                         ('drinks')");
+  //                         ('desert'), \
+  //                         ('drinks')");                  
 
   // client.query("INSERT INTO \
   //                 menuitems(name, description, price, category_id) \
   //                   VALUES \
-  //                     ('bigmac', 'the biggest burger', 122, 1), \
-  //                     ('nuggets', 'little nuggets', 232, 3), \
-  //                     ('fries', 'good fries', 23, 2)");
+  //                     ('Walker Texas Brisket', 'Lone Star state sized burger smothered in walker sauce', 12, 3), \
+  //                     ('Roundhouse Kick Burger', 'The way to a mans heart is a roundhouse kick to his gut', 12, 3), \
+  //                     ('The Delta Four', 'Cheese Pizza', 14, 3), \
+  //                     ('Kickin Grits and Taters', 'Healthy serving of grits and seasoned taters', 9, 1), \
+  //                     ('Magnus Stack', 'Large stack of your choice of waffles or pancakes', 9, 1), \                      
+  //                     ('Hearty Oats and Toast', 'Oatmean served with toast', 9, 1), \
+  //                     ('Grilled Cheese Sandwich', 'Tasty grilled cheese with your choice of cheese', 7, 2), \
+  //                     ('Philly Cheese Sandwich', 'Philly cheese style sandwich', 12, 2), \
+  //                     ('Walker Kickin Chicken Salad', 'Grilled chicken salad served with walker dressing', 9, 2), \
+  //                     ('Bucket O Oreos', 'Your favorite cookies served with a tall glass of milk', 5, 3), \
+  //                     ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5, 3), \                 
+  //                                      
+
+
+  //");                  
+
+
 // });
+
 
 app.use(bodyParser.json());
 
@@ -165,4 +181,30 @@ app.post('/orders', function(req, res, next) {
       });
     });
   });
+});
+
+
+app.post('/createCategory', function(req, res, next) {
+  //access the database....
+    //add a new category to table categories 
+  var newCat = req.body.name;
+  console.log(newCat);
+  client.query("INSERT INTO \
+                  categories(name) VALUES($1)",[newCat], 
+                    function(err, results) {
+                      if(err) { res.send("POST FAILED") }
+                    });
+});
+
+app.post('/createMenuItem', function(req, res, next) {
+  //add a new menue item to the database table, 'menueites' 
+    //each item needs  (name, description, price, category_id)
+  var newItem = req.body;
+  console.log(newItem);
+  client.query("INSERT INTO \
+                  menuitems(name, description, price, category_id) \
+                  VALUES ($1, $2, $3, $4)", [newItem.name, newItem.description, newItem.price, newItem.category_id], 
+                  function(err, results) { 
+                    if(err) { res.send("POST FAILED") }
+                  });
 });
