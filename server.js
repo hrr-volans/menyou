@@ -5,7 +5,6 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
-var neat = require('node-neat');
 neat.with('styles/styles.scss');
 
 var routes = require('./routes');
@@ -98,10 +97,15 @@ app.get('/orders', function(req, res, next) {
 });
 
 app.post('/orders', function(req, res, next) {
-  console.log('order post request');
-  console.log(typeof(req.body.customer), typeof(req.body.totalprice));
+  console.log('order post request');  
 
   var menuitems = req.body.menuitems;
+
+  client.query('SQL', [a, s, c], function(err, res){
+    client.query('INSERT into aksk values ()', [], function(err, res){
+
+    })
+  })
 
   client.query("INSERT INTO \
                   orders(customer, totalprice) VALUES($1, $2) RETURNING id", [req.body.customer, req.body.totalprice], 

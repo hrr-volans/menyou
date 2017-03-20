@@ -26,30 +26,30 @@ module.exports = function(grunt) {
     //   }
     // },
 
-    cssmin: {
-      target: {
-        files: {
-          'public/dist/style.min.css': ['public/style.css'],
-        }
-      }
-    },
+    // cssmin: {
+    //   target: {
+    //     files: {
+    //       'public/dist/style.min.css': ['public/style.css'],
+    //     }
+    //   }
+    // },
 
-    watch: {
-      scripts: {
-        files: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
-        ],
-        tasks: [
-          'concat',
-          'uglify'
-        ]
-      },
-      css: {
-        files: 'public/*.css',
-        tasks: ['cssmin']
-      }
-    },
+    // watch: {
+    //   scripts: {
+    //     files: [
+    //       'public/client/**/*.js',
+    //       'public/lib/**/*.js',
+    //     ],
+    //     tasks: [
+    //       'concat',
+    //       'uglify'
+    //     ]
+    //   },
+    //   css: {
+    //     files: 'public/*.css',
+    //     tasks: ['cssmin']
+    //   }
+    // },
 
     compass: {                  // Task 
       dist: {                   // Target 

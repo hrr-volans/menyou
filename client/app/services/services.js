@@ -1,35 +1,16 @@
 angular.module('services', [])
   .factory('categoriesService', function ($http, menuitemsService) {
-    // var categoryData = [
-    //   {
-    //     "id": 1,
-    //     "name": "burgers"
-    //   },
-    //   {
-    //     "id": 2,
-    //     "name": "dinner"
-    //   },
-    //   {
-    //     "id": 3,
-    //     "name": "breakfast"
-    //   },
-    //   {
-    //     "id": 4,
-    //     "name": "drinks"
-    //   }
-    // ];
-
     var categoryData = [];
 
     $http({
       method: 'GET',
       url: '/categories'
       }).then(function successCallback(response) {
-        categoryData = response;
+        console.log('data: ', response.data);
+        categoryData = response;        
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     });
-
 
     var menuItems = menuitemsService.getAllMenuItems();
 
@@ -55,8 +36,10 @@ angular.module('services', [])
     var getAllCategoryData = function(){
       return categoryData;
     }
+
     var getAllCategoryNames = function(){
-      return categoryData.map(function(category){
+      console.log('function', categoryData);
+      return categoryData.map(function(category){        
         return category.name[0].toUpperCase() + category.name.slice(1);
       });
     }
@@ -76,7 +59,7 @@ angular.module('services', [])
       getCurrentCategory: getCurrentCategory,
       getMenuItemsInCurrentCategory: getMenuItemsInCurrentCategory,
       getAllCategoryNames: getAllCategoryNames,
-      getAllCategoryData: getAllCategoryData
+      getAllCategoryData: getAllCategoryData      
     };
   })
   .factory('menuitemsService', function ($http) {
