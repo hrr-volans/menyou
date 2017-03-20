@@ -5,16 +5,16 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
-neat.with('styles/styles.scss');
+// neat.with('styles/styles.scss');
 
 var routes = require('./routes');
 
 var app = express();
 
-var client = new pg.Client(connectionString);
+// var client = new pg.Client(connectionString);
 
-client.connect(function (err) {
-  if (err) throw err;
+// client.connect(function (err) {
+//   if (err) throw err;
 
   // client.query("CREATE TABLE \
   //                 categories( \
@@ -33,7 +33,7 @@ client.connect(function (err) {
   //                 orders( \
   //                   id SERIAL PRIMARY KEY, \
   //                   customer VARCHAR(40) not null, \
-  //                   totalprice INTEGER not null)"); 
+  //                   totalprice INTEGER not null)");
 
   // client.query("CREATE TABLE \
   //                 suborders( \
@@ -49,15 +49,15 @@ client.connect(function (err) {
   //                   VALUES('burgers'), \
   //                         ('dinner'), \
   //                         ('breakfast'), \
-  //                         ('drinks')");                  
+  //                         ('drinks')");
 
   // client.query("INSERT INTO \
   //                 menuitems(name, description, price, category_id) \
   //                   VALUES \
   //                     ('bigmac', 'the biggest burger', 122, 1), \
   //                     ('nuggets', 'little nuggets', 232, 3), \
-  //                     ('fries', 'good fries', 23, 2)");                  
-});
+  //                     ('fries', 'good fries', 23, 2)");
+// });
 
 app.use(bodyParser.json());
 
@@ -74,30 +74,71 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port ' + this.address().port);
 });
 
-app.get('/', function(req, res, next) {  
-  res.sendfile('index.html');                  
+app.get('/', function(req, res, next) {
+  res.sendfile('index.html');
 });
 
-app.get('/categories', function(req, res, next) {  
-  client.query("SELECT * FROM categories", function(err, result) {   
-    res.send(result.rows);
-  });                  
+app.get('/categories', function(req, res, next) {
+  var testdata = [
+    {
+      "id": 1,
+      "name": "burgers"
+    },
+    {
+      "id": 2,
+      "name": "dinner"
+    },
+    {
+      "id": 3,
+      "name": "breakfast"
+    },
+    {
+      "id": 4,
+      "name": "drinks"
+    }
+  ]
+  // client.query("SELECT * FROM categories", function(err, result) {
+    res.send(testdata);
+  // });
 });
 
 app.get('/menuitems', function(req, res, next) {
-  client.query("SELECT * FROM menuitems", function(err, result) {   
-    res.send(result.rows);
-  });                  
+  var data = [
+    {
+      "id": 1,
+      "name": "bigmac",
+      "description": "the biggest burgerrrr",
+      "price": 122,
+      "category_id": 1
+    },
+    {
+      "id": 2,
+      "name": "nuggets",
+      "description": "little nuggets",
+      "price": 232,
+      "category_id": 3
+    },
+    {
+      "id": 3,
+      "name": "fries",
+      "description": "good fries",
+      "price": 23,
+      "category_id": 2
+    }
+  ];
+  // client.query("SELECT * FROM menuitems", function(err, result) {
+    res.send(data);
+  // });
 });
 
 app.get('/orders', function(req, res, next) {
-  client.query("SELECT * FROM orders", function(err, result) {   
+  client.query("SELECT * FROM orders", function(err, result) {
     res.send(result);
-  });    
+  });
 });
 
 app.post('/orders', function(req, res, next) {
-  console.log('order post request');  
+  console.log('order post request');
 
   var menuitems = req.body.menuitems;
 
@@ -108,21 +149,20 @@ app.post('/orders', function(req, res, next) {
   })
 
   client.query("INSERT INTO \
-                  orders(customer, totalprice) VALUES($1, $2) RETURNING id", [req.body.customer, req.body.totalprice], 
-                  function(err, result) {   
+                  orders(customer, totalprice) VALUES($1, $2) RETURNING id", [req.body.customer, req.body.totalprice],
+                  function(err, result) {
     if(err) {
       console.log(err);
-      res.send('FAIL POST');      
+      res.send('FAIL POST');
     }
 
     menuitems.forEach(function(suborder) {
       client.query("INSERT INTO \
-                    suborders(description, subtotalprice, quantity, id_orders, id_menuitems) VALUES($1, $2, $3, $4, $5)", 
-                    [suborder.name, suborder.subtotalprice, suborder.quantity, result.rows[0].id, suborder.category_id], 
-                    function(err, result) {                       
-                    console.log(err);                    
-      });  
-    });    
-  }); 
+                    suborders(description, subtotalprice, quantity, id_orders, id_menuitems) VALUES($1, $2, $3, $4, $5)",
+                    [suborder.name, suborder.subtotalprice, suborder.quantity, result.rows[0].id, suborder.category_id],
+                    function(err, result) {
+                    console.log(err);
+      });
+    });
+  });
 });
-

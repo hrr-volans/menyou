@@ -1,12 +1,30 @@
 angular.module('menulist', ['services'])
   // we define $scope in controller
-  .controller('menulistController', function($scope, categoriesService, menuitemsService){
+  .controller('menulistController', function($http, $scope, categoriesService, menuitemsService){
+
+    $http({
+      method: 'GET',
+      url: '/menuitems'
+      }).then(function successCallback(response) {
+        console.log('response in menu cont', response.data)
+        menuitemsService.setAllMenuItems(response.data);
+
+        // everything we need access to in the html, we're attaching to the $scope
+
+        $scope.category = categoriesService.getCurrentCategory();
+        $scope.data = categoriesService.getMenuItemsInCurrentCategory();
+        $scope.added = menuitemsService.getChosenList();
+
+
+      }, function errorCallback(response) {
+        console.log('Error getting data', response);
+    });
 
     // everything we need access to in the html, we're attaching to the $scope
 
-    $scope.category = categoriesService.getCurrentCategory();
-    $scope.data = categoriesService.getMenuItemsInCurrentCategory();
-    $scope.added = menuitemsService.getChosenList();
+    // $scope.category = categoriesService.getCurrentCategory();
+    // $scope.data = categoriesService.getMenuItemsInCurrentCategory();
+    // $scope.added = menuitemsService.getChosenList();
 
     // adding functions to $scope that will be used in html
 
