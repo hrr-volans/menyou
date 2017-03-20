@@ -5,16 +5,16 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/mydb';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/pjdb';
 
 var routes = require('./routes');
 
 var app = express();
 
-// var client = new pg.Client(connectionString);
+var client = new pg.Client(connectionString);
 
-// client.connect(function (err) {
-//   if (err) throw err;
+client.connect(function (err) {
+  if (err) throw err;
 
   // client.query("CREATE TABLE \
   //                 categories( \
@@ -25,7 +25,7 @@ var app = express();
   //                 menuitems( \
   //                   id SERIAL PRIMARY KEY, \
   //                   name VARCHAR(40) not null, \
-  //                   description VARCHAR(40) not null, \
+  //                   description VARCHAR(80) not null, \
   //                   price INTEGER not null, \
   //                   category_id INTEGER REFERENCES categories(id))");
 
@@ -44,36 +44,34 @@ var app = express();
   //                   id_orders INTEGER REFERENCES orders(id), \
   //                   id_menuitems INTEGER REFERENCES menuitems(id))");
 
-  // client.query("INSERT INTO \
-  //                 categories(name) \
-  //                   VALUES('breakfast'), \
-  //                         ('lunch'), \
-  //                         ('dinner'), \
-  //                         ('desert'), \
-  //                         ('drinks')");
 
-  // client.query("INSERT INTO \
-  //                 menuitems(name, description, price, category_id) \
-  //                   VALUES \
-  //                     ('Walker Texas Brisket', 'Lone Star state sized burger smothered in walker sauce', 12, 3), \
-  //                     ('Roundhouse Kick Burger', 'The way to a mans heart is a roundhouse kick to his gut', 12, 3), \
-  //                     ('The Delta Four', 'Cheese Pizza', 14, 3), \
-  //                     ('Kickin Grits and Taters', 'Healthy serving of grits and seasoned taters', 9, 1), \
-  //                     ('Magnus Stack', 'Large stack of your choice of waffles or pancakes', 9, 1), \
-  //                     ('Hearty Oats and Toast', 'Oatmean served with toast', 9, 1), \
-  //                     ('Grilled Cheese Sandwich', 'Tasty grilled cheese with your choice of cheese', 7, 2), \
-  //                     ('Philly Cheese Sandwich', 'Philly cheese style sandwich', 12, 2), \
-  //                     ('Walker Kickin Chicken Salad', 'Grilled chicken salad served with walker dressing', 9, 2), \
-  //                     ('Bucket O Oreos', 'Your favorite cookies served with a tall glass of milk', 5, 3), \
-  //                     ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5, 3), \
-  //
+//   client.query("INSERT INTO \
+//                   categories(name) \
+//                     VALUES('breakfast'), \
+//                           ('lunch'), \
+//                           ('dinner'), \
+//                           ('desert'), \
+//                           ('drinks')");                  
 
+// client.query("INSERT INTO \
+//                   menuitems(name, description, price, category_id) \
+//                     VALUES('Walker Texas Brisket', 'Lone Star state sized burger smothered in walker sauce', 12, 3), \
+//                       ('Roundhouse Kick Burger', 'The way to a mans heart is a roundhouse kick to his gut', 12, 3), \
+//                       ('The Delta Four', 'Cheese Pizza', 14, 3), \
+//                       ('Kickin Grits and Taters', 'Healthy serving of grits and seasoned taters', 9, 1), \
+//                       ('Magnus Stack', 'Large stack of your choice of waffles or pancakes', 9, 1), \
+//                       ('Hearty Oats and Toast', 'Oatmeal served with toast', 9, 1)");
 
-  //");
+// client.query("INSERT INTO \
+//                   menuitems(name, description, price, category_id) \
+//                     VALUES('Grilled Cheese Sandwich', 'Tasty grilled cheese with your choice of cheese', 7, 2), \
+//                       ('Philly Cheese Sandwich', 'Philly cheese style sandwich', 12, 2), \
+//                       ('Walker Kickin Chicken Salad', 'Grilled chicken salad served with walker dressing', 9, 2), \
+//                       ('Bucket O Oreos', 'Your favorite cookies served with a tall glass of milk', 5, 3), \
+//                       ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5, 3), \
+//                       ('Mango Spritzer', 'Mango and orange juice in champagne', 7, 4)");
 
-
-// });
-
+});
 
 app.use(bodyParser.json());
 
@@ -149,7 +147,7 @@ app.get('/menuitems', function(req, res, next) {
 
 app.get('/orders', function(req, res, next) {
   client.query("SELECT * FROM orders", function(err, result) {
-    res.send(result);
+    res.send(result.rows);
   });
 });
 
