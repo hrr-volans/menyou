@@ -1,60 +1,38 @@
 angular.module('services', [])
   .factory('categoriesService', function ($http, menuitemsService) {
 
-    var categoryData = [
-      {
-        "id": 1,
-        "name": "burgers"
-      },
-      {
-        "id": 2,
-        "name": "dinner"
-      },
-      {
-        "id": 3,
-        "name": "breakfast"
-      },
-      {
-        "id": 4,
-        "name": "drinks"
-      }
-    ];
-
-    var categoryData = [];
-
-    $http({
-      method: 'GET',
-      url: '/categories'
-      }).then(function successCallback(response) {
-        console.log('data: ', response.data);
-        categoryData = response;
-      }, function errorCallback(response) {
-        console.log('Error getting data', response);
-    });
-
-    var menuItems = menuitemsService.getAllMenuItems();
-
-    //This section organizes the menu items by category name
-    var menuItemsByCategory = {};
-    menuItems.forEach(function(menuObj){
-      var key = findCategoryById(menuObj.category_id)[0].name;
-      var formattedKey = key[0].toUpperCase() + key.slice(1);
-      menuItemsByCategory[formattedKey] = menuItemsByCategory[formattedKey] || [];
-      menuItemsByCategory[formattedKey].push(menuObj);
-    });
-    function findCategoryById(id){
-      return categoryData.filter(function(category){
-        return category['id'] === id;
-      });
-    }
-
     //These variables hold the 'state' of current category & menu items in that category
+    var categoryData = [];
+    var menuItemsByCategory = {};
+    var menuItems = [];
     var currentMenuItems =  {items: []};
     var currentCategory = {name: undefined};
 
     //Helper functions
-    var getAllCategoryData = function(){
-      return categoryData;
+    var setAllCategoryData = function(data){
+      if(data) {
+        categoryData = data;
+      }
+      menuItems = menuitemsService.getAllMenuItems();
+      console.log('get menu items from setCat', menuItems)
+      createMenuItemsByCategory();
+      //This section organizes the menu items by category name, if they are available
+    }
+
+    var createMenuItemsByCategory = function() {
+      // if(categoryData.length) {
+        menuItems.forEach(function(menuObj){
+          var key = findCategoryById(menuObj.category_id)[0].name;
+          var formattedKey = key[0].toUpperCase() + key.slice(1);
+          menuItemsByCategory[formattedKey] = menuItemsByCategory[formattedKey] || [];
+          menuItemsByCategory[formattedKey].push(menuObj);
+        });
+        function findCategoryById(id){
+          return categoryData.filter(function(category){
+            return category['id'] === id;
+          });
+        }
+      // }
     }
 
     var getAllCategoryNames = function(){
@@ -79,7 +57,7 @@ angular.module('services', [])
       getCurrentCategory: getCurrentCategory,
       getMenuItemsInCurrentCategory: getMenuItemsInCurrentCategory,
       getAllCategoryNames: getAllCategoryNames,
-      getAllCategoryData: getAllCategoryData
+      setAllCategoryData: setAllCategoryData
     };
   })
   .factory('menuitemsService', function ($http) {
@@ -88,34 +66,35 @@ angular.module('services', [])
 
     var total = {total: 0};
 
+    var data = [];
+
     // data variable to hold on to all menu items
     // above creates state and below are functions which act on it (like setState)
     // this gets all menu items - not defined use yet
-    var data = [
-      {
-        "id": 1,
-        "name": "bigmac",
-        "description": "the biggest burger",
-        "price": 122,
-        "category_id": 1
-      },
-      {
-        "id": 2,
-        "name": "nuggets",
-        "description": "little nuggets",
-        "price": 232,
-        "category_id": 3
-      },
-      {
-        "id": 3,
-        "name": "fries",
-        "description": "good fries",
-        "price": 23,
-        "category_id": 2
-      }
-    ];
+    // var data = [
+    //   {
+    //     "id": 1,
+    //     "name": "bigmac",
+    //     "description": "the biggest burger",
+    //     "price": 122,
+    //     "category_id": 1
+    //   },
+    //   {
+    //     "id": 2,
+    //     "name": "nuggets",
+    //     "description": "little nuggets",
+    //     "price": 232,
+    //     "category_id": 3
+    //   },
+    //   {
+    //     "id": 3,
+    //     "name": "fries",
+    //     "description": "good fries",
+    //     "price": 23,
+    //     "category_id": 2
+    //   }
+    // ];
 
-    // var data = [];
     //
     // $http({
     //   method: 'GET',
@@ -127,6 +106,10 @@ angular.module('services', [])
     // });
 
     //Helper functions
+    function setAllMenuItems(thisdata) {
+      thisdata.forEach(item => data.push(item))
+    }
+
     function sendOrder() {
       var orderObj = {
         customername: 'Chuck Norris',
@@ -174,6 +157,7 @@ angular.module('services', [])
       addMenuItemToChosenList: addMenuItemToChosenList,
       getChosenList: getChosenList,
       removeMenuItemFromChosenList: removeMenuItemFromChosenList,
-      getTotalPrice: getTotalPrice
+      getTotalPrice: getTotalPrice,
+      setAllMenuItems: setAllMenuItems
     };
   })
