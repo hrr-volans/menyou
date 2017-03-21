@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/mypjdb';
 
 var routes = require('./routes');
 
@@ -38,7 +38,7 @@ client.connect(function (err) {
   //                   id SERIAL PRIMARY KEY, \
   //                   customer VARCHAR(40) not null, \
   //                   totalprice INTEGER not null, \
-  //                   complete boolean, not null");
+  //                   complete boolean default false)");
 
   // client.query("CREATE TABLE \
   //                 suborders( \
@@ -49,13 +49,13 @@ client.connect(function (err) {
   //                   id_orders INTEGER REFERENCES orders(id), \
   //                   id_menuitems INTEGER REFERENCES menuitems(id))");
 
-//   client.query("INSERT INTO \
-//                   categories(name) \
-//                     VALUES('breakfast'), \
-//                           ('lunch'), \
-//                           ('dinner'), \
-//                           ('desert'), \
-//                           ('drinks')");
+  // client.query("INSERT INTO \
+  //                 categories(name) \
+  //                   VALUES('breakfast'), \
+  //                         ('lunch'), \
+  //                         ('dinner'), \
+  //                         ('desert'), \
+  //                         ('drinks')");
 
 // client.query("INSERT INTO \
 //                   menuitems(name, description, price, category_id) \
@@ -165,7 +165,7 @@ app.post('/orders', function(req, res, next) {
   var menuitems = req.body.menuitems;
 
   client.query("INSERT INTO \
-                  orders(customer, totalprice, complete) VALUES($1, $2, $3) RETURNING id", [req.body.customer, req.body.totalprice, req.body.complete],
+                  orders(customer, totalprice) VALUES($1, $2) RETURNING id", [req.body.customer, req.body.totalprice],
                   function(err, result) {
     if(err) {
       console.log(err);
@@ -181,6 +181,17 @@ app.post('/orders', function(req, res, next) {
       });
     });
   });
+});
+
+app.post('/complete', function(req, res, next) {
+  console.log(req.body.customer);
+  client.query("UPDATE orders SET complete = true WHERE customer = ($1)", [req.body.customer],
+    function(err, result) {  
+      if(err) {console.log("ERROR! ", err) }
+        console.log('UPDATING! ', req.customer,"'s  order is complete!");
+        res.send("Order complete");
+    }
+  );
 });
 
 
