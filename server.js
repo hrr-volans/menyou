@@ -74,7 +74,7 @@ client.connect(function (err) {
 //                       ('Bucket O Oreos', 'Oreos with a tall glass of milk', 5, 3), \
 //                       ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5, 3), \
 //                       ('Mango Spritzer', 'Mango and orange juice in champagne', 7, 4)");
-  
+
 
 
 });
@@ -96,6 +96,14 @@ app.listen(app.get('port'), function() {
 
 app.get('/', function(req, res, next) {
   res.sendfile('index.html');
+});
+
+app.get('/kitchen', function(req, res, next) {
+  res.redirect('/#/kitchen');
+});
+
+app.get('/admin', function(req, res, next) {
+  res.redirect('/#/admin');
 });
 
 app.get('/categories', function(req, res, next) {
@@ -219,5 +227,3 @@ app.post('/createMenuItem', function(req, res, next) {
                     if(err) { res.send("POST FAILED") }
                   });
 });
-
-
