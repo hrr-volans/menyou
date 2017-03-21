@@ -56,7 +56,7 @@ angular.module('services', [])
     };
   })
   .factory('menuitemsService', function ($http) {
-    //This is the 'state' of all items added to current order
+    // This is the 'state' of all items added to current order
     var addedItems = {items: []};
 
     var total = {total: 0};
@@ -73,7 +73,7 @@ angular.module('services', [])
 
     function sendOrder() {
       var orderObj = {
-        customername: 'Chuck Norris',
+        customer: 'Chuck Norris',
         totalprice: total.total,
         menuitems: addedItems.items
       }
@@ -87,10 +87,10 @@ angular.module('services', [])
 
     function updateTotalPrice(){
       total.total = addedItems.items.reduce(function(acc, curr){
-        acc = acc + Number(curr.price);
+        acc = acc + Number(curr.price * curr.quantity);
         return acc;
       }, 0);
-      console.log('TOTAL FROM services', total.total);
+      // console.log('TOTAL FROM services', total.total);
     }
     function getTotalPrice(){
       return total;
@@ -99,8 +99,14 @@ angular.module('services', [])
       return data;
     };
     var addMenuItemToChosenList = function(item){
-      // console.log(item);
-      addedItems.items.push(item);
+      console.log(item);
+      var ind = addedItems.items.indexOf(item);
+      if(ind !== -1) {
+        addedItems.items[ind].quantity += 1;
+      } else {
+        item.quantity = 1;
+        addedItems.items.push(item);
+      }
       updateTotalPrice();
     }
     // give access to chosenItemList module will eventually use to place order
@@ -108,7 +114,11 @@ angular.module('services', [])
       return addedItems;
     }
     var removeMenuItemFromChosenList = function(index){
-      addedItems.items.splice(index, 1);
+      if(addedItems.items[index].quantity > 1) {
+        addedItems.items[index].quantity -= 1;
+      } else {
+        addedItems.items.splice(index, 1);
+      }
       updateTotalPrice();
     }
 
