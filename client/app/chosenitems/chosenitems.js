@@ -4,6 +4,7 @@ angular.module('chosenitems', ['services'])
     $scope.data = menuitemsService.getChosenList();
 
     $scope.addMenuItemToChosenList = function(item){
+      console.log($scope.data);
       menuitemsService.addMenuItemToChosenList(item);
     }
     $scope.removeMenuItemFromChosenList = function(index){
@@ -22,7 +23,7 @@ angular.module('chosenitems', ['services'])
         added: '=',
         data: '=',
         click: '&',
-        addedclick: '&'
+        removeclick: '&'
       }
     }
   });
