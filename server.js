@@ -67,17 +67,17 @@ client.connect(function (err) {
 
 // client.query("INSERT INTO \
 //                   menuitems(name, description, price, category_id) \
-//                     VALUES('Grilled Cheese Sandwich', 'Tasty grilled cheese with your choice of cheese', 7, 2), \
+//                     VALUES('Grilled Cheese Sandwich', 'Tasty grilled cheese', 7, 2), \
 //                       ('Philly Cheese Sandwich', 'Philly cheese style sandwich', 12, 2), \
-//                       ('Walker Kickin Chicken Salad', 'Grilled chicken salad served with walker dressing', 9, 2), \
-//                       ('Bucket O Oreos', 'Your favorite cookies served with a tall glass of milk', 5, 3), \
+//                       ('Walker Kickin Chicken Salad', 'Grilled chicken salad', 9, 2), \
+//                       ('Bucket O Oreos', 'Your favorite cookies', 5, 3), \
 //                       ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5, 3), \
 //                       ('Mango Spritzer', 'Mango and orange juice in champagne', 7, 4)");
-
-  //");
+  
 
 
 });
+
 app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
@@ -98,24 +98,6 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/categories', function(req, res, next) {
-  // var testdata = [
-  //   {
-  //     "id": 1,
-  //     "name": "burgers"
-  //   },
-  //   {
-  //     "id": 2,
-  //     "name": "dinner"
-  //   },
-  //   {
-  //     "id": 3,
-  //     "name": "breakfast"
-  //   },
-  //   {
-  //     "id": 4,
-  //     "name": "drinks"
-  //   }
-  // ]
   client.query("SELECT * FROM categories", function(err, result) {
     res.send(result.rows);
   });
@@ -205,3 +187,5 @@ app.post('/createMenuItem', function(req, res, next) {
                     if(err) { res.send("POST FAILED") }
                   });
 });
+
+

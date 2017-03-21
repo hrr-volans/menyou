@@ -36,6 +36,9 @@ $orange:  #f4b556;
 
 						li.menu-li-element {
 							@include span-columns(6);
+							@include omega();
+							padding: 2px;
+							
 							div.menu-li-div {							    
 							    padding: 6px;
 									background: $orange;
