@@ -29,7 +29,7 @@ client.connect(function (err) {
   //                 menuitems( \
   //                   id SERIAL PRIMARY KEY, \
   //                   name VARCHAR(40) not null, \
-  //                   description VARCHAR(80) not null, \
+  //                   description VARCHAR(40) not null, \
   //                   price INTEGER not null, \
   //                   category_id INTEGER REFERENCES categories(id))");
 
@@ -37,7 +37,8 @@ client.connect(function (err) {
   //                 orders( \
   //                   id SERIAL PRIMARY KEY, \
   //                   customer VARCHAR(40) not null, \
-  //                   totalprice INTEGER not null)");
+  //                   totalprice INTEGER not null, \
+  //                   complete boolean, not null");
 
   // client.query("CREATE TABLE \
   //                 suborders( \
@@ -58,19 +59,19 @@ client.connect(function (err) {
 
 // client.query("INSERT INTO \
 //                   menuitems(name, description, price, category_id) \
-//                     VALUES('Walker Texas Brisket', 'Lone Star state sized burger smothered in walker sauce', 12, 3), \
-//                       ('Roundhouse Kick Burger', 'The way to a mans heart is a roundhouse kick to his gut', 12, 3), \
+//                     VALUES('Walker Texas Brisket', 'Texas sized burger in walker sauce', 12, 3), \
+//                       ('Roundhouse Kick Burger', 'Roundhouse kick to the gut', 12, 3), \
 //                       ('The Delta Four', 'Cheese Pizza', 14, 3), \
-//                       ('Kickin Grits and Taters', 'Healthy serving of grits and seasoned taters', 9, 1), \
-//                       ('Magnus Stack', 'Large stack of your choice of waffles or pancakes', 9, 1), \
+//                       ('Kickin Grits and Taters', 'Grits and seasoned taters', 9, 1), \
+//                       ('Magnus Stack', 'Large stack of pancakes', 9, 1), \
 //                       ('Hearty Oats and Toast', 'Oatmeal served with toast', 9, 1)");
 
 // client.query("INSERT INTO \
 //                   menuitems(name, description, price, category_id) \
-//                     VALUES('Grilled Cheese Sandwich', 'Tasty grilled cheese', 7, 2), \
+//                     VALUES('Grilled Cheese Sandwich', 'Tasty grilled cheese sandwich', 7, 2), \
 //                       ('Philly Cheese Sandwich', 'Philly cheese style sandwich', 12, 2), \
 //                       ('Walker Kickin Chicken Salad', 'Grilled chicken salad', 9, 2), \
-//                       ('Bucket O Oreos', 'Your favorite cookies', 5, 3), \
+//                       ('Bucket O Oreos', 'Oreos with a tall glass of milk', 5, 3), \
 //                       ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5, 3), \
 //                       ('Mango Spritzer', 'Mango and orange juice in champagne', 7, 4)");
   
@@ -127,7 +128,8 @@ app.get('/menuitems', function(req, res, next) {
   //     "category_id": 2
   //   }
   // ];
-  client.query("SELECT * FROM menuitems", function(err, result) {
+
+client.query("SELECT * FROM menuitems", function(err, result) {
     res.send(result.rows);
   });
 });
@@ -138,13 +140,32 @@ app.get('/orders', function(req, res, next) {
   });
 });
 
+app.get('/deeporders', function(req, res, next) {
+  var deeporder = [];
+  client.query("SELECT * FROM orders", function(err, result) {
+    var orders = result.rows;
+    orders.forEach(function(order, ind, coll){
+      client.query("SELECT * FROM suborders WHERE id_orders = ($1)", [order.id], function(err, result){
+        if(err) { console.log(err) }
+          order.menuitems = result.rows;
+          deeporder.push(order);
+        if(deeporder.length === coll.length) {
+           console.log(deeporder);
+           res.send(deeporder);
+        };
+      });
+    });
+  });
+});
+
+
+
 app.post('/orders', function(req, res, next) {
   console.log('order post request');
-  console.log('request.body: ', req.body);
   var menuitems = req.body.menuitems;
 
   client.query("INSERT INTO \
-                  orders(customer, totalprice) VALUES($1, $2) RETURNING id", [req.body.customer, req.body.totalprice],
+                  orders(customer, totalprice, complete) VALUES($1, $2, $3) RETURNING id", [req.body.customer, req.body.totalprice, req.body.complete],
                   function(err, result) {
     if(err) {
       console.log(err);
