@@ -108,6 +108,7 @@ app.get('/admin', function(req, res, next) {
 });
 
 app.get('/categories', function(req, res, next) {
+  console.log('get categories test');
   client.query("SELECT * FROM categories", function(err, result) {
     res.send(result.rows);
   });
