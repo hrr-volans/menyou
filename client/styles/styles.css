@@ -8,16 +8,178 @@ html {
   box-sizing: inherit;
 }
 
-/* line 4, styles.scss */
-body {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  background: green;
-}
-/* line 20, neat/mixins/_clearfix.scss */
-body::after {
-  clear: both;
-  content: "";
-  display: block;
+@media screen and (max-width: 740px) {
+  /* line 11, styles.scss */
+  body {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #020022;
+    color: #79d7f3;
+    font-family: 'Russo One', sans-serif;
+    text-align: center;
+  }
+  /* line 20, neat/mixins/_clearfix.scss */
+  body::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  /* line 19, styles.scss */
+  body div.app-container div.categories-container {
+    padding: 0 10%;
+  }
+  /* line 23, styles.scss */
+  body div.app-container div.categories-container div.category-slider button.slick-arrow:before {
+    color: #79d7f3;
+  }
+  /* line 30, styles.scss */
+  body div.app-container div.menu-list-container menu {
+    padding: 0;
+  }
+  /* line 32, styles.scss */
+  body div.app-container div.menu-list-container menu ul.menu-list {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    list-style-type: none;
+    padding: 0 10%;
+  }
+  /* line 20, neat/mixins/_clearfix.scss */
+  body div.app-container div.menu-list-container menu ul.menu-list::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  /* line 37, styles.scss */
+  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element:last-child {
+    margin-right: 0;
+  }
+  /* line 39, styles.scss */
+  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div {
+    padding: 6px;
+    background: #f4b556;
+    color: #020022;
+    height: 106px;
+  }
+  /* line 45, styles.scss */
+  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div div.item-title {
+    font-size: 19px;
+  }
+  /* line 49, styles.scss */
+  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div div.item-description {
+    font-size: 13px;
+  }
+  /* line 54, styles.scss */
+  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div:hover {
+    cursor: pointer;
+  }
+  /* line 62, styles.scss */
+  body div.app-container div.total-controller-div {
+    padding: 0 10%;
+  }
+  /* line 64, styles.scss */
+  body div.app-container div.total-controller-div div.suborders-container {
+    border: 1px solid #79d7f3;
+    border-radius: 7px;
+    padding-bottom: 5px;
+  }
+  /* line 71, styles.scss */
+  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul {
+    list-style-type: none;
+    padding: 6px;
+    margin-top: 0;
+  }
+  /* line 77, styles.scss */
+  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* line 20, neat/mixins/_clearfix.scss */
+  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  /* line 79, styles.scss */
+  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-name {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-name:last-child {
+    margin-right: 0;
+  }
+  /* line 84, styles.scss */
+  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-price {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-price:last-child {
+    margin-right: 0;
+  }
+  /* line 93, styles.scss */
+  body div.app-container div.total-controller-div div.suborders-container totaldirective {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* line 20, neat/mixins/_clearfix.scss */
+  body div.app-container div.total-controller-div div.suborders-container totaldirective::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  /* line 95, styles.scss */
+  body div.app-container div.total-controller-div div.suborders-container totaldirective div.total-tag {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+    margin: 0;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  body div.app-container div.total-controller-div div.suborders-container totaldirective div.total-tag:last-child {
+    margin-right: 0;
+  }
+  /* line 100, styles.scss */
+  body div.app-container div.total-controller-div div.suborders-container totaldirective div.total-price {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 48.82117%;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  body div.app-container div.total-controller-div div.suborders-container totaldirective div.total-price:last-child {
+    margin-right: 0;
+  }
+  /* line 109, styles.scss */
+  body div.app-container div.total-controller-div div.place-order-container placeorder div.order-button-div button {
+    font-family: 'Russo One', sans-serif;
+    padding: 13px;
+    margin: 19px 0;
+    width: 100%;
+    border-radius: 7px;
+    font-size: 1.5em;
+    color: #020022;
+    border: 0;
+    background: #f4b556;
+  }
+  /* line 121, styles.scss */
+  body div.app-container div.total-controller-div div.place-order-container placeorder div.order-button-div button:hover {
+    cursor: pointer;
+  }
 }
