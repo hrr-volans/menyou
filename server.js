@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/mypjdb';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
 
 var routes = require('./routes');
 
@@ -194,7 +194,7 @@ app.post('/orders', function(req, res, next) {
 app.post('/complete', function(req, res, next) {
   console.log(req.body.customer);
   client.query("UPDATE orders SET complete = true WHERE customer = ($1)", [req.body.customer],
-    function(err, result) {  
+    function(err, result) {
       if(err) {console.log("ERROR! ", err) }
         console.log('UPDATING! ', req.customer,"'s  order is complete!");
         res.send("Order complete");

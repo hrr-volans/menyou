@@ -18,7 +18,7 @@ angular.module('admin', ['services'])
     $scope.addMenuItem = function() {
       $scope.formData.category_id = Number($scope.formData.category_id);
       console.log($scope.formData)
-      $http.post('/createMenuItem', {name: $scope.formData.category_id}).then(function(response){
+      $http.post('/createMenuItem', $scope.formData).then(function(response){
         console.log(response);
       }, function(err){
         console.log('POST error: ', err);
