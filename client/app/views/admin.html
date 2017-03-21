@@ -1,11 +1,28 @@
-<form>
-  <label for="category">Category</label>
-  <input type="text" name="category">
-  <label for="name">Name</label>
-  <input type="text" name="name">
-  <label for="price">Price</label>
-  <input type="text" name="price">
-  <label for="description">Description</label>
-  <input type="text" name="description">
-  <button type="submit">Submit</button>
-</form>
+<h1>Admin</h1>
+
+<h3>Add Menu Item</h3>
+<menuform categories="allcategories"></menuform>
+
+<h3>Add Category</h3>
+<categoryform></categoryform>
+
+<script>
+var item = {};
+  $('#form').on('submit', function(event){
+    event.preventDefault();
+    item = {
+      name: $('input[name="name"]').val(),
+      description: $('input[name="description"]').val(),
+      price: $('input[name="price"]').val(),
+      category_id: $('input[name="category"]').val()
+    }
+    console.log(item);
+    console.log('form submotted');
+  });
+
+  // $http.post('/createMenuItem', JSON.stringify(item)).then(function(response){
+  //   console.log(response);
+  // }, function(err){
+  //   console.log('POST error: ', err);
+  // });
+</script>

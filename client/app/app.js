@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'categories', 'menulist', 'chosenitems', 'placeorder', 'totalmodule', 'kitchenmodule'])
+var app = angular.module('app', ['ngRoute', 'categories', 'menulist', 'chosenitems', 'placeorder', 'totalmodule', 'kitchenmodule', 'admin'])
 
 .config(function($routeProvider, $locationProvider){
   $routeProvider
@@ -7,7 +7,8 @@ var app = angular.module('app', ['ngRoute', 'categories', 'menulist', 'chosenite
       controller: 'kitchenController'
     })
     .when('/admin', {
-      templateUrl: 'app/views/admin.html'
+      templateUrl: 'app/views/admin.html',
+      controller: 'adminController'
     })
 
     $locationProvider.html5Mode(true);
