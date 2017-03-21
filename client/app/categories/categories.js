@@ -1,10 +1,10 @@
 angular.module('categories', ['services'])
   .controller('categoriesController', function($http, $scope, categoriesService){
+
     $http({
       method: 'GET',
       url: '/categories'
       }).then(function successCallback(response) {
-        console.log('data: ', response.data);
         $scope.data = response.data.map(function(category){
           return category.name[0].toUpperCase() + category.name.slice(1);
         });
@@ -17,13 +17,14 @@ angular.module('categories', ['services'])
       categoriesService.setCurrentCategory(category);
     }
 
-    $scope.$on('LastRepeaterElement', function(){      
+    $scope.$on('LastRepeaterElement', function(){
       $('.category-slider').slick({
         arrows: true,
         dots: true
       });
     });
   })
+  
   .directive('category', function(){
     return {
       restrict: 'E',
@@ -39,4 +40,3 @@ angular.module('categories', ['services'])
       }
     };
   })
-

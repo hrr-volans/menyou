@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/mypjdb';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
 
 var routes = require('./routes');
 
@@ -74,7 +74,7 @@ client.connect(function (err) {
 //                       ('Bucket O Oreos', 'Oreos with a tall glass of milk', 5, 3), \
 //                       ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5, 3), \
 //                       ('Mango Spritzer', 'Mango and orange juice in champagne', 7, 4)");
-  
+
 
 
 });
@@ -96,6 +96,14 @@ app.listen(app.get('port'), function() {
 
 app.get('/', function(req, res, next) {
   res.sendfile('index.html');
+});
+
+app.get('/kitchen', function(req, res, next) {
+  res.redirect('/#/kitchen');
+});
+
+app.get('/admin', function(req, res, next) {
+  res.redirect('/#/admin');
 });
 
 app.get('/categories', function(req, res, next) {
@@ -186,7 +194,7 @@ app.post('/orders', function(req, res, next) {
 app.post('/complete', function(req, res, next) {
   console.log(req.body.customer);
   client.query("UPDATE orders SET complete = true WHERE customer = ($1)", [req.body.customer],
-    function(err, result) {  
+    function(err, result) {
       if(err) {console.log("ERROR! ", err) }
         console.log('UPDATING! ', req.customer,"'s  order is complete!");
         res.send("Order complete");
@@ -199,7 +207,7 @@ app.post('/createCategory', function(req, res, next) {
   //access the database....
     //add a new category to table categories
   var newCat = req.body.name;
-  console.log(newCat);
+  console.log('NEW CAT', newCat);
   client.query("INSERT INTO \
                   categories(name) VALUES($1)",[newCat],
                     function(err, results) {
@@ -219,5 +227,3 @@ app.post('/createMenuItem', function(req, res, next) {
                     if(err) { res.send("POST FAILED") }
                   });
 });
-
-

@@ -15,7 +15,6 @@ angular.module('services', [])
       }
       menuitemsService.getAllMenuItems().forEach(item => menuItems.push(item));
       createMenuItemsByCategory();
-      console.log(menuItems)
     }
     var createMenuItemsByCategory = function() {
       //This section organizes the menu items by category name
@@ -47,6 +46,9 @@ angular.module('services', [])
     var getMenuItemsInCurrentCategory = function() {
       return currentMenuItems;
     };
+    var getAllCategoryData= function() {
+      return categoryData;
+    };
 
     return {
       setCurrentCategory: setCurrentCategory,
@@ -56,6 +58,7 @@ angular.module('services', [])
       setAllCategoryData: setAllCategoryData
     };
   })
+
   .factory('menuitemsService', function ($http) {
     // This is the 'state' of all items added to current order
     var addedItems = {items: []};
