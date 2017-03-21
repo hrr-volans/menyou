@@ -28,7 +28,7 @@
     </div>
 
     <div ng-hide="category.name === undefined" ng-controller="menulistController" class="menu-list-container">
-      <menu name={{category.name}} data="data.items" added="added.items" click="addMenuItemToChosenList(item)" addedclick="removeMenuItemFromChosenList(index)"></menu>
+      <menu name={{category.name}} data="data.items" added="added.items" click="addMenuItemToChosenList(item)" removeclick="removeMenuItemFromChosenList(index)"></menu>
     </div>
 
     <h1>Order</h1>
