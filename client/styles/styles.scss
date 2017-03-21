@@ -3,6 +3,8 @@
 
 $dark-blue: #020022;
 $light-blue: #79d7f3;
+$orange:  #f4b556;
+
 
 
 @include media(max-width 740px) {
@@ -12,6 +14,117 @@ $light-blue: #79d7f3;
 		color: $light-blue;
 		font-family: 'Russo One', sans-serif;
 		text-align: center;
+
+		div.app-container {		
+			div.categories-container {
+				padding: 0 10%;
+
+				div.category-slider {
+					button.slick-arrow:before {
+						color: $light-blue;
+					}
+				}
+			}	
+
+			div.menu-list-container {			
+				menu {
+					padding: 0;
+					ul.menu-list {
+						@include outer-container;
+						list-style-type: none;						
+						padding: 0 10%;
+
+						li.menu-li-element {
+							@include span-columns(6);
+							div.menu-li-div {							    
+							    padding: 6px;
+									background: $orange;
+									color: $dark-blue;
+									height: 106px;
+
+									div.item-title {
+										font-size: 19px;
+									}
+
+									div.item-description {
+										font-size: 13px;
+									}							    
+							}
+
+							div.menu-li-div:hover {
+								cursor: pointer;
+							}
+						}
+					}
+				}
+			}
+
+			div.total-controller-div {
+				padding: 0 10%;
+				div.suborders-container {
+					border: 1px solid $light-blue;
+					border-radius: 7px;
+					padding-bottom: 5px;
+
+					chosenitem {
+						div.suborders-screen {
+							ul.suborders-ul {							
+								list-style-type: none;							
+							  padding: 6px;						    
+							  margin-top: 0;
+
+								li {
+									div {
+										@include outer-container;
+										div.sub-name {
+											@include span-columns(6);
+
+										}
+
+										div.sub-price {
+											@include span-columns(6);										
+										}
+									}
+								}
+							}
+						}
+					}
+
+					totaldirective {
+						@include outer-container;
+						div.total-tag {
+							@include span-columns(6);
+							margin: 0;
+						}
+
+						div.total-price {
+							@include span-columns(6);
+						}
+					}
+				}
+
+				div.place-order-container {
+					placeorder {
+						div.order-button-div {
+							button {
+								padding: 13px;
+						    margin: 19px 0;
+						    width: 100%;
+						    border-radius: 7px;
+						    font-size: 1.5em;
+						    color: $dark-blue;
+						    border: 0;
+						    background: $orange;
+							}
+
+							button:hover {
+								cursor: pointer;
+							}
+						}
+					}
+				}
+			}			
+		}		
 	}
 }
 

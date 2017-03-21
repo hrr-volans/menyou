@@ -118,16 +118,13 @@ app.get('/categories', function(req, res, next) {
   ]
 
   client.query("SELECT * FROM categories", function(err, result) {
-
-    res.send(testdata);
-  // });
+    res.send(result.rows);  
+  });
 });
 
 app.get('/menuitems', function(req, res, next) {
   client.query("SELECT * FROM menuitems", function(err, result) {
-
     res.send(result.rows);
-  // });
 });
 
 app.get('/orders', function(req, res, next) {
