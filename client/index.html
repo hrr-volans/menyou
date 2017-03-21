@@ -36,7 +36,7 @@
     <div ng-controller="totalController" class="total-controller-div">
 
       <div ng-controller='chosenItemsController' class="suborders-container">
-        <chosenitem name={{category.name}} added="data.items" click="addMenuItemToChosenList(item)" addedclick="removeMenuItemFromChosenList(index)"></chosenitem>
+        <chosenitem name={{category.name}} added="data.items" click="addMenuItemToChosenList(item)" removeclick="removeMenuItemFromChosenList(index)"></chosenitem>
         <totaldirective totaldirectivescope={{totalscope.total}}></totaldirective>
       </div>
       
