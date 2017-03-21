@@ -73,7 +73,6 @@ angular.module('services', [])
     }
 
     function sendOrder() {
-      console.log(addedItem)
       var orderObj = {
         customer: 'Chuck Norris',
         totalprice: total.total,

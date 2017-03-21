@@ -95,56 +95,56 @@ app.get('/', function(req, res, next) {
 });
 
 app.get('/categories', function(req, res, next) {
-  var testdata = [
-    {
-      "id": 1,
-      "name": "burgers"
-    },
-    {
-      "id": 2,
-      "name": "dinner"
-    },
-    {
-      "id": 3,
-      "name": "breakfast"
-    },
-    {
-      "id": 4,
-      "name": "drinks"
-    }
-  ]
-  // client.query("SELECT * FROM categories", function(err, result) {
-    res.send(testdata);
-  // });
+  // var testdata = [
+  //   {
+  //     "id": 1,
+  //     "name": "burgers"
+  //   },
+  //   {
+  //     "id": 2,
+  //     "name": "dinner"
+  //   },
+  //   {
+  //     "id": 3,
+  //     "name": "breakfast"
+  //   },
+  //   {
+  //     "id": 4,
+  //     "name": "drinks"
+  //   }
+  // ]
+  client.query("SELECT * FROM categories", function(err, result) {
+    res.send(result.rows);
+  });
 });
 
 app.get('/menuitems', function(req, res, next) {
-  var data = [
-    {
-      "id": 1,
-      "name": "bigmac",
-      "description": "the biggest burgerrrr",
-      "price": 122,
-      "category_id": 1
-    },
-    {
-      "id": 2,
-      "name": "nuggets",
-      "description": "little nuggets",
-      "price": 232,
-      "category_id": 3
-    },
-    {
-      "id": 3,
-      "name": "fries",
-      "description": "good fries",
-      "price": 23,
-      "category_id": 2
-    }
-  ];
-  // client.query("SELECT * FROM menuitems", function(err, result) {
-    res.send(data);
-  // });
+  // var data = [
+  //   {
+  //     "id": 1,
+  //     "name": "bigmac",
+  //     "description": "the biggest burgerrrr",
+  //     "price": 122,
+  //     "category_id": 1
+  //   },
+  //   {
+  //     "id": 2,
+  //     "name": "nuggets",
+  //     "description": "little nuggets",
+  //     "price": 232,
+  //     "category_id": 3
+  //   },
+  //   {
+  //     "id": 3,
+  //     "name": "fries",
+  //     "description": "good fries",
+  //     "price": 23,
+  //     "category_id": 2
+  //   }
+  // ];
+  client.query("SELECT * FROM menuitems", function(err, result) {
+    res.send(result.rows);
+  });
 });
 
 app.get('/orders', function(req, res, next) {
