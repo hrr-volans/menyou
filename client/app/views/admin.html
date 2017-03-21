@@ -1,24 +1,26 @@
 <h1>Admin</h1>
+<div ng-controller='adminController'>
 
-<h3>Add Menu Item</h3>
-<menuform categories="allcategories"></menuform>
+  <h3>Add Menu Item</h3>
+  <menuform categories="allcategories" form='formData' add="addMenuItem()"></menuform>
 
-<h3>Add Category</h3>
-<categoryform></categoryform>
+  <h3>Add Category</h3>
+  <categoryform add="addCategory()" form='formData'></categoryform>
 
+</div>
 <script>
-var item = {};
-  $('#form').on('submit', function(event){
-    event.preventDefault();
-    item = {
-      name: $('input[name="name"]').val(),
-      description: $('input[name="description"]').val(),
-      price: $('input[name="price"]').val(),
-      category_id: $('input[name="category"]').val()
-    }
-    console.log(item);
-    console.log('form submotted');
-  });
+// var item = {};
+//   $('#form').on('submit', function(event){
+//     event.preventDefault();
+//     item = {
+//       name: $('input[name="name"]').val(),
+//       description: $('input[name="description"]').val(),
+//       price: $('input[name="price"]').val(),
+//       category_id: $('input[name="category"]').val()
+//     }
+//     console.log(item);
+//     console.log('form submotted');
+//   });
 
   // $http.post('/createMenuItem', JSON.stringify(item)).then(function(response){
   //   console.log(response);

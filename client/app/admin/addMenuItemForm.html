@@ -1,18 +1,17 @@
-<form id='form'>
+<form ng-submit="add()">
   <label for="category">Category</label>
-  <select name="category">
-    <option ng-repeat="category in categories" value={{category}}>{{category}}</option>
-  </select>
+  <select ng-model="form.category_id" name="categoryid">
+    <option ng-repeat="category in categories" value={{category.id}}>{{category.name}}</option>
+  </select><br><br>
   <label for="name">Name</label>
-  <input type="text" name="name">
+  <input type="text" name="name" ng-model="form.name"><br><br>
   <label for="price">Price</label>
-  <input type="text" name="price">
+  <input type="text" name="price" ng-model="form.price"><br><br>
   <label for="description">Description</label>
-  <input type="text" name="description">
-  <button type="submit" id="submit">Submit</button>
+  <input type="text" name="description" ng-model="form.description"><br><br>
+  <button type="submit">Submit</button>
 </form>
-
-<script>
+<!-- <script>
 var item = {};
   $('#form').on('submit', function(event){
     event.preventDefault();
@@ -31,4 +30,4 @@ $('#submit').on('click', function(event){
   event.preventDefault();
 
 })
-</script>
+</script> -->

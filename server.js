@@ -207,7 +207,7 @@ app.post('/createCategory', function(req, res, next) {
   //access the database....
     //add a new category to table categories
   var newCat = req.body.name;
-  console.log(newCat);
+  console.log('NEW CAT', newCat);
   client.query("INSERT INTO \
                   categories(name) VALUES($1)",[newCat],
                     function(err, results) {

@@ -46,6 +46,9 @@ angular.module('services', [])
     var getMenuItemsInCurrentCategory = function() {
       return currentMenuItems;
     };
+    var getAllCategoryData= function() {
+      return categoryData;
+    };
 
     return {
       setCurrentCategory: setCurrentCategory,

@@ -3,8 +3,11 @@ angular.module('admin', ['services'])
 
     getCategories();
 
-    $scope.addCategory = function(category) {
-      $http.post('/createCategory', category).then(function(response){
+    $scope.formData = {};
+
+    $scope.addCategory = function() {
+      console.log($scope.formData.categoryname)
+      $http.post('/createCategory', JSON.stringify({name: $scope.formData.categoryname})).then(function(response){
         console.log(response);
         getCategories();
       }, function(err){
@@ -12,9 +15,10 @@ angular.module('admin', ['services'])
       });
     }
 
-    $scope.addMenuItem = function(item) {
-      console.log('called add menu item')
-      $http.post('/createMenuItem', JSON.stringify(item)).then(function(response){
+    $scope.addMenuItem = function() {
+      $scope.formData.category_id = Number($scope.formData.category_id);
+      console.log($scope.formData)
+      $http.post('/createMenuItem', {name: $scope.formData.category_id}).then(function(response){
         console.log(response);
       }, function(err){
         console.log('POST error: ', err);
@@ -26,8 +30,9 @@ angular.module('admin', ['services'])
         method: 'GET',
         url: '/categories'
         }).then(function successCallback(response) {
+          // console.log('category data', response)
           $scope.allcategories = response.data.map(function(category){
-            return category.name[0].toUpperCase() + category.name.slice(1);
+            return {name: category.name[0].toUpperCase() + category.name.slice(1), id: category.id};
           });
           console.log('got all categories', $scope.allcategories)
 
@@ -42,13 +47,19 @@ angular.module('admin', ['services'])
       restrict: 'E',
       templateUrl: 'app/admin/addMenuItemForm.html',
       scope:{
-        categories: '='
+        categories: '=',
+        form: '=',
+        add: '&'
       }
     }
   })
   .directive('categoryform', function(){
       return {
         restrict: 'E',
-        templateUrl: 'app/admin/addCategoryForm.html'
+        templateUrl: 'app/admin/addCategoryForm.html',
+        scope:{
+          form: '=',
+          add: '&'
+        }
       }
     })
