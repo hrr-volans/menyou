@@ -1,6 +1,6 @@
 <h1>Order</h1>
 <ul>
   <li ng-repeat="item in added track by $index">
-    <div ng-click="addedclick({index: $index})">{{item.name}} | ${{item.price}} | {{item.description}} - CLICK ME</div>
+    <div ng-click="addedclick({index: $index})">{{item.name}} | ${{item.price}} | {{item.description}} | Quantity: {{ item.quantity }} - CLICK ME</div>
   </li>
 </ul>
