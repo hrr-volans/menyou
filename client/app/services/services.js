@@ -103,7 +103,6 @@ angular.module('services', [])
       return data;
     };
     var addMenuItemToChosenList = function(item){
-      console.log(item);
       var ind = addedItems.items.indexOf(item);
       if(ind !== -1) {
         addedItems.items[ind].quantity += 1;
@@ -112,7 +111,6 @@ angular.module('services', [])
         addedItems.items.push(item);
       }
       updateTotalPrice();
-      console.log(addedItems);
     }
     // give access to chosenItemList module will eventually use to place order
     var getChosenList = function(){
