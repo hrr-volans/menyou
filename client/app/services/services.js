@@ -1,6 +1,14 @@
 angular.module('services', [])
   .factory('categoriesService', function ($http, menuitemsService) {
-
+    var current_time = moment().format("HH");    
+    var initialCategory;
+    if(current_time < 12) {
+      initialCategory = 'Breakfast';
+    } else if (current_time < 19) {
+      initialCategory = 'Lunch';
+    } else if (current_time < 24) {
+      initialCategory = 'Dinner';
+    }
     //These variables hold the 'state' of current category & menu items in that category
     var categoryData = [];
     var menuItemsByCategory = {};
@@ -9,6 +17,10 @@ angular.module('services', [])
     var currentCategory = {name: undefined};
 
     //Helper functions
+    var setInitialCategories = function() {
+      setCurrentCategory(initialCategory);
+    }
+
     var setAllCategoryData = function(where, data){
       if(data) {
         categoryData = data;
@@ -39,6 +51,7 @@ angular.module('services', [])
     var setCurrentCategory = function(category) {
       currentCategory.name = category;
       currentMenuItems.items = menuItemsByCategory[category];
+      console.log(menuItemsByCategory);
     };
     var getCurrentCategory = function() {
       return currentCategory;
@@ -55,7 +68,9 @@ angular.module('services', [])
       getCurrentCategory: getCurrentCategory,
       getMenuItemsInCurrentCategory: getMenuItemsInCurrentCategory,
       getAllCategoryNames: getAllCategoryNames,
-      setAllCategoryData: setAllCategoryData
+      setAllCategoryData: setAllCategoryData,
+      setInitialCategories: setInitialCategories,
+      initialCategory: initialCategory
     };
   })
 
@@ -134,6 +149,6 @@ angular.module('services', [])
       getChosenList: getChosenList,
       removeMenuItemFromChosenList: removeMenuItemFromChosenList,
       getTotalPrice: getTotalPrice,
-      setAllMenuItems: setAllMenuItems
+      setAllMenuItems: setAllMenuItems      
     };
   })

@@ -1,14 +1,13 @@
 angular.module('categories', ['services'])
-  .controller('categoriesController', function($http, $scope, categoriesService){
-
+  .controller('categoriesController', function($http, $scope, categoriesService){    
     $http({
       method: 'GET',
       url: '/categories'
-      }).then(function successCallback(response) {
+      }).then(function successCallback(response) {        
         $scope.data = response.data.map(function(category){
           return category.name[0].toUpperCase() + category.name.slice(1);
         });
-        categoriesService.setAllCategoryData('catCont', response.data);
+        categoriesService.setAllCategoryData('catCont', response.data);        
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     });
@@ -18,9 +17,11 @@ angular.module('categories', ['services'])
     }
 
     $scope.$on('LastRepeaterElement', function(){
+      var categoryIndex = $scope.data.indexOf(categoriesService.initialCategory);
       $('.category-slider').slick({
         arrows: true,
-        dots: true
+        dots: true,
+        initialSlide: categoryIndex
       });
     });
   })
@@ -31,11 +32,3 @@ angular.module('categories', ['services'])
       }
     };
   })
-  // .directive('category', function(){
-  //   return {
-  //     restrict: 'E',
-  //     templateUrl: 'app/categories/category.html',
-  //     scope:{
-  //       name: '@'
-  //     }
-  //   }

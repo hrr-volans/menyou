@@ -1,7 +1,6 @@
 angular.module('menulist', ['services'])
   // we define $scope in controller
   .controller('menulistController', function($http, $scope, categoriesService, menuitemsService){
-
     $http({
       method: 'GET',
       url: '/menuitems'
@@ -13,7 +12,7 @@ angular.module('menulist', ['services'])
         $scope.category = categoriesService.getCurrentCategory();
         $scope.data = categoriesService.getMenuItemsInCurrentCategory();
         $scope.added = menuitemsService.getChosenList();
-
+        categoriesService.setInitialCategories();
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     });
