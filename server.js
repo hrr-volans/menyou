@@ -17,7 +17,6 @@ client.connect(function (err) {
 
   if (err) throw err;
 
-<<<<<<< HEAD
 //   if (err) throw err;
 
 
@@ -51,37 +50,6 @@ client.connect(function (err) {
 //                     id_orders INTEGER REFERENCES orders(id), \
 //                     id_menuitems INTEGER REFERENCES menuitems(id))");
 //
-=======
-  // client.query("CREATE TABLE \
-  //                 categories( \
-  //                   id SERIAL PRIMARY KEY, \
-  //                   name VARCHAR(40) not null)");
-
-  // client.query("CREATE TABLE \
-  //                 menuitems( \
-  //                   id SERIAL PRIMARY KEY, \
-  //                   name VARCHAR(40) not null, \
-  //                   description VARCHAR(40) not null, \
-  //                   price NUMERIC(4,2) not null, \
-  //                   category_id INTEGER REFERENCES categories(id))");
-
-  // client.query("CREATE TABLE \
-  //                 orders( \
-  //                   id SERIAL PRIMARY KEY, \
-  //                   customer VARCHAR(40) not null, \
-  //                   totalprice NUMERIC(4,2) not null, \
-  //                   complete boolean default false)");
-
-  // client.query("CREATE TABLE \
-  //                 suborders( \
-  //                   id SERIAL PRIMARY KEY, \
-  //                   description VARCHAR(40) not null, \
-  //                   subtotalprice NUMERIC(4,2) not null, \
-  //                   quantity INTEGER not null, \
-  //                   id_orders INTEGER REFERENCES orders(id), \
-  //                   id_menuitems INTEGER REFERENCES menuitems(id))");
-
->>>>>>> kitchen first styles
 //   client.query("INSERT INTO \
 //                   categories(name) \
 //                     VALUES('breakfast'), \
@@ -107,12 +75,6 @@ client.connect(function (err) {
 //                       ('Bucket O Oreos', 'Oreos with a tall glass of milk', 5.99, 3), \
 //                       ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5.99, 3), \
 //                       ('Mango Spritzer', 'Mango and orange juice in champagne', 7.99, 4)");
-<<<<<<< HEAD
-//
-//
-
-=======
->>>>>>> kitchen first styles
 });
 
 app.use(bodyParser.json());
