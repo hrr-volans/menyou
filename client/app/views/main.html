@@ -1,5 +1,4 @@
 <div ng-controller='categoriesController' class="categories-container">
-<!--       <category ng-repeat="category in data" name={{category}} ng-click="setCurrentCategory(category)" class="category-slider"></category> -->
   <div class="category-slider">
     <div ng-repeat="category in data" ng-click="setCurrentCategory(category)" emit-last-repeater-element>{{category}}</div>
   </div>
