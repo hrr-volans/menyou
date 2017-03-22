@@ -158,3 +158,6 @@ angular.module('services', [])
       getCustomerName: getCustomerName
     };
   })
+  .factory('authenticationService', function () {
+    var isLoggedIn = {status: true}
+  });

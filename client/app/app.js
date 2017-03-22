@@ -8,7 +8,8 @@ var app = angular.module('app', [
   'totalmodule',
   'kitchenmodule',
   'admin',
-  'confirmation'
+  'confirmation',
+  'authentication'
 ])
 
 .config(function($routeProvider, $locationProvider){
@@ -24,10 +25,17 @@ var app = angular.module('app', [
       templateUrl: 'app/views/admin.html',
       controller: 'adminController'
     })
+
     .when('/confirmation', {
       templateUrl:"app/confirmation/confirmation.html",
       controller: 'confirmationController'
     });
+
+    .when('/auth', {
+      templateUrl: 'app/views/auth.html',
+      controller: 'authController'
+    })
+
 
     $locationProvider.html5Mode(true);
 })

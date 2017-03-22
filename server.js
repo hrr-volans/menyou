@@ -4,10 +4,15 @@ var pg = require('pg');
 var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
+
 // var helper = require('sendgrid').mail;
 // var sg = require('sendgrid')(process.env.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);
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/mypjdb';
+var jwt = require('jsonwebtoken');
+
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/pjmydb';
+
+var secret = 'menyourocks';
 
 var routes = require('./routes');
 
@@ -105,9 +110,15 @@ app.get('/kitchen', function(req, res, next) {
 app.get('/admin', function(req, res, next) {
   res.redirect('/#/admin');
 });
+
 app.get('/confirmation', function(req, res, next) {
   res.redirect('/#/confirmation');
 });
+
+// app.get('/auth', function(req, res, next) {
+//   res.redirect('/#/auth');
+// });
+
 app.get('/categories', function(req, res, next) {
   console.log('get categories test');
   client.query("SELECT * FROM categories", function(err, result) {
@@ -136,7 +147,7 @@ app.get('/deeporders', function(req, res, next) {
         if(err) { console.log(err) }
         order.menuitems = result.rows;
         deeporder.push(order);
-        
+
         if(deeporder.length === coll.length) {
            console.log(deeporder);
            res.send(deeporder);
@@ -166,8 +177,8 @@ app.post('/orders', function(req, res, next) {
                     [suborder.name, suborder.price, suborder.quantity, result.rows[0].id, suborder.category_id],
                     function(err, result) {
                       if(err) {
-                        console.log(err);                        
-                      }                      
+                        console.log(err);
+                      }
       });
     });
   });
@@ -209,3 +220,14 @@ app.post('/createMenuItem', function(req, res, next) {
                     if(err) { res.send("POST FAILED") }
                   });
 });
+
+app.post('/authenticate', function(req, res, next) {
+  var body = req.body;
+  var claim = {};
+  // if (body.username === 'x' && body.password === 'xx') {
+    claim.userid = 1;
+    res.send({token: jwt(claim, secret)});
+  // } else {
+  //   res.status(401).redirect('/');
+  // }
+})
