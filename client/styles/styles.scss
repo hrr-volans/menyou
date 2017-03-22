@@ -107,6 +107,7 @@ body {
 			}
 		}
 
+
 		div.total-controller-div {
 			padding: 0 10%;
 			div.suborders-container {
@@ -121,6 +122,7 @@ body {
 						  padding: 6px;
 						  margin-top: 0;
 
+
 							li {
 								div {
 									@include outer-container;
@@ -131,6 +133,7 @@ body {
 
 									div.sub-price {
 										@include span-columns(6);
+
 									}
 								}
 							}
