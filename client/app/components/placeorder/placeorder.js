@@ -4,21 +4,9 @@ angular.module('placeorder', ['services'])
     // var orderList =
     $scope.data = menuitemsService.getChosenList();
 
-
-
-
     $scope.placeOrder = function(){
-    console.log($scope.data);
-
-
       menuitemsService.sendOrder();
-
     };
-
-
-
-
-
 
   }) // directives are essentially react components
   // they are custom HTML

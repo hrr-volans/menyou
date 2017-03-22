@@ -64,6 +64,7 @@ angular.module('services', [])
     var addedItems = {items: []};
 
     var total = {total: 0};
+    var currentCustomer = {name: ''};
 
     // data variable to hold on to all menu items
     var data = [];
@@ -77,7 +78,7 @@ angular.module('services', [])
 
     function sendOrder() {
       var orderObj = {
-        customer: 'Chuck Norris',
+        customer: "Chuck",
         totalprice: total.total,
         menuitems: addedItems.items
       }
@@ -117,10 +118,8 @@ angular.module('services', [])
       return addedItems;
     }
     var removeMenuItemFromChosenList = function(index){
-
       if(addedItems.items[index].quantity > 1) {
         addedItems.items[index].quantity -= 1;
-
       } else {
         addedItems.items.splice(index, 1);
       }
