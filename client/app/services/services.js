@@ -1,10 +1,10 @@
 angular.module('services', [])
   .factory('categoriesService', function ($http, menuitemsService) {
-    var current_time = moment().format("HH");    
+    var current_time = moment().format("HH");
     var initialCategory;
     if(current_time < 12) {
       initialCategory = 'Breakfast';
-    } else if (current_time < 19) {
+    } else if (current_time < 13) {
       initialCategory = 'Lunch';
     } else if (current_time < 24) {
       initialCategory = 'Dinner';
@@ -149,7 +149,7 @@ angular.module('services', [])
       getChosenList: getChosenList,
       removeMenuItemFromChosenList: removeMenuItemFromChosenList,
       getTotalPrice: getTotalPrice,
-      setAllMenuItems: setAllMenuItems      
+      setAllMenuItems: setAllMenuItems
     };
   })
   .factory('authenticationService', function () {
