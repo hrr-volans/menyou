@@ -196,7 +196,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     list-style-type: none;
-    border: 1px solid blue;
+    border: 1px solid #79d7f3;
     padding-bottom: 20px;
   }
   /* line 20, neat/mixins/_clearfix.scss */

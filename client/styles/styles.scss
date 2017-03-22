@@ -198,7 +198,7 @@ body {
 						li.order-row-li {
 							@include outer-container;
 							list-style-type: none;
-							border: 1px solid blue;	
+							border: 1px solid $light-blue;	
 							padding-bottom: 20px;
 
 							div.id-block {
