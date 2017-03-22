@@ -2,6 +2,9 @@ var app = angular.module('app', ['ngRoute', 'categories', 'menulist', 'chosenite
 
 .config(function($routeProvider, $locationProvider){
   $routeProvider
+    .when('/', {
+      templateUrl: 'app/views/main.html'
+    })
     .when('/kitchen', {
       templateUrl: 'app/views/kitchen.html',
       controller: 'kitchenController'

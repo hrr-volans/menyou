@@ -13,7 +13,7 @@ angular.module('menulist', ['services'])
         $scope.category = categoriesService.getCurrentCategory();
         $scope.data = categoriesService.getMenuItemsInCurrentCategory();
         $scope.added = menuitemsService.getChosenList();
-        
+
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     });
@@ -31,7 +31,7 @@ angular.module('menulist', ['services'])
       // allows us to create unique html tags
       restrict: 'E',
       // reference to where our html lives
-      templateUrl: 'app/menulist/menulist.html',
+      templateUrl: 'app/components/menulist/menulist.html',
       // these symbols below tell the scope which type of javascript objects these are. @ is string, click is function, etc.
       scope:{
         name: '@',

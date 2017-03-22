@@ -5,7 +5,7 @@ angular.module('totalmodule', ['services'])
   .directive('totaldirective', function(){
     return {
       restrict: 'E',
-      templateUrl: 'app/total/total.html',
+      templateUrl: 'app/components/total/total.html',
       scope:{
         totaldirectivescope: '@'
       }
