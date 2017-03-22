@@ -24,19 +24,18 @@ angular.module('categories', ['services'])
       });
     });
   })
-  
-  .directive('category', function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'app/categories/category.html',
-      scope:{
-        name: '@'
-      }
-    }
-  }).directive('emitLastRepeaterElement', function(){
+  .directive('emitLastRepeaterElement', function(){
     return function(scope) {
       if (scope.$last){
         scope.$emit('LastRepeaterElement');
       }
     };
   })
+  // .directive('category', function(){
+  //   return {
+  //     restrict: 'E',
+  //     templateUrl: 'app/categories/category.html',
+  //     scope:{
+  //       name: '@'
+  //     }
+  //   }

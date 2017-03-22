@@ -34,8 +34,6 @@ angular.module('admin', ['services'])
           $scope.allcategories = response.data.map(function(category){
             return {name: category.name[0].toUpperCase() + category.name.slice(1), id: category.id};
           });
-          console.log('got all categories', $scope.allcategories)
-
         }, function errorCallback(response) {
           console.log('Error getting data', response);
       });
