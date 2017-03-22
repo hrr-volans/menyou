@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/pjmydb';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
 
 var routes = require('./routes');
 
@@ -75,9 +75,6 @@ client.connect(function (err) {
 //                       ('Bucket O Oreos', 'Oreos with a tall glass of milk', 5.99, 3), \
 //                       ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5.99, 3), \
 //                       ('Mango Spritzer', 'Mango and orange juice in champagne', 7.99, 4)");
-//
-//
-
 });
 
 app.use(bodyParser.json());
@@ -108,37 +105,14 @@ app.get('/admin', function(req, res, next) {
 });
 
 app.get('/categories', function(req, res, next) {
+  console.log('get categories test');
   client.query("SELECT * FROM categories", function(err, result) {
     res.send(result.rows);
   });
 });
 
 app.get('/menuitems', function(req, res, next) {
-  // var data = [
-  //   {
-  //     "id": 1,
-  //     "name": "bigmac",
-  //     "description": "the biggest burgerrrr",
-  //     "price": 122,
-  //     "category_id": 1
-  //   },
-  //   {
-  //     "id": 2,
-  //     "name": "nuggets",
-  //     "description": "little nuggets",
-  //     "price": 232,
-  //     "category_id": 3
-  //   },
-  //   {
-  //     "id": 3,
-  //     "name": "fries",
-  //     "description": "good fries",
-  //     "price": 23,
-  //     "category_id": 2
-  //   }
-  // ];
-
-client.query("SELECT * FROM menuitems", function(err, result) {
+  client.query("SELECT * FROM menuitems", function(err, result) {
     res.send(result.rows);
   });
 });
@@ -156,8 +130,9 @@ app.get('/deeporders', function(req, res, next) {
     orders.forEach(function(order, ind, coll){
       client.query("SELECT * FROM suborders WHERE id_orders = ($1)", [order.id], function(err, result){
         if(err) { console.log(err) }
-          order.menuitems = result.rows;
-          deeporder.push(order);
+        order.menuitems = result.rows;
+        deeporder.push(order);
+        
         if(deeporder.length === coll.length) {
            console.log(deeporder);
            res.send(deeporder);
