@@ -63,7 +63,7 @@ angular.module('services', [])
     // This is the 'state' of all items added to current order
     var addedItems = {items: []};
 
-    var total = {total: 10};
+    var total = {total: 0};
 
     // data variable to hold on to all menu items
     var data = [];
