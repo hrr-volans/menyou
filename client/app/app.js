@@ -1,4 +1,13 @@
-var app = angular.module('app', ['ngRoute', 'categories', 'menulist', 'chosenitems', 'placeorder', 'totalmodule', 'kitchenmodule', 'admin'])
+var app = angular.module('app', [
+  'ngRoute', 
+  'categories', 
+  'menulist', 
+  'chosenitems', 
+  'placeorder', 
+  'totalmodule', 
+  'kitchenmodule', 
+  'admin'
+])
 
 .config(function($routeProvider, $locationProvider){
   $routeProvider

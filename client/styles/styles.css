@@ -8,37 +8,30 @@ html {
   box-sizing: inherit;
 }
 
-@media screen and (max-width: 740px) {
-  /* line 11, styles.scss */
-  body {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    background: #020022;
-    color: #79d7f3;
-    font-family: 'Russo One', sans-serif;
-    text-align: center;
-  }
-  /* line 20, neat/mixins/_clearfix.scss */
-  body::after {
-    clear: both;
-    content: "";
-    display: block;
-  }
-  /* line 19, styles.scss */
-  body div.app-container div.categories-container {
+/* line 9, styles.scss */
+body {
+  background: #020022;
+  color: #79d7f3;
+  font-family: 'Russo One', sans-serif;
+  text-align: center;
+  overflow: scroll;
+}
+
+@media screen and (max-width: 480px) {
+  /* line 22, styles.scss */
+  div.app-container div.categories-container {
     padding: 0 10%;
   }
-  /* line 23, styles.scss */
-  body div.app-container div.categories-container div.category-slider button.slick-arrow:before {
+  /* line 26, styles.scss */
+  div.app-container div.categories-container div.category-slider button.slick-arrow:before {
     color: #79d7f3;
   }
-  /* line 30, styles.scss */
-  body div.app-container div.menu-list-container menu {
+  /* line 33, styles.scss */
+  div.app-container div.menu-list-container menu {
     padding: 0;
   }
-  /* line 32, styles.scss */
-  body div.app-container div.menu-list-container menu ul.menu-list {
+  /* line 35, styles.scss */
+  div.app-container div.menu-list-container menu ul.menu-list {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
@@ -46,13 +39,13 @@ html {
     padding: 0 10%;
   }
   /* line 20, neat/mixins/_clearfix.scss */
-  body div.app-container div.menu-list-container menu ul.menu-list::after {
+  div.app-container div.menu-list-container menu ul.menu-list::after {
     clear: both;
     content: "";
     display: block;
   }
-  /* line 37, styles.scss */
-  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element {
+  /* line 40, styles.scss */
+  div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element {
     float: left;
     display: block;
     margin-right: 2.35765%;
@@ -61,92 +54,92 @@ html {
     padding: 2px;
   }
   /* line 89, neat/grid/_span-columns.scss */
-  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element:last-child {
+  div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element:last-child {
     margin-right: 0;
   }
-  /* line 42, styles.scss */
-  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div {
+  /* line 45, styles.scss */
+  div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div {
     padding: 6px;
     background: #f4b556;
     color: #020022;
     height: 106px;
   }
-  /* line 48, styles.scss */
-  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div div.item-title {
+  /* line 51, styles.scss */
+  div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div div.item-title {
     font-size: 19px;
   }
-  /* line 52, styles.scss */
-  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div div.item-description {
+  /* line 55, styles.scss */
+  div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div div.item-description {
     font-size: 13px;
   }
-  /* line 57, styles.scss */
-  body div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div:hover {
+  /* line 60, styles.scss */
+  div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div:hover {
     cursor: pointer;
   }
-  /* line 65, styles.scss */
-  body div.app-container div.total-controller-div {
+  /* line 68, styles.scss */
+  div.app-container div.total-controller-div {
     padding: 0 10%;
   }
-  /* line 67, styles.scss */
-  body div.app-container div.total-controller-div div.suborders-container {
+  /* line 70, styles.scss */
+  div.app-container div.total-controller-div div.suborders-container {
     border: 1px solid #79d7f3;
     border-radius: 7px;
     padding-bottom: 5px;
   }
-  /* line 74, styles.scss */
-  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul {
+  /* line 77, styles.scss */
+  div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul {
     list-style-type: none;
     padding: 6px;
     margin-top: 0;
   }
-  /* line 80, styles.scss */
-  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div {
+  /* line 83, styles.scss */
+  div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
   }
   /* line 20, neat/mixins/_clearfix.scss */
-  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div::after {
+  div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div::after {
     clear: both;
     content: "";
     display: block;
   }
-  /* line 82, styles.scss */
-  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-name {
+  /* line 85, styles.scss */
+  div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-name {
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 48.82117%;
   }
   /* line 89, neat/grid/_span-columns.scss */
-  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-name:last-child {
+  div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-name:last-child {
     margin-right: 0;
   }
-  /* line 87, styles.scss */
-  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-price {
+  /* line 90, styles.scss */
+  div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-price {
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 48.82117%;
   }
   /* line 89, neat/grid/_span-columns.scss */
-  body div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-price:last-child {
+  div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div.sub-price:last-child {
     margin-right: 0;
   }
-  /* line 96, styles.scss */
-  body div.app-container div.total-controller-div div.suborders-container totaldirective {
+  /* line 99, styles.scss */
+  div.app-container div.total-controller-div div.suborders-container totaldirective {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
   }
   /* line 20, neat/mixins/_clearfix.scss */
-  body div.app-container div.total-controller-div div.suborders-container totaldirective::after {
+  div.app-container div.total-controller-div div.suborders-container totaldirective::after {
     clear: both;
     content: "";
     display: block;
   }
-  /* line 98, styles.scss */
-  body div.app-container div.total-controller-div div.suborders-container totaldirective div.total-tag {
+  /* line 101, styles.scss */
+  div.app-container div.total-controller-div div.suborders-container totaldirective div.total-tag {
     float: left;
     display: block;
     margin-right: 2.35765%;
@@ -154,22 +147,22 @@ html {
     margin: 0;
   }
   /* line 89, neat/grid/_span-columns.scss */
-  body div.app-container div.total-controller-div div.suborders-container totaldirective div.total-tag:last-child {
+  div.app-container div.total-controller-div div.suborders-container totaldirective div.total-tag:last-child {
     margin-right: 0;
   }
-  /* line 103, styles.scss */
-  body div.app-container div.total-controller-div div.suborders-container totaldirective div.total-price {
+  /* line 106, styles.scss */
+  div.app-container div.total-controller-div div.suborders-container totaldirective div.total-price {
     float: left;
     display: block;
     margin-right: 2.35765%;
     width: 48.82117%;
   }
   /* line 89, neat/grid/_span-columns.scss */
-  body div.app-container div.total-controller-div div.suborders-container totaldirective div.total-price:last-child {
+  div.app-container div.total-controller-div div.suborders-container totaldirective div.total-price:last-child {
     margin-right: 0;
   }
-  /* line 112, styles.scss */
-  body div.app-container div.total-controller-div div.place-order-container placeorder div.order-button-div button {
+  /* line 115, styles.scss */
+  div.app-container div.total-controller-div div.place-order-container placeorder div.order-button-div button {
     font-family: 'Russo One', sans-serif;
     padding: 13px;
     margin: 19px 0;
@@ -180,8 +173,139 @@ html {
     border: 0;
     background: #f4b556;
   }
-  /* line 124, styles.scss */
-  body div.app-container div.total-controller-div div.place-order-container placeorder div.order-button-div button:hover {
+  /* line 127, styles.scss */
+  div.app-container div.total-controller-div div.place-order-container placeorder div.order-button-div button:hover {
     cursor: pointer;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 992px) {
+  /* line 162, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li {
+    list-style-type: none;
+    border: 1px solid blue;
+  }
+}
+@media screen and (min-width: 992px) {
+  /* line 176, styles.scss */
+  div.app-container div.categories-container {
+    margin: 0 6%;
+  }
+  /* line 198, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    list-style-type: none;
+    border: 1px solid blue;
+    padding-bottom: 20px;
+  }
+  /* line 20, neat/mixins/_clearfix.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  /* line 204, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.id-block {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 14.70196%;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.id-block:last-child {
+    margin-right: 0;
+  }
+  /* line 206, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.id-block p.id-number {
+    font-size: 2em;
+    margin: 0;
+  }
+  /* line 212, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.customer-name-block {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 14.70196%;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.customer-name-block:last-child {
+    margin-right: 0;
+  }
+  /* line 214, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.customer-name-block p.name-paragraph {
+    font-size: 20px;
+    color: #f4b556;
+  }
+  /* line 220, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 40.29137%;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block:last-child {
+    margin-right: 0;
+  }
+  /* line 222, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul {
+    list-style-type: none;
+  }
+  /* line 224, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* line 20, neat/mixins/_clearfix.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  /* line 226, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li div.qty {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 14.70196%;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li div.qty:last-child {
+    margin-right: 0;
+  }
+  /* line 229, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li div.description {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 82.94039%;
+    text-align: left;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li div.description:last-child {
+    margin-right: 0;
+  }
+  /* line 237, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.mark-complete-block {
+    float: left;
+    display: block;
+    margin-right: 2.35765%;
+    width: 23.23176%;
+  }
+  /* line 89, neat/grid/_span-columns.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.mark-complete-block:last-child {
+    margin-right: 0;
+  }
+  /* line 239, styles.scss */
+  div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.mark-complete-block button {
+    background: #f4b556;
+    padding: 15px 55px;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 12% 0;
+    border: 0;
+    font-family: 'Russo One', sans-serif;
   }
 }
