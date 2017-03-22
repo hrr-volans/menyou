@@ -43,7 +43,7 @@ angular.module('admin', ['services'])
   .directive('menuform', function(){
     return {
       restrict: 'E',
-      templateUrl: 'app/admin/addMenuItemForm.html',
+      templateUrl: 'app/components/admin/addMenuItemForm.html',
       scope:{
         categories: '=',
         form: '=',
@@ -54,7 +54,7 @@ angular.module('admin', ['services'])
   .directive('categoryform', function(){
       return {
         restrict: 'E',
-        templateUrl: 'app/admin/addCategoryForm.html',
+        templateUrl: 'app/components/admin/addCategoryForm.html',
         scope:{
           form: '=',
           add: '&'

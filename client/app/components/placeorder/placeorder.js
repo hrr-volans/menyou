@@ -25,7 +25,7 @@ angular.module('placeorder', ['services'])
   .directive('placeorder', function(){
     return {
       restrict: 'E',
-      templateUrl: 'app/placeorder/placeorder.html',
+      templateUrl: 'app/components/placeorder/placeorder.html',
       scope:{
         click: '&'
       }
