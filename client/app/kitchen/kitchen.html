@@ -8,5 +8,6 @@
     <ul>
       <li ng-repeat="item in order.menuitems">{{item.description}} | QTY: {{item.quantity}}</li>
     </ul>
-    <span ng-click="completeorder({order: order})">Done</span></li>
+    <span ng-hide="bool.status" ng-click="completeorder({order: order})">Done</span>
+  </li>
 </ul>
