@@ -152,3 +152,6 @@ angular.module('services', [])
       setAllMenuItems: setAllMenuItems      
     };
   })
+  .factory('authenticationService', function () {
+    var isLoggedIn = {status: true}
+  });

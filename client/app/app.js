@@ -1,12 +1,13 @@
 var app = angular.module('app', [
-  'ngRoute', 
-  'categories', 
-  'menulist', 
-  'chosenitems', 
-  'placeorder', 
-  'totalmodule', 
-  'kitchenmodule', 
-  'admin'
+  'ngRoute',
+  'categories',
+  'menulist',
+  'chosenitems',
+  'placeorder',
+  'totalmodule',
+  'kitchenmodule',
+  'admin',
+  'authentication'
 ])
 
 .config(function($routeProvider, $locationProvider){
@@ -21,6 +22,10 @@ var app = angular.module('app', [
     .when('/admin', {
       templateUrl: 'app/views/admin.html',
       controller: 'adminController'
+    })
+    .when('/auth', {
+      templateUrl: 'app/views/auth.html',
+      controller: 'authController'
     })
 
     $locationProvider.html5Mode(true);

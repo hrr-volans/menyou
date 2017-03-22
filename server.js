@@ -4,8 +4,11 @@ var pg = require('pg');
 var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
+var jwt = require('jsonwebtoken');
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/pjmydb';
+
+var secret = 'menyourocks';
 
 var routes = require('./routes');
 
@@ -105,6 +108,10 @@ app.get('/admin', function(req, res, next) {
   res.redirect('/#/admin');
 });
 
+app.get('/auth', function(req, res, next) {
+  res.redirect('/#/auth');
+});
+
 app.get('/categories', function(req, res, next) {
   console.log('get categories test');
   client.query("SELECT * FROM categories", function(err, result) {
@@ -133,7 +140,7 @@ app.get('/deeporders', function(req, res, next) {
         if(err) { console.log(err) }
         order.menuitems = result.rows;
         deeporder.push(order);
-        
+
         if(deeporder.length === coll.length) {
            console.log(deeporder);
            res.send(deeporder);
@@ -206,3 +213,14 @@ app.post('/createMenuItem', function(req, res, next) {
                     if(err) { res.send("POST FAILED") }
                   });
 });
+
+app.post('/authenticate', function(req, res, next) {
+  var body = req.body;
+  var claim = {};
+  // if (body.username === 'x' && body.password === 'xx') {
+    claim.userid = 1;
+    res.send({token: jwt(claim, secret)});
+  // } else {
+  //   res.status(401).redirect('/');
+  // }
+})
