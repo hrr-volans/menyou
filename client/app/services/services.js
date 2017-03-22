@@ -72,16 +72,22 @@ angular.module('services', [])
     // above creates state and below are functions which act on it (like setState)
 
     //Helper functions
+    function setCurrentCustomer(name) {
+      currentCustomer.name = name;
+    }
+
     function setAllMenuItems(thisdata) {
       thisdata.forEach(item => data.push(item))
     }
 
     function sendOrder() {
       var orderObj = {
-        customer: "Chuck",
+        customer: currentCustomer,
         totalprice: total.total,
         menuitems: addedItems.items
       }
+
+      console.log(orderObj);
 
       $http.post('/orders', JSON.stringify(orderObj)).then(function(response){
         console.log(response);
