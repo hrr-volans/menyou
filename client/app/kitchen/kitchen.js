@@ -47,10 +47,10 @@ angular.module('kitchenmodule', ['services'])
       restrict: 'E',
       templateUrl: 'app/kitchen/kitchen.html',
       scope:{
-        id: '@',
-        allorders: '=',
+        id: '@',//@ means string
+        allorders: '=', //= means object (or array)
         completeorder: '&',
-        deleteorder: '&',
+        deleteorder: '&', //& means function
         bool: '=',
         toggle: '&'
       }

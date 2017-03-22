@@ -1,0 +1,27 @@
+<div ng-controller='categoriesController' class="categories-container">
+<!--       <category ng-repeat="category in data" name={{category}} ng-click="setCurrentCategory(category)" class="category-slider"></category> -->
+  <div class="category-slider">
+    <div ng-repeat="category in data" ng-click="setCurrentCategory(category)" emit-last-repeater-element>{{category}}</div>
+  </div>
+</div>
+
+<div ng-hide="category.name === undefined" ng-controller="menulistController" class="menu-list-container">
+  <menu name={{category.name}} data="data.items" added="added.items" click="addMenuItemToChosenList(item)" removeclick="removeMenuItemFromChosenList(index)"></menu>
+</div>
+
+<h1>Order</h1>
+
+<div ng-controller="totalController" class="total-controller-div">
+
+  <div ng-controller='chosenItemsController' class="suborders-container">
+    <chosenitem name={{category.name}} added="data.items" click="addMenuItemToChosenList(item)" removeclick="removeMenuItemFromChosenList(index)"></chosenitem>
+    <totaldirective totaldirectivescope={{totalscope.total}}></totaldirective>
+  </div>
+
+  <div ng-controller='placeorderController' class="place-order-container">
+    <placeorder click="placeOrder()"></placeorder>
+  </div>
+
+
+
+</div>
