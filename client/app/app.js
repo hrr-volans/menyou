@@ -7,7 +7,8 @@ var app = angular.module('app', [
   'placeorder',
   'totalmodule',
   'kitchenmodule',
-  'admin'
+  'admin',
+  'confirmation'
 ])
 
 .config(function($routeProvider, $locationProvider){
