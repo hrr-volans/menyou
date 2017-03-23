@@ -195,6 +195,17 @@ app.post('/complete', function(req, res, next) {
   );
 });
 
+app.post('/incomplete', function(req, res, next) {
+  console.log('ID HERE???', req.body.id);
+  client.query("UPDATE orders SET complete = false WHERE id = ($1)", [req.body.id],
+    function(err, result) {
+      if(err) {console.log("ERROR! ", err) }
+        console.log('UPDATING! ', req.customer,"'s  order is incomplete!");
+        res.send("Order re-added");
+    }
+  );
+});
+
 
 app.post('/createCategory', function(req, res, next) {
   //access the database....

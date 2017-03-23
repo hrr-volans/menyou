@@ -1,10 +1,10 @@
 <div class="kitchen-container">
 	<div class="kitchen-header">
-		<h1 class="kitchen-title">Kitchen</h1>		
+		<h1 class="kitchen-title">Kitchen</h1>
 		<div class="toggle-container">
 			<h3 class="showing-orders">Showing {{bool.prefix}} Orders</h3>
 			<button ng-click="toggle()" class="toggle-orders">Toggle</button>
-		</div>		
+		</div>
 	</div>
 	<ul class="order-row">
 	  <li ng-repeat="order in allorders | filter: { complete: bool.status }" class="order-row-li">
@@ -15,20 +15,20 @@
 	  	<div class="block customer-name-block">
 	  		<p>Customer Name</p>
 	  		<p class="name-paragraph">{{order.customer}}</p>
-	  	</div>	      
+	  	</div>
 	  	<div class="block menu-items-block">
 	  		<p>Menu Items</p>
 	  		<ul>
 		      <li ng-repeat="item in order.menuitems">
 		      	<div class="qty">{{item.quantity}}</div>
-		      	<div class="description">{{item.description}}</div>		       
+		      	<div class="description">{{item.description}}</div>
 		      </li>
 		    </ul>
-	  	</div>	      	      
+	  	</div>
 	 	<div class="block mark-complete-block">
-	 		<button ng-hide="bool.status" ng-click="completeorder({order: order})" class="done">Done</button>	
-	 		<button ng-hide="!bool.status" class="back">Put Back</button>
-	 	</div>   	 
+	 		<button ng-hide="bool.status" ng-click="completeorder({order: order})" class="done">Done</button>
+	 		<button ng-hide="!bool.status" ng-click="readdorder({order: order})" class="back">Put Back</button>
+	 	</div>
 	  </li>
 	</ul>
 </div>

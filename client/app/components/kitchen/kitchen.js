@@ -15,6 +15,18 @@ angular.module('kitchenmodule', ['services'])
       getOrders();
     }
 
+    $scope.reAddOrder = function(order) {
+      console.log('INDEX??', order);
+      $http.post('/incomplete', order).then(function(response){
+        console.log(response);
+      }, function(err){
+        console.log('POST error: ', err);
+      });
+
+      console.log('complete order hit');
+      getOrders();
+    }
+
     $scope.filterbool = {status: false, prefix: 'Incomplete'};
 
     $scope.toggleorderstatus = function() {
@@ -50,6 +62,7 @@ angular.module('kitchenmodule', ['services'])
         id: '@',//@ means string
         allorders: '=', //= means object (or array)
         completeorder: '&',
+        readdorder: '&',
         deleteorder: '&', //& means function
         bool: '=',
         toggle: '&'
