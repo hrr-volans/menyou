@@ -1,10 +1,10 @@
 angular.module('services', [])
   .factory('categoriesService', function ($http, menuitemsService) {
-    var current_time = moment().format("HH");    
+    var current_time = moment().format("HH");
     var initialCategory;
     if(current_time < 12) {
       initialCategory = 'Breakfast';
-    } else if (current_time < 19) {
+    } else if (current_time < 13) {
       initialCategory = 'Lunch';
     } else if (current_time < 24) {
       initialCategory = 'Dinner';
@@ -149,6 +149,34 @@ angular.module('services', [])
       getChosenList: getChosenList,
       removeMenuItemFromChosenList: removeMenuItemFromChosenList,
       getTotalPrice: getTotalPrice,
-      setAllMenuItems: setAllMenuItems      
+      setAllMenuItems: setAllMenuItems
     };
   })
+  .factory('authenticationService', function ($window) {
+    var isLoggedIn = {status: false};
+
+    var logIn = function(type) {
+      isLoggedIn.status = true;
+      isLoggedIn.type = type;
+      console.log('login = ', isLoggedIn.status);
+    }
+
+    if($window.localStorage.token) {
+      logIn($window.localStorage.type);
+    }
+
+    var logOut = function() {
+      isLoggedIn.status = false;
+      console.log('logout hit');
+    }
+
+    var getLoginStatus = function() {
+      return isLoggedIn;
+    }
+
+    return {
+      logIn: logIn,
+      logOut: logOut,
+      getLoginStatus: getLoginStatus
+    };
+  });
