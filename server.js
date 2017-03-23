@@ -213,7 +213,9 @@ app.post('/createCategory', function(req, res, next) {
   client.query("INSERT INTO \
                   categories(name) VALUES($1)",[newCat],
                     function(err, results) {
-                      if(err) { res.send("POST FAILED") }
+                      if(err) { res.send("POST FAILED") } else {
+                        res.send('Success');
+                      }
                     });
 });
 
@@ -226,7 +228,9 @@ app.post('/createMenuItem', function(req, res, next) {
                   menuitems(name, description, price, category_id) \
                   VALUES ($1, $2, $3, $4)", [newItem.name, newItem.description, newItem.price, newItem.category_id],
                   function(err, results) {
-                    if(err) { res.send("POST FAILED") }
+                    if(err) { res.send("POST FAILED") } else {
+                      res.send('Success');
+                    }
                   });
 });
 

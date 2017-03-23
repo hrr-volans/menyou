@@ -1,9 +1,14 @@
+var refresh = false; //seting via closure to avoid duplicate setInterval calls
+
 angular.module('kitchenmodule', ['services'])
   .controller('kitchenController', function($http, $scope, menuitemsService){
 
-    getOrders();
 
-    setInterval(getOrders, 10000);
+    if(refresh === false) {
+      setInterval(getOrders, 10000);
+    }
+
+    getOrders();
 
     $scope.completeOrder = function(order) {
       $http.post('/complete', order).then(function(response){
@@ -34,6 +39,7 @@ angular.module('kitchenmodule', ['services'])
     }
 
     function getOrders() {
+      refresh = true;
       $http({
         method: 'GET',
         url: '/deeporders'

@@ -1,5 +1,5 @@
-<form ng-submit="add()">
+<form name="categoryForm" ng-submit="add()">
   <label for="name">Category Name</label>
-  <input ng-model="form.categoryname" type="text" name="name">
+  <input required ng-model="form.categoryname" type="text" name="name">
   <button type="submit" id="submit">Submit</button>
 </form>

@@ -6,9 +6,9 @@ angular.module('admin', ['services'])
     $scope.formData = {};
 
     $scope.addCategory = function() {
-      console.log($scope.formData.categoryname)
       $http.post('/createCategory', JSON.stringify({name: $scope.formData.categoryname})).then(function(response){
-        console.log(response);
+        console.log('abput to hit')
+        $scope.formData = {};
         getCategories();
       }, function(err){
         console.log('POST error: ', err);
@@ -20,6 +20,7 @@ angular.module('admin', ['services'])
       console.log($scope.formData)
       $http.post('/createMenuItem', $scope.formData).then(function(response){
         console.log(response);
+        $scope.formData = {};
       }, function(err){
         console.log('POST error: ', err);
       });
