@@ -7,10 +7,7 @@ angular.module('admin', ['services'])
     $scope.test = 'Hola';
     $scope.addCategory = function() {
       $http.post('/createCategory', JSON.stringify({name: $scope.formData.categoryname})).then(function(response){        
-        $('.add-category-container').append('<p class="success">Category '+response.data[0].name+' successfully created!</p>')
-        setTimeout(function(){  
-          $('.success').fadeOut(300, function() { $(this).remove(); });       
-        }, 1500);        
+        categoriesService.reactToSuccessfulPost('category', response);        
         getCategories();
       }, function(err){
         console.log('POST error: ', err);
@@ -21,8 +18,8 @@ angular.module('admin', ['services'])
       $scope.formData.category_id = Number($scope.formData.category_id);
       console.log($scope.formData)
       $http.post('/createMenuItem', $scope.formData).then(function(response){
-        console.log(response);
         $scope.formData = {};
+        categoriesService.reactToSuccessfulPost('menuitem', response);   
       }, function(err){
         console.log('POST error: ', err);
       });

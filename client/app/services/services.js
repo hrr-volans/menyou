@@ -65,6 +65,17 @@ angular.module('services', [])
       return categoryData;
     };
 
+    var reactToSuccessfulPost = function(target, response) {
+      var formInputs = $('.admin-forms > div > input');
+      Array.prototype.forEach.call(formInputs, function(input) {
+        input.value = '';
+      });
+      $('.add-' + target + '-container').append('<p class="success">' + target + ' ' +response.data[0].name+' successfully created!</p>')
+      setTimeout(function(){  
+        $('.success').fadeOut(300, function() { $(this).remove(); });       
+      }, 1500);        
+    }
+
     return {
       setCurrentCategory: setCurrentCategory,
       getCurrentCategory: getCurrentCategory,
@@ -72,7 +83,8 @@ angular.module('services', [])
       getAllCategoryNames: getAllCategoryNames,
       setAllCategoryData: setAllCategoryData,
       setInitialCategories: setInitialCategories,
-      initialCategory: initialCategory
+      initialCategory: initialCategory,
+      reactToSuccessfulPost: reactToSuccessfulPost
     };
   })
 

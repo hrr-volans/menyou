@@ -254,11 +254,12 @@ app.post('/createMenuItem', function(req, res, next) {
   console.log(newItem);
   client.query("INSERT INTO \
                   menuitems(name, description, price, category_id) \
-                  VALUES ($1, $2, $3, $4)", [newItem.name, newItem.description, newItem.price, newItem.category_id],
+                  VALUES ($1, $2, $3, $4) RETURNING name", [newItem.name, newItem.description, newItem.price, newItem.category_id],
                   function(err, results) {
-                    if(err) { res.send("POST FAILED") } else {
-                      res.send('Success');
-                    }
+
+                    if(err) { res.send("POST FAILED") }
+                    console.log(results.rows);
+                    res.send(results.rows);
                   });
 
 });
