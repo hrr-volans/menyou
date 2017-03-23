@@ -1,6 +1,11 @@
 <div class="kitchen-container">
-	<h1>Kitchen</h1>	
-	<h3>Showing {{bool.prefix}} Orders</h3><span ng-click="toggle()">(Toggle)</span>
+	<div class="kitchen-header">
+		<h1 class="kitchen-title">Kitchen</h1>		
+		<div class="toggle-container">
+			<h3 class="showing-orders">Showing {{bool.prefix}} Orders</h3>
+			<button ng-click="toggle()" class="toggle-orders">Toggle</button>
+		</div>		
+	</div>
 	<ul class="order-row">
 	  <li ng-repeat="order in allorders | filter: { complete: bool.status }" class="order-row-li">
 	  	<div class="block id-block">
@@ -12,7 +17,7 @@
 	  		<p class="name-paragraph">{{order.customer}}</p>
 	  	</div>	      
 	  	<div class="block menu-items-block">
-	  		<p>Menu Items:</p>
+	  		<p>Menu Items</p>
 	  		<ul>
 		      <li ng-repeat="item in order.menuitems">
 		      	<div class="qty">{{item.quantity}}</div>
@@ -21,7 +26,8 @@
 		    </ul>
 	  	</div>	      	      
 	 	<div class="block mark-complete-block">
-	 		<button ng-hide="bool.status" ng-click="completeorder({order: order})">Done</button>	
+	 		<button ng-hide="bool.status" ng-click="completeorder({order: order})" class="done">Done</button>	
+	 		<button ng-hide="!bool.status" class="back">Put Back</button>
 	 	</div>   	 
 	  </li>
 	</ul>

@@ -161,7 +161,9 @@ app.post('/orders', function(req, res, next) {
                     suborders(description, subtotalprice, quantity, id_orders, id_menuitems) VALUES($1, $2, $3, $4, $5)",
                     [suborder.name, suborder.price, suborder.quantity, result.rows[0].id, suborder.category_id],
                     function(err, result) {
-                    console.log(err);
+                      if(err) {
+                        console.log(err);                        
+                      }                      
       });
     });
   });

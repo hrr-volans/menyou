@@ -4,15 +4,17 @@
 $dark-blue: #020022;
 $light-blue: #79d7f3;
 $orange:  #f4b556;
+$font-russo: 'Russo One', sans-serif;
 
 
 body {
 	//@include outer-container;
 	background: $dark-blue;
 	color: $light-blue;
-	font-family: 'Russo One', sans-serif;
+	font-family: $font-russo;
 	text-align: center;	
 	overflow: scroll;
+	letter-spacing: 1px;
 }
 
 
@@ -44,17 +46,18 @@ body {
 						
 						div.menu-li-div {							    
 						    padding: 6px;
-								background: $orange;
-								color: $dark-blue;
-								height: 153px;
+							background: $orange;
+							color: $dark-blue;
+							height: 153px;
+							letter-spacing: 0;
 
-								div.item-title {
-									font-size: 19px;
-								}
+							div.item-title {
+								font-size: 19px;
+							}
 
-								div.item-description {
-									font-size: 13px;
-								}							    
+							div.item-description {
+								font-size: 13px;
+							}							    
 						}
 
 						div.menu-li-div:hover {
@@ -113,8 +116,8 @@ body {
 				placeorder {
 					div.order-button-div {
 						button {
-							font-family: 'Russo One', sans-serif;
-							padding: 13px;
+						font-family: $font-russo;
+						padding: 13px;
 					    margin: 19px 0;
 					    width: 100%;
 					    border-radius: 7px;
@@ -157,7 +160,8 @@ body {
 					}
 					h3 {
 
-					}
+					}							
+
 					ul.order-row {
 						li.order-row-li {
 							list-style-type: none;
@@ -187,25 +191,50 @@ body {
 
 		.ng-scope {
 			kitchendirective {
-				div.kitchen-container {					
-					h1 {
+				div.kitchen-container {		
+					div.kitchen-header {
+						@include outer-container;
+						h1.kitchen-title {
+							@include span-columns(4);
+							@include shift(4);
+						}
 
-					}
-					h3 {
+						div.toggle-container {
+							@include span-columns(4);
+							margin-top: -45px;
+							h3.showing-orders {
+								color: $orange;
+							}
 
-					}
+							button.toggle-orders {
+								padding: 8px 51px;
+		    					font-size: 20px;
+		    					font-family: $font-russo;
+		    					background: $light-blue;
+		    					border: 0;
+							}					
+
+							button.toggle-orders:hover {
+								cursor: pointer;
+							}		
+						}						
+					}			
+
 					ul.order-row {
 						li.order-row-li {
 							@include outer-container;
 							list-style-type: none;
 							border: 1px solid $light-blue;	
 							padding-bottom: 20px;
+							margin-bottom: 30px;
 
 							div.id-block {
 								@include span-columns(2); 
 								p.id-number {
 									font-size: 2em;
-									margin: 0;
+									background: $light-blue;
+								    margin: 0 63px;
+								    color: $dark-blue;									
 								}
 							}
 
@@ -236,14 +265,30 @@ body {
 
 							div.mark-complete-block {
 								@include span-columns(3); 
-								button {
+								button.done {
 									background: $orange;
 									padding: 15px 55px;
-							    font-size: 1.5em;
-							    font-weight: bold;
-							    margin: 12% 0; 
-							    border: 0;
-							    font-family: 'Russo One', sans-serif;
+								    font-size: 1.5em;
+								    font-weight: bold;
+								    margin: 12% 0; 
+								    border: 0;
+								    font-family: $font-russo;
+								}
+
+								button.done:hover {
+									cursor: pointer;
+								}
+
+								button.back {
+									background: transparent;
+									color: $light-blue;
+									padding: 15px 55px;
+								    font-size: 1.5em;
+								    font-weight: bold;
+								    margin: 12% 0; 
+								    border: 0;
+								    font-family: $font-russo;	
+								    border: 1px solid $light-blue;
 								}
 							}
 						}	
