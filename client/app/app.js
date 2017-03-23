@@ -25,17 +25,24 @@ var app = angular.module('app', [
       templateUrl: 'app/views/admin.html',
       controller: 'adminController'
     })
-
     .when('/confirmation', {
       templateUrl:"app/confirmation/confirmation.html",
       controller: 'confirmationController'
-    });
-
-    .when('/auth', {
-      templateUrl: 'app/views/auth.html',
+    })
+    .when('/login', {
+      templateUrl: 'app/views/login.html',
       controller: 'authController'
     })
 
 
     $locationProvider.html5Mode(true);
-})
+  })
+  .run(function($location, authenticationService){
+    if($location.$$path === '/admin') {
+      if(!authenticationService.getLoginStatus().status || !authenticationService.getLoginStatus().status !== 'admin') {
+        $location.path('/');
+      }
+    } else if ($location.$$path === '/kitchen' && !authenticationService.getLoginStatus().status) {
+      $location.path('/');
+    }
+  })

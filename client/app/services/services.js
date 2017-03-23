@@ -158,6 +158,31 @@ angular.module('services', [])
       getCustomerName: getCustomerName
     };
   })
-  .factory('authenticationService', function () {
-    var isLoggedIn = {status: true}
+  .factory('authenticationService', function ($window) {
+    var isLoggedIn = {status: false};
+
+    var logIn = function(type) {
+      isLoggedIn.status = true;
+      isLoggedIn.type = type;
+      console.log('login = ', isLoggedIn.status);
+    }
+
+    if($window.localStorage.token) {
+      logIn($window.localStorage.type);
+    }
+
+    var logOut = function() {
+      isLoggedIn.status = false;
+      console.log('logout hit');
+    }
+
+    var getLoginStatus = function() {
+      return isLoggedIn;
+    }
+
+    return {
+      logIn: logIn,
+      logOut: logOut,
+      getLoginStatus: getLoginStatus
+    };
   });

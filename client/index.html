@@ -20,6 +20,10 @@
 <body>
 
   <div ng-app="app" class="app-container">
+    <div ng-hide="isLoggedIn.status === false" id="logout-button" style="position: absolute; right: 20px" ng-controller="authController">
+      <logout click="authLogout()"></logout>
+    </div>
+
     <h1>MENYOU</h1>
 
 
