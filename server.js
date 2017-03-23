@@ -108,8 +108,8 @@ app.get('/admin', function(req, res, next) {
   res.redirect('/#/admin');
 });
 
-app.get('/auth', function(req, res, next) {
-  res.redirect('/#/auth');
+app.get('/login', function(req, res, next) {
+  res.redirect('/#/login');
 });
 
 app.get('/categories', function(req, res, next) {
@@ -216,11 +216,14 @@ app.post('/createMenuItem', function(req, res, next) {
 
 app.post('/authenticate', function(req, res, next) {
   var body = req.body;
-  var claim = {};
-  // if (body.username === 'x' && body.password === 'xx') {
-    claim.userid = 1;
-    res.send({token: jwt(claim, secret)});
-  // } else {
-  //   res.status(401).redirect('/');
-  // }
+  var user = {};
+  if (body.username === 'admin' && body.password === 'admin') {
+    user.type = 'admin';
+    res.send({user: user, token: jwt.sign(user, secret)});
+  } else if (body.username === 'kitchen' && body.password === 'kitchen') {
+    user.type = 'kitchen';
+    res.send({user: user, token: jwt.sign(user, secret)});
+  } else {
+    res.status(401).send('Invalid credentials');
+  }
 })
