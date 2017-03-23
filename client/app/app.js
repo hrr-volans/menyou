@@ -38,13 +38,19 @@ var app = angular.module('app', [
     $locationProvider.html5Mode(true);
   })
   .run(function($location, authenticationService){
-    console.log('Logged in? from app.js', authenticationService.getLoginStatus())
-    if($location.$$path === '/admin') {
-      if(authenticationService.getLoginStatus().status === false || authenticationService.getLoginStatus().type !== 'admin') {
-        // debugger;
+
+    authenticationService.getLoginStatus(authVerify);
+    function authVerify(isLoggedIn) {
+      console.log('running authVerify app.js')
+      if($location.$$path === '/admin') {
+        if(isLoggedIn.status === false || isLoggedIn.type !== 'admin') {
+          // debugger;
+          console.log('about to redirect')
+          $location.path('/');
+        }
+      } else if ($location.$$path === '/kitchen' && !isLoggedIn.status) {
+        console.log('about to redirect')
         $location.path('/');
       }
-    } else if ($location.$$path === '/kitchen' && !authenticationService.getLoginStatus().status) {
-      $location.path('/');
     }
   })

@@ -174,16 +174,33 @@ angular.module('services', [])
       $location.path('/');
     }
 
-    if($window.localStorage.token) {
-      $http.post('/authenticate', {token: $window.localStorage.token}).then(function(response){
-        logIn(response.data.type);
-      }, function(err){
-        console.log('Auth error: ', err);
-        logOut();
-      });
-    }
+    // if($window.localStorage.token) {
+    //   $http.post('/authenticate', {token: $window.localStorage.token}).then(function(response){
+    //     logIn(response.data.type);
+    //   }, function(err){
+    //     console.log('Auth error: ', err);
+    //     logOut();
+    //   });
+    // }
 
-    var getLoginStatus = function() {
+    var getLoginStatus = function(callback) {
+      if($window.localStorage.token) {
+        $http.post('/authenticate', {token: $window.localStorage.token}).then(function(response){
+          logIn(response.data.type);
+          if(callback) {
+            console.log('callbacl called services')
+            callback(isLoggedIn);
+          }
+        }, function(err){
+          console.log('Auth error: ', err);
+          logOut();
+          callback(isLoggedIn);
+        });
+      } else {
+        if(callback) {
+          callback(isLoggedIn);
+        }
+      }
       return isLoggedIn;
     }
 
