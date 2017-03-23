@@ -21,6 +21,8 @@ client.connect(function (err) {
 
 
 
+
+
 //   client.query("CREATE TABLE \
 //                   categories( \
 //                     id SERIAL PRIMARY KEY, \
