@@ -72,8 +72,8 @@ angular.module('services', [])
     // above creates state and below are functions which act on it (like setState)
 
     //Helper functions
-    function setCurrentCustomer(name) {
-      currentCustomer.name = name;
+    function getCustomerName(name) {
+      return currentCustomer;
     }
 
     function setAllMenuItems(thisdata) {
@@ -82,7 +82,7 @@ angular.module('services', [])
 
     function sendOrder() {
       var orderObj = {
-        customer: currentCustomer,
+        customer: currentCustomer.name,
         totalprice: total.total,
         menuitems: addedItems.items
       }
@@ -139,6 +139,7 @@ angular.module('services', [])
       getChosenList: getChosenList,
       removeMenuItemFromChosenList: removeMenuItemFromChosenList,
       getTotalPrice: getTotalPrice,
-      setAllMenuItems: setAllMenuItems
+      setAllMenuItems: setAllMenuItems,
+      getCustomerName: getCustomerName
     };
   })
