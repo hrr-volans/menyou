@@ -1,12 +1,14 @@
-# Project Name
+# menYOU
 
-> Pithy project description
+> Say goodbye to clunky, paper menus covered with food stains. This ain't your daddy's menu. It's menYOU! 
+
+Peruse the menu, see the daily specials, place orders and pay for your meal all from the convenience of your mobile device
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Ignacio Palma
+  - __Scrum Master__: Bryce Dooley
+  - __Development Team Members__: Preston Moore, Shane Tanguis
 
 ## Table of Contents
 
