@@ -20,7 +20,6 @@ client.connect(function (err) {
 //   if (err) throw err;
 
 
-
 //   client.query("CREATE TABLE \
 //                   categories( \
 //                     id SERIAL PRIMARY KEY, \

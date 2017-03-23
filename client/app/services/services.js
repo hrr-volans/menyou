@@ -115,7 +115,7 @@ angular.module('services', [])
       total.total = addedItems.items.reduce(function(acc, curr){
         acc = acc + (Number(curr.price) * curr.quantity);
         return acc;
-      }, 0);
+      }, 0).toFixed(2);
       // console.log('TOTAL FROM services', total.total);
     }
     function getTotalPrice(){
