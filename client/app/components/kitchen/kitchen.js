@@ -3,6 +3,8 @@ angular.module('kitchenmodule', ['services'])
 
     getOrders();
 
+    setInterval(getOrders, 10000);
+
     $scope.completeOrder = function(order) {
       $http.post('/complete', order).then(function(response){
       }, function(err){

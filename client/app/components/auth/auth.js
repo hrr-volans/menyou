@@ -42,7 +42,8 @@ angular.module('authentication', ['services'])
         restrict: 'E',
         templateUrl: 'app/components/auth/logout.html',
         scope:{
-          click: '&'
+          click: '&',
+          loginstatus: '='
         }
       }
     })
