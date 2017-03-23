@@ -21,8 +21,6 @@ client.connect(function (err) {
 
 
 
-
-
 //   client.query("CREATE TABLE \
 //                   categories( \
 //                     id SERIAL PRIMARY KEY, \
@@ -103,10 +101,6 @@ app.get('/kitchen', function(req, res, next) {
   res.redirect('/#/kitchen');
 });
 
-app.get('/confirmation', function(req, res, next){
-  res.redirect('/#/confirmation');
-});
-
 app.get('/admin', function(req, res, next) {
   res.redirect('/#/admin');
 });
@@ -148,8 +142,6 @@ app.get('/deeporders', function(req, res, next) {
     });
   });
 });
-
-// app.get('/confirmation')
 
 
 

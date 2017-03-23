@@ -22,9 +22,6 @@ var app = angular.module('app', [
       templateUrl: 'app/views/admin.html',
       controller: 'adminController'
     })
-    .when('/confirmation', {
-      templateUrl : 'app/views/confirmation.html',
-      contorlller : 'confirmationController'
-    })
+
     $locationProvider.html5Mode(true);
 })
