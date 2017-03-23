@@ -185,7 +185,6 @@ app.post('/orders', function(req, res, next) {
 });
 
 app.post('/complete', function(req, res, next) {
-  console.log('ID HERE???', req.body.id);
   client.query("UPDATE orders SET complete = true WHERE id = ($1)", [req.body.id],
     function(err, result) {
       if(err) {console.log("ERROR! ", err) }
@@ -196,7 +195,6 @@ app.post('/complete', function(req, res, next) {
 });
 
 app.post('/incomplete', function(req, res, next) {
-  console.log('ID HERE???', req.body.id);
   client.query("UPDATE orders SET complete = false WHERE id = ($1)", [req.body.id],
     function(err, result) {
       if(err) {console.log("ERROR! ", err) }

@@ -4,26 +4,18 @@ angular.module('kitchenmodule', ['services'])
     getOrders();
 
     $scope.completeOrder = function(order) {
-      console.log('INDEX??', order);
       $http.post('/complete', order).then(function(response){
-        console.log(response);
       }, function(err){
         console.log('POST error: ', err);
       });
-
-      console.log('complete order hit');
       getOrders();
     }
 
     $scope.reAddOrder = function(order) {
-      console.log('INDEX??', order);
       $http.post('/incomplete', order).then(function(response){
-        console.log(response);
       }, function(err){
         console.log('POST error: ', err);
       });
-
-      console.log('complete order hit');
       getOrders();
     }
 
