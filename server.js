@@ -30,21 +30,21 @@ client.connect(function (err) {
 //                     id SERIAL PRIMARY KEY, \
 //                     name VARCHAR(40) not null, \
 //                     description VARCHAR(40) not null, \
-//                     price NUMERIC(4,2) not null, \
+//                     price NUMERIC(6,2) not null, \
 //                     category_id INTEGER REFERENCES categories(id))");
 
 //   client.query("CREATE TABLE \
 //                   orders( \
 //                     id SERIAL PRIMARY KEY, \
 //                     customer VARCHAR(40) not null, \
-//                     totalprice NUMERIC(4,2) not null, \
+//                     totalprice NUMERIC(6,2) not null, \
 //                     complete boolean default false)");
 
 //   client.query("CREATE TABLE \
 //                   suborders( \
 //                     id SERIAL PRIMARY KEY, \
 //                     description VARCHAR(40) not null, \
-//                     subtotalprice NUMERIC(4,2) not null, \
+//                     subtotalprice NUMERIC(6,2) not null, \
 //                     quantity INTEGER not null, \
 //                     id_orders INTEGER REFERENCES orders(id), \
 //                     id_menuitems INTEGER REFERENCES menuitems(id))");
