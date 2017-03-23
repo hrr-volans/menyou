@@ -3,9 +3,8 @@
 	  <li ng-repeat="item in added track by $index">
 	    <div ng-click="removeclick({index: $index})">
 	    	<div class="sub-name">{{item.name}}</div>
-
-	    	<div class="sub-price">${{item.price}}</div>    	
-
+	    	<div class="sub-price">${{item.price}}</div>
+	    	<div class="sub-price">Quantity: {{item.quantity}}</div>
 	    </div>
 	  </li>
 	</ul>

@@ -79,6 +79,7 @@ angular.module('services', [])
     var addedItems = {items: []};
 
     var total = {total: 0};
+    var currentCustomer = {name: ''};
 
     // data variable to hold on to all menu items
     var data = [];
@@ -86,16 +87,22 @@ angular.module('services', [])
     // above creates state and below are functions which act on it (like setState)
 
     //Helper functions
+    function getCustomerName(name) {
+      return currentCustomer;
+    }
+
     function setAllMenuItems(thisdata) {
       thisdata.forEach(item => data.push(item))
     }
 
     function sendOrder() {
       var orderObj = {
-        customer: 'Chuck Norris',
+        customer: currentCustomer.name,
         totalprice: total.total,
         menuitems: addedItems.items
       }
+
+      console.log(orderObj);
 
       $http.post('/orders', JSON.stringify(orderObj)).then(function(response){
         console.log(response);
@@ -132,10 +139,8 @@ angular.module('services', [])
       return addedItems;
     }
     var removeMenuItemFromChosenList = function(index){
-
       if(addedItems.items[index].quantity > 1) {
         addedItems.items[index].quantity -= 1;
-
       } else {
         addedItems.items.splice(index, 1);
       }
@@ -149,6 +154,7 @@ angular.module('services', [])
       getChosenList: getChosenList,
       removeMenuItemFromChosenList: removeMenuItemFromChosenList,
       getTotalPrice: getTotalPrice,
-      setAllMenuItems: setAllMenuItems      
+      setAllMenuItems: setAllMenuItems,   
+      getCustomerName: getCustomerName
     };
   })

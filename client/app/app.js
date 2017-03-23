@@ -1,11 +1,12 @@
 var app = angular.module('app', [
-  'ngRoute', 
-  'categories', 
-  'menulist', 
-  'chosenitems', 
-  'placeorder', 
-  'totalmodule', 
-  'kitchenmodule', 
+  'ngRoute',
+  'categories',
+  'customername',
+  'menulist',
+  'chosenitems',
+  'placeorder',
+  'totalmodule',
+  'kitchenmodule',
   'admin'
 ])
 

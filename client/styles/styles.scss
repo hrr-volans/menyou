@@ -17,10 +17,48 @@ body {
 	letter-spacing: 1px;
 }
 
+@include media(max-width 740px) {
+	body {
+		@include outer-container;
+		background: $dark-blue;
+		color: $light-blue;
+		font-family: 'Russo One', sans-serif;
+		text-align: center;
+
+		div.app-container {
+			div.categories-container {
+				padding: 0 10%;
+
+				div.category-slider {
+					button.slick-arrow:before {
+						color: $light-blue;
+					}
+				}
+			}
+
+			div.menu-list-container {
+				menu {
+					padding: 0;
+					ul.menu-list {
+						@include outer-container;
+						list-style-type: none;
+						padding: 0 10%;
+
+						li.menu-li-element {
+							@include span-columns(6);
+							@include omega();
+							padding: 2px;
+
+							div.menu-li-div {
+							    padding: 6px;
+									background: $orange;
+									color: $dark-blue;
+									height: 106px;
+
 
 //MOBILE
 @include media(max-width 480px) {
-	div.app-container {		
+	div.app-container {
 		div.categories-container {
 			padding: 0 10%;
 
@@ -29,22 +67,22 @@ body {
 					color: $light-blue;
 				}
 			}
-		}	
+		}
 
-		div.menu-list-container {			
+		div.menu-list-container {
 			menu {
 				padding: 0;
 				ul.menu-list {
 					@include outer-container;
-					list-style-type: none;						
+					list-style-type: none;
 					padding: 0 10%;
 
 					li.menu-li-element {
 						@include span-columns(6);
 						@include omega();
 						padding: 2px;
-						
-						div.menu-li-div {							    
+
+						div.menu-li-div {
 						    padding: 6px;
 							background: $orange;
 							color: $dark-blue;
@@ -68,6 +106,7 @@ body {
 			}
 		}
 
+
 		div.total-controller-div {
 			padding: 0 10%;
 			div.suborders-container {
@@ -77,10 +116,11 @@ body {
 
 				chosenitem {
 					div.suborders-screen {
-						ul.suborders-ul {							
-							list-style-type: none;							
-						  padding: 6px;						    
+						ul.suborders-ul {
+							list-style-type: none;
+						  padding: 6px;
 						  margin-top: 0;
+
 
 							li {
 								div {
@@ -91,7 +131,8 @@ body {
 									}
 
 									div.sub-price {
-										@include span-columns(6);										
+										@include span-columns(6);
+
 									}
 								}
 							}
@@ -133,8 +174,8 @@ body {
 					}
 				}
 			}
-		}			
-	}		
+		}
+	}
 }
 
 // TABLET SIZE
@@ -143,7 +184,7 @@ body {
 		// div.categories-container {
 
 		// }
-		
+
 		// div.menu-list-container {
 
 		// }
@@ -154,7 +195,7 @@ body {
 
 		.ng-scope {
 			kitchendirective {
-				div.kitchen-container {					
+				div.kitchen-container {
 					h1 {
 
 					}
@@ -165,7 +206,7 @@ body {
 					ul.order-row {
 						li.order-row-li {
 							list-style-type: none;
-							border: 1px solid blue;							
+							border: 1px solid blue;
 						}
 					}
 				}
@@ -180,7 +221,7 @@ body {
 		div.categories-container {
 			margin: 0 6%;
 		}
-		
+
 		div.menu-list-container {
 
 		}
@@ -224,12 +265,12 @@ body {
 						li.order-row-li {
 							@include outer-container;
 							list-style-type: none;
-							border: 1px solid $light-blue;	
+							border: 1px solid $light-blue;
 							padding-bottom: 20px;
 							margin-bottom: 30px;
 
 							div.id-block {
-								@include span-columns(2); 
+								@include span-columns(2);
 								p.id-number {
 									font-size: 2em;
 									background: $light-blue;
@@ -239,7 +280,7 @@ body {
 							}
 
 							div.customer-name-block {
-								@include span-columns(2); 
+								@include span-columns(2);
 								p.name-paragraph {
 									font-size: 20px;
 									color: $orange;
@@ -247,9 +288,9 @@ body {
 							}
 
 							div.menu-items-block {
-								@include span-columns(5); 
+								@include span-columns(5);
 								ul {
-									list-style-type: none;			
+									list-style-type: none;
 									li {
 										@include outer-container;
 										div.qty {
@@ -259,7 +300,7 @@ body {
 											@include span-columns(10);
 											text-align: left;
 										}
-									}						
+									}
 								}
 							}
 
@@ -291,10 +332,10 @@ body {
 								    border: 1px solid $light-blue;
 								}
 							}
-						}	
+						}
 					}
 				}
 			}
 		}
-	}	
+	}
 }
