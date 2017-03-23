@@ -38,8 +38,10 @@ var app = angular.module('app', [
     $locationProvider.html5Mode(true);
   })
   .run(function($location, authenticationService){
+    console.log('Logged in? from app.js', authenticationService.getLoginStatus())
     if($location.$$path === '/admin') {
-      if(!authenticationService.getLoginStatus().status || !authenticationService.getLoginStatus().status !== 'admin') {
+      if(authenticationService.getLoginStatus().status === false || authenticationService.getLoginStatus().type !== 'admin') {
+        // debugger;
         $location.path('/');
       }
     } else if ($location.$$path === '/kitchen' && !authenticationService.getLoginStatus().status) {

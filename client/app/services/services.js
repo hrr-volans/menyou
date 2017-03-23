@@ -183,7 +183,6 @@ angular.module('services', [])
       });
     }
 
-
     var getLoginStatus = function() {
       return isLoggedIn;
     }
