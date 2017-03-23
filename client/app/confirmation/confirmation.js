@@ -3,7 +3,10 @@ angular.module('confirmation', ['services'])
     getOrders();
     $scope.data = menuitemsService.getChosenList();
     $scope.lastOrder;
+    $scope.sendEmail = function(data) {
+      console.log(data)
 
+    };
     //iterate through orders 
     function getOrders() {
       $http({

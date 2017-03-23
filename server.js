@@ -103,7 +103,9 @@ app.get('/kitchen', function(req, res, next) {
 app.get('/admin', function(req, res, next) {
   res.redirect('/#/admin');
 });
-
+app.get('/confirmation', function(req, res, next) {
+  res.redirect('/#/confirmation');
+});
 app.get('/categories', function(req, res, next) {
   console.log('get categories test');
   client.query("SELECT * FROM categories", function(err, result) {
