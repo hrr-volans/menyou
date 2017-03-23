@@ -1,0 +1,12 @@
+<h3>Showing {{bool.prefix}} Orders</h3><span ng-click="toggle()">(Toggle)</span>
+<ul>
+  <li ng-repeat="order in allorders | filter: { complete: bool.status }">
+    Order #: {{order.id}} <br>
+    Name #: {{order.customer}} <br>
+    Menu Items:
+    <ul>
+      <li ng-repeat="item in order.menuitems">{{item.description}} | QTY: {{item.quantity}}</li>
+    </ul>
+    <span ng-hide="bool.status" ng-click="completeorder({order: order})">Done</span>
+  </li>
+</ul>

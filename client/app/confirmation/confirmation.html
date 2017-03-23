@@ -1,0 +1,11 @@
+<div ng-controller='confirmationController'>
+<h1> Thank you {{neworder.customer}},</h1>
+<h3> Our kitchen staff is perparing on your order! </h3>
+<ul style="list-style-type: none;"> 
+  <li>Order number {{neworder.id }} :  </li>
+      <li ng-repeat='item in neworder.menuitems' style="list-style-type: none; margin-left: 20px">{{item.quantity }} {{item.description}} </li>
+  <li>Total : {{neworder.totalprice}} </li> 
+  <h2>Enter your email for discounts and special offers </h2>
+  <input ng-model="form.categoryname" type="text" name="name" placeholder="*Optional">
+  <button type="submit" id="submit">Submit</button>
+</ul>
