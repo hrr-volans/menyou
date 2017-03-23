@@ -8,4 +8,5 @@
 </ul>
   <h2>Enter your email for discounts and special offers!! </h2>
   <input ng-model="form.categoryname" type="text" name="name" placeholder="*Optional">
-  <button style="background-color:yellow; font-size:12px; border-radius: 8px"type="submit" id="submit">Submit</button>
+  <confirmation><button style="background-color:yellow; font-size:12px; border-radius: 8px" ng-click='sendEmail(form.categoryname)' id="submit">Submit</button></confirmation>
+  </div>
