@@ -1,10 +1,12 @@
 <h1>Admin</h1>
-<div ng-controller='adminController'>
+<div ng-controller='adminController' class="admin-container">
+	<div class="add-menuitem-container">
+	  <h3>Add Menu Item</h3>
+	  <menuform categories="allcategories" form='formData' add="addMenuItem()"></menuform>		
+	</div>
 
-  <h3>Add Menu Item</h3>
-  <menuform categories="allcategories" form='formData' add="addMenuItem()"></menuform>
-
-  <h3>Add Category</h3>
-  <categoryform add="addCategory()" form='formData'></categoryform>
-
+	<div class="add-category-container">
+	  <h3>Add Category</h3>
+	  <categoryform add="addCategory()" form='formData' success-alert={{createdCategory}}></categoryform>	
+	</div>
 </div>

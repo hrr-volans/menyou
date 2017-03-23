@@ -239,11 +239,11 @@ app.post('/createCategory', function(req, res, next) {
   var newCat = req.body.name;
   console.log('NEW CAT', newCat);
   client.query("INSERT INTO \
-                  categories(name) VALUES($1)",[newCat],
+                  categories(name) VALUES($1) RETURNING name",[newCat],
                     function(err, results) {
-                      if(err) { res.send("POST FAILED") } else {
-                        res.send('Success');
-                      }
+                      if(err) { res.send("POST FAILED") }
+                      console.log(results.rows);
+                      res.send(results.rows);
                     });
 });
 

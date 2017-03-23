@@ -4,6 +4,7 @@
 $dark-blue: #020022;
 $light-blue: #79d7f3;
 $orange:  #f4b556;
+$success-green: #1fd91f;
 $font-russo: 'Russo One', sans-serif;
 
 
@@ -178,6 +179,15 @@ body {
 	}
 }
 
+
+
+
+
+
+
+
+
+
 // TABLET SIZE
 @media screen and (min-width: 480px) and (max-width: 992px) {
 	div.app-container {
@@ -214,6 +224,12 @@ body {
 		}
 	}
 }
+
+
+
+
+
+
 
 // DESKTOP
 @include media(min-width 992px) {
@@ -334,6 +350,49 @@ body {
 							}
 						}
 					}
+				}
+			}
+
+			div.admin-container {
+				@include outer-container;
+
+				div.add-menuitem-container, div.add-category-container {
+					@include span-columns(6);
+					form.admin-forms {
+						padding: 0 22%;
+
+						div {
+							text-align: left;
+							margin-top: 10px;
+							margin-bottom: 5px;
+							label, select, input{
+								width: 100%;
+								height: 33px;
+							}
+						}
+
+						button {
+							background: $orange;
+							border: 0;
+							width: 100%;
+							height: 43px;
+							margin: 20px 0;
+							font-size: 1.2em;
+							font-family: $font-russo;
+						}
+
+						button:hover {
+						 	cursor: pointer;
+						}
+					}					
+					
+					p.success {
+						color: $success-green;
+					}
+				}
+
+				div.add-category-container {
+					@include span-columns(6);
 				}
 			}
 		}
