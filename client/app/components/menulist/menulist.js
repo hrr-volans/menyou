@@ -7,8 +7,9 @@ angular.module('menulist', ['services'])
       }).then(function successCallback(response) {
 
         menuitemsService.setAllMenuItems(response.data);
+        console.log('menuitems endpoints data', response.data);
         // everything we need access to in the html, we're attaching to the $scope
-        categoriesService.setAllCategoryData('menucontl');
+        categoriesService.setAllCategoryData();
         $scope.category = categoriesService.getCurrentCategory();
         $scope.data = categoriesService.getMenuItemsInCurrentCategory();
         $scope.added = menuitemsService.getChosenList();

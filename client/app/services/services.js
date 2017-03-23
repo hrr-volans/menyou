@@ -21,15 +21,17 @@ angular.module('services', [])
       setCurrentCategory(initialCategory);
     }
 
-    var setAllCategoryData = function(where, data){
+    var setAllCategoryData = function(data){
       if(data) {
         categoryData = data;
       }
+      menuItems = [];
       menuitemsService.getAllMenuItems().forEach(item => menuItems.push(item));
       createMenuItemsByCategory();
     }
     var createMenuItemsByCategory = function() {
       //This section organizes the menu items by category name
+      menuItemsByCategory = {};
       menuItems.forEach(function(menuObj){
         var key = findCategoryById(menuObj.category_id)[0].name;
         var formattedKey = key[0].toUpperCase() + key.slice(1);
@@ -92,6 +94,7 @@ angular.module('services', [])
     }
 
     function setAllMenuItems(thisdata) {
+      data = [];
       thisdata.forEach(item => data.push(item))
     }
 
