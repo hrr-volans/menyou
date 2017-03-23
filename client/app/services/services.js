@@ -158,7 +158,7 @@ angular.module('services', [])
       getCustomerName: getCustomerName
     };
   })
-  .factory('authenticationService', function ($window) {
+  .factory('authenticationService', function ($window, $http, $location) {
     var isLoggedIn = {status: false};
 
     var logIn = function(type) {
@@ -167,14 +167,22 @@ angular.module('services', [])
       console.log('login = ', isLoggedIn.status);
     }
 
-    if($window.localStorage.token) {
-      logIn($window.localStorage.type);
-    }
-
     var logOut = function() {
       isLoggedIn.status = false;
-      console.log('logout hit');
+      $window.localStorage.removeItem('token');
+      $window.localStorage.removeItem('type');
+      $location.path('/');
     }
+
+    if($window.localStorage.token) {
+      $http.post('/authenticate', {token: $window.localStorage.token}).then(function(response){
+        logIn(response.data.type);
+      }, function(err){
+        console.log('Auth error: ', err);
+        logOut();
+      });
+    }
+
 
     var getLoginStatus = function() {
       return isLoggedIn;

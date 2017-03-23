@@ -224,7 +224,16 @@ app.post('/createMenuItem', function(req, res, next) {
 app.post('/authenticate', function(req, res, next) {
   var body = req.body;
   var user = {};
-  if (body.username === 'admin' && body.password === 'admin') {
+  if(req.body.token) {
+    jwt.verify(req.body.token, secret, function(err, decoded){
+      if(err) {
+        res.status(401).send('Invalid credentials');
+      } else {
+        res.send(decoded);
+      }
+    });
+    console.log('Testing token', req.body.token, 'decoded', decoded); // bar
+  } else if (body.username === 'admin' && body.password === 'admin') {
     user.type = 'admin';
     res.send({user: user, token: jwt.sign(user, secret)});
   } else if (body.username === 'kitchen' && body.password === 'kitchen') {
