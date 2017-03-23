@@ -245,7 +245,6 @@ app.post('/authenticate', function(req, res, next) {
         res.send(decoded);
       }
     });
-    console.log('Testing token', req.body.token, 'decoded', decoded); // bar
   } else if (body.username === 'admin' && body.password === 'admin') {
     user.type = 'admin';
     res.send({user: user, token: jwt.sign(user, secret)});
