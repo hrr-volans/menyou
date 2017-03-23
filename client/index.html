@@ -21,40 +21,10 @@
 
   <div ng-app="app" class="app-container">
     <h1>MENYOU</h1>
+
     <div ng-view></div>
-
-    <div ng-controller='categoriesController' class="categories-container">
-      <div class="category-slider">
-        <div ng-repeat="category in data" ng-click="setCurrentCategory(category)" emit-last-repeater-element>{{category}}</div>
-      </div>
-    </div>
-
-    <div ng-hide="category.name === undefined" ng-controller="menulistController" class="menu-list-container">
-      <menu name={{category.name}} data="data.items" added="added.items" click="addMenuItemToChosenList(item)" removeclick="removeMenuItemFromChosenList(index)"></menu>
-    </div>
-
-    <h1>Order</h1>
-
-    <div ng-controller="totalController" class="total-controller-div">
-
-      <div ng-controller='chosenItemsController' class="suborders-container">
-        <chosenitem name={{category.name}} added="data.items" click="addMenuItemToChosenList(item)" removeclick="removeMenuItemFromChosenList(index)"></chosenitem>
-        <totaldirective totaldirectivescope={{totalscope.total}}></totaldirective>
-      </div>
-
-      <div ng-controller='placeorderController' class="place-order-container">
-         <div ng-controller='confirmationController' class="place-order-container">
-            <a href="http://localhost:5000/confirmation">
-            <placeorder click="getOrder(); placeOrder()"></placeorder>
-            </a>
-          </div>
-      </div>
-
-      <div ng-view>
-        test
-      </div>
-    </div>
   </div>
+
   <script src="app/app.js"></script>
   <script src="app/services/services.js"></script>
   <script src="app/components/categories/categories.js"></script>
@@ -64,13 +34,6 @@
   <script src="app/components/placeorder/placeorder.js"></script>
   <script src="app/components/kitchen/kitchen.js"></script>
   <script src="app/components/admin/admin.js"></script>
-  <script src="app/categories/categories.js"></script>
-  <script src="app/menulist/menulist.js"></script>
-  <script src="app/chosenitems/chosenitems.js"></script>
-  <script src="app/total/total.js"></script>
-  <script src="app/placeorder/placeorder.js"></script>
-  <script src="app/kitchen/kitchen.js"></script>
-  <script src="app/admin/admin.js"></script>
-  <script src="app/confirmation/confirmation.js"></script>
+
 </body>
 </html>
