@@ -31,7 +31,6 @@ var app = angular.module('app', [
       templateUrl:"app/confirmation/confirmation.html",
       controller: 'confirmationController'
     })
-<<<<<<< HEAD
     .when('/login', {
       templateUrl: 'app/views/login.html',
       controller: 'authController'
@@ -39,11 +38,10 @@ var app = angular.module('app', [
     .when('/email', {
       templateUrl:"app/confirmation/confirmation.html",
       controller: 'confirmationController'
-=======
+    })
     .when('/myorders', {
       templateUrl:"app/views/myorders.html",
       controller: 'myOrdersController'
->>>>>>> myorders cache, new styles
     });
 
 

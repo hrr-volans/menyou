@@ -84,7 +84,7 @@ client.connect(function (err) {
 //                       ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5.99, 3), \
 //                       ('Mango Spritzer', 'Mango and orange juice in champagne', 7.99, 4)");
 // });
-
+});
 
 app.use(bodyParser.json());
 
@@ -166,7 +166,7 @@ app.post('/email', function(req, res, next) {
   }
   console.log('Message %s sent: %s', info.messageId, info.response);
   });
-}
+});
 
 app.get('/userorders', function(req, res, next) {
   var url_parts = url.parse(req.url, true);
