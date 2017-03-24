@@ -70,7 +70,7 @@ client.connect(function (err) {
 //                   menuitems(name, description, price, category_id) \
 //                     VALUES('Walker Texas Brisket', 'Texas sized burger in walker sauce', 12.99, 3), \
 //                       ('Roundhouse Kick Burger', 'Roundhouse kick to the gut', 12.99, 3), \
-//                       ('The Delta Four-Cheese Pizza', 'Baked to perfection by placing in Chuck's pants for one minute', 14.99, 3), \
+//                       ('The Delta Four-Cheese Pizza', 'Baked by Chuck staring at it for 1 min', 14.99, 3), \
 //                       ('Kickin Grits and Taters', 'Grits and seasoned taters', 9.99, 1), \
 //                       ('Magnus Stack', 'Large stack of pancakes', 9.99, 1), \
 //                       ('Hearty Oats and Toast', 'Oatmeal served with toast', 9.99, 1)");
