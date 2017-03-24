@@ -87,7 +87,6 @@ client.connect(function (err) {
 // });
 });
 
-
 app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
@@ -143,7 +142,6 @@ app.get('/orders', function(req, res, next) {
 });
 
 app.post('/email', function(req, res, next) {
-  console.log(req.body, 'HERE!!!');
   var add = req.body.email;
   console.log(add + ' ' + typeof add);
   let transporter = nodemailer.createTransport({
@@ -178,8 +176,8 @@ app.get('/userorders', function(req, res, next) {
   ids.forEach(function(id) {
     client.query("SELECT * FROM orders WHERE id = ($1)", [id], function(err, result) {
       userOrders.push(result.rows[0]);
-      if(userOrders.length === ids.length) {        
-        res.send(userOrders);  
+      if(userOrders.length === ids.length) {
+        res.send(userOrders);
       }
     });
   });
@@ -216,7 +214,7 @@ app.post('/orders', function(req, res, next) {
     if(err) {
       console.log(err);
       res.send('FAIL POST');
-    }    
+    }
 
     menuitems.forEach(function(suborder) {
       client.query("INSERT INTO \
@@ -224,8 +222,8 @@ app.post('/orders', function(req, res, next) {
                     [suborder.name, suborder.price, suborder.quantity, result.rows[0].id, suborder.category_id],
                     function(err, menuResults) {
                     if(err) {
-                      console.log(err);                        
-                    }                    
+                      console.log(err);
+                    }
       });
     });
     res.send(result.rows[0]);
@@ -305,4 +303,3 @@ app.post('/authenticate', function(req, res, next) {
     res.status(401).send('Invalid credentials');
   }
 });
-
