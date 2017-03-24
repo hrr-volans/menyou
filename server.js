@@ -10,10 +10,14 @@ var jwt = require('jsonwebtoken');
 var secret = 'menyourocks';
 var url = require('url');
 
+<<<<<<< HEAD
 // var helper = require('sendgrid').mail;
 // var sg = require('sendgrid')(process.env.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);
 
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
+=======
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/mypjdb';
+>>>>>>> committing for rebase
 
 
 var routes = require('./routes');
@@ -33,7 +37,7 @@ client.connect(function (err) {
 //                   categories( \
 //                     id SERIAL PRIMARY KEY, \
 //                     name VARCHAR(40) not null)");
-//
+
 //   client.query("CREATE TABLE \
 //                   menuitems( \
 //                     id SERIAL PRIMARY KEY, \
@@ -41,14 +45,14 @@ client.connect(function (err) {
 //                     description VARCHAR(40) not null, \
 //                     price NUMERIC(6,2) not null, \
 //                     category_id INTEGER REFERENCES categories(id))");
-//
+
 //   client.query("CREATE TABLE \
 //                   orders( \
 //                     id SERIAL PRIMARY KEY, \
 //                     customer VARCHAR(40) not null, \
 //                     totalprice NUMERIC(6,2) not null, \
 //                     complete boolean default false)");
-//
+
 //   client.query("CREATE TABLE \
 //                   suborders( \
 //                     id SERIAL PRIMARY KEY, \
@@ -57,7 +61,7 @@ client.connect(function (err) {
 //                     quantity INTEGER not null, \
 //                     id_orders INTEGER REFERENCES orders(id), \
 //                     id_menuitems INTEGER REFERENCES menuitems(id))");
-//
+
 //   client.query("INSERT INTO \
 //                   categories(name) \
 //                     VALUES('breakfast'), \
@@ -65,7 +69,7 @@ client.connect(function (err) {
 //                           ('dinner'), \
 //                           ('desert'), \
 //                           ('drinks')");
-//
+
 // client.query("INSERT INTO \
 //                   menuitems(name, description, price, category_id) \
 //                     VALUES('Walker Texas Brisket', 'Texas sized burger in walker sauce', 12.99, 3), \
@@ -74,7 +78,7 @@ client.connect(function (err) {
 //                       ('Kickin Grits and Taters', 'Grits and seasoned taters', 9.99, 1), \
 //                       ('Magnus Stack', 'Large stack of pancakes', 9.99, 1), \
 //                       ('Hearty Oats and Toast', 'Oatmeal served with toast', 9.99, 1)");
-//
+
 // client.query("INSERT INTO \
 //                   menuitems(name, description, price, category_id) \
 //                     VALUES('Grilled Cheese Sandwich', 'Tasty grilled cheese sandwich', 7.99, 2), \
@@ -83,8 +87,10 @@ client.connect(function (err) {
 //                       ('Bucket O Oreos', 'Oreos with a tall glass of milk', 5.99, 3), \
 //                       ('Red Bearded Velvet Cake', 'Red Velvelt Cake', 5.99, 3), \
 //                       ('Mango Spritzer', 'Mango and orange juice in champagne', 7.99, 4)");
+
 // });
 });
+
 
 app.use(bodyParser.json());
 
