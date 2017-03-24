@@ -25,7 +25,7 @@ angular.module('confirmation', ['services'])
         console.log('Error getting orders', response);
       });
     }
-  } )
+  })
 
   .directive('confirmationdirective', function(){
     return {

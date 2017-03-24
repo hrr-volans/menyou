@@ -15,7 +15,6 @@
 <h1>Order</h1>
 
 <div ng-controller="totalController" class="total-controller-div">
-
   <div ng-controller='chosenItemsController' class="suborders-container">
     <chosenitem name={{category.name}} added="data.items" click="addMenuItemToChosenList(item)" removeclick="removeMenuItemFromChosenList(index)"></chosenitem>
     <totaldirective totaldirectivescope={{totalscope.total}}></totaldirective>
@@ -23,10 +22,15 @@
 
   <div ng-controller='placeorderController' class="place-order-container">
     <div ng-controller='confirmationController' class="place-order-container">
-     <a href="/confirmation">
-    <placeorder click="getOrders(); placeOrder()"></placeorder>
-    </a>
+    <a href="/confirmation">
+      <placeorder click="getOrders(); placeOrder()"></placeorder>
+    </a>      
     </div>
   </div>
+</div>
 
+<div class="myorders-button">
+  <a href="/#/myorders">
+    <button>My orders</button>    
+  </a>
 </div>

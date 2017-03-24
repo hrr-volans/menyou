@@ -4,11 +4,10 @@ angular.module('admin', ['services'])
     getCategories();
 
     $scope.formData = {};
-
+    $scope.test = 'Hola';
     $scope.addCategory = function() {
-      $http.post('/createCategory', JSON.stringify({name: $scope.formData.categoryname})).then(function(response){
-        console.log('abput to hit')
-        $scope.formData = {};
+      $http.post('/createCategory', JSON.stringify({name: $scope.formData.categoryname})).then(function(response){        
+        categoriesService.reactToSuccessfulPost('category', response);        
         getCategories();
       }, function(err){
         console.log('POST error: ', err);
@@ -19,8 +18,8 @@ angular.module('admin', ['services'])
       $scope.formData.category_id = Number($scope.formData.category_id);
       console.log($scope.formData)
       $http.post('/createMenuItem', $scope.formData).then(function(response){
-        console.log(response);
         $scope.formData = {};
+        categoriesService.reactToSuccessfulPost('menuitem', response);   
       }, function(err){
         console.log('POST error: ', err);
       });
@@ -58,7 +57,8 @@ angular.module('admin', ['services'])
         templateUrl: 'app/components/admin/addCategoryForm.html',
         scope:{
           form: '=',
-          add: '&'
+          add: '&',
+          successAlert: '@'
         }
       }
     })
