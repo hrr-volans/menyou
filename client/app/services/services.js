@@ -1,10 +1,10 @@
 angular.module('services', [])
   .factory('categoriesService', function ($http, menuitemsService) {
-    var current_time = moment().format("HH");    
+    var current_time = moment().format("HH");
     var initialCategory;
     if(current_time < 12) {
       initialCategory = 'Breakfast';
-    } else if (current_time < 19) {
+    } else if (current_time < 13) {
       initialCategory = 'Lunch';
     } else if (current_time < 24) {
       initialCategory = 'Dinner';
@@ -21,15 +21,17 @@ angular.module('services', [])
       setCurrentCategory(initialCategory);
     }
 
-    var setAllCategoryData = function(where, data){
+    var setAllCategoryData = function(data){
       if(data) {
         categoryData = data;
       }
+      menuItems = [];
       menuitemsService.getAllMenuItems().forEach(item => menuItems.push(item));
       createMenuItemsByCategory();
     }
     var createMenuItemsByCategory = function() {
       //This section organizes the menu items by category name
+      menuItemsByCategory = {};
       menuItems.forEach(function(menuObj){
         var key = findCategoryById(menuObj.category_id)[0].name;
         var formattedKey = key[0].toUpperCase() + key.slice(1);
@@ -92,6 +94,7 @@ angular.module('services', [])
     }
 
     function setAllMenuItems(thisdata) {
+      data = [];
       thisdata.forEach(item => data.push(item))
     }
 
@@ -154,7 +157,59 @@ angular.module('services', [])
       getChosenList: getChosenList,
       removeMenuItemFromChosenList: removeMenuItemFromChosenList,
       getTotalPrice: getTotalPrice,
-      setAllMenuItems: setAllMenuItems,   
+      setAllMenuItems: setAllMenuItems,
       getCustomerName: getCustomerName
     };
   })
+  .factory('authenticationService', function ($window, $http, $location) {
+    var isLoggedIn = {status: false};
+
+    var logIn = function(type) {
+      isLoggedIn.status = true;
+      isLoggedIn.type = type;
+      console.log('login = ', isLoggedIn.status);
+    }
+
+    var logOut = function() {
+      isLoggedIn.status = false;
+      $window.localStorage.removeItem('token');
+      $window.localStorage.removeItem('type');
+      $location.path('/');
+    }
+
+    // if($window.localStorage.token) {
+    //   $http.post('/authenticate', {token: $window.localStorage.token}).then(function(response){
+    //     logIn(response.data.type);
+    //   }, function(err){
+    //     console.log('Auth error: ', err);
+    //     logOut();
+    //   });
+    // }
+
+    var getLoginStatus = function(callback) {
+      if($window.localStorage.token) {
+        $http.post('/authenticate', {token: $window.localStorage.token}).then(function(response){
+          logIn(response.data.type);
+          if(callback) {
+            console.log('callbacl called services')
+            callback(isLoggedIn);
+          }
+        }, function(err){
+          console.log('Auth error: ', err);
+          logOut();
+          callback(isLoggedIn);
+        });
+      } else {
+        if(callback) {
+          callback(isLoggedIn);
+        }
+      }
+      return isLoggedIn;
+    }
+
+    return {
+      logIn: logIn,
+      logOut: logOut,
+      getLoginStatus: getLoginStatus
+    };
+  });

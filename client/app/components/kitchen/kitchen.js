@@ -1,17 +1,28 @@
+var refresh = false; //seting via closure to avoid duplicate setInterval calls
+
 angular.module('kitchenmodule', ['services'])
   .controller('kitchenController', function($http, $scope, menuitemsService){
+
+
+    if(refresh === false) {
+      setInterval(getOrders, 10000);
+    }
 
     getOrders();
 
     $scope.completeOrder = function(order) {
-      console.log('INDEX??', order);
       $http.post('/complete', order).then(function(response){
-        console.log(response);
       }, function(err){
         console.log('POST error: ', err);
       });
+      getOrders();
+    }
 
-      console.log('complete order hit');
+    $scope.reAddOrder = function(order) {
+      $http.post('/incomplete', order).then(function(response){
+      }, function(err){
+        console.log('POST error: ', err);
+      });
       getOrders();
     }
 
@@ -28,6 +39,7 @@ angular.module('kitchenmodule', ['services'])
     }
 
     function getOrders() {
+      refresh = true;
       $http({
         method: 'GET',
         url: '/deeporders'
@@ -50,6 +62,7 @@ angular.module('kitchenmodule', ['services'])
         id: '@',//@ means string
         allorders: '=', //= means object (or array)
         completeorder: '&',
+        readdorder: '&',
         deleteorder: '&', //& means function
         bool: '=',
         toggle: '&'
