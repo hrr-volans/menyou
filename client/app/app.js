@@ -1,3 +1,4 @@
+
 var app = angular.module('app', [
   'ngRoute',
   'categories',
@@ -33,7 +34,10 @@ var app = angular.module('app', [
       templateUrl: 'app/views/login.html',
       controller: 'authController'
     })
-
+    .when('/email', {
+      templateUrl:"app/confirmation/confirmation.html",
+      controller: 'confirmationController'
+    });
 
     $locationProvider.html5Mode(true);
   })
