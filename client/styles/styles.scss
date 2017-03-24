@@ -9,7 +9,7 @@ $font-russo: 'Russo One', sans-serif;
 
 
 body {
-	//@include outer-container;
+	@include outer-container;
 	background: $dark-blue;
 	color: $light-blue;
 	font-family: $font-russo;
@@ -18,48 +18,39 @@ body {
 	letter-spacing: 1px;
 }
 
-@include media(max-width 740px) {
-	body {
-		@include outer-container;
-		background: $dark-blue;
-		color: $light-blue;
-		font-family: 'Russo One', sans-serif;
-		text-align: center;
-
-		div.app-container {
-			div.categories-container {
-				padding: 0 10%;
-
-				div.category-slider {
-					button.slick-arrow:before {
-						color: $light-blue;
-					}
-				}
-			}
-
-			div.menu-list-container {
-				menu {
-					padding: 0;
-					ul.menu-list {
-						@include outer-container;
-						list-style-type: none;
-						padding: 0 10%;
-
-						li.menu-li-element {
-							@include span-columns(6);
-							@include omega();
-							padding: 2px;
-
-							div.menu-li-div {
-							    padding: 6px;
-									background: $orange;
-									color: $dark-blue;
-									height: 106px;
-
-
 //MOBILE
 @include media(max-width 480px) {
 	div.app-container {
+		div.myorders-container {
+			padding: 0 5%;
+			div.headings {
+				@include outer-container;
+				p {
+					@include span-columns(4);
+				}
+			}
+
+			div.data-list {				
+				@include outer-container;
+				margin: 30px 0;
+				div {
+					@include span-columns(4);
+					span.id {
+						background: $light-blue;
+						padding: 5px;
+						color: $dark-blue;
+					}
+					span.true {
+						color: $orange;
+					}
+				}
+
+				div.id {
+
+				}
+			}
+		}
+
 		div.categories-container {
 			padding: 0 10%;
 
@@ -68,6 +59,44 @@ body {
 					color: $light-blue;
 				}
 			}
+		}
+
+		div.confirmation-container {
+			padding: 0 10%;
+			h2 {
+				span.customer-name {
+					color: $orange;
+				}
+			}
+
+			ul {
+				list-style-type: none; 
+				border: solid;
+				padding: 18px 0;
+
+				li {
+					margin-bottom: 7px;
+				}
+			}	
+
+			input {
+				height: 33px;
+    			font-size: 14px;
+			}
+
+			confirmation {
+				div {
+					button#submit {
+						background-color: $orange; 						
+					    font-size: 12px;
+					    border: 0;
+					    margin-top: 15px;
+					    padding: 7px 43px;
+					    font-size: 18px;
+					    font-family: $font-russo;
+					}					
+				}
+			}		
 		}
 
 		div.menu-list-container {
@@ -119,21 +148,36 @@ body {
 					div.suborders-screen {
 						ul.suborders-ul {
 							list-style-type: none;
-						  padding: 6px;
-						  margin-top: 0;
+						  	padding: 6px;
+						  	margin-top: 0;
 
+						  	div.headings {
+						  		@include outer-container;
+						  		margin-bottom: 13px;
+						  		div {
+									@include span-columns(4);
+						  		}
+						  	}
 
+							// li {
+							// 	div {
+							// 		@include outer-container;
+							// 		div.sub-name {
+							// 			@include span-columns(6);
+
+							// 		}
+
+							// 		div.sub-price {
+							// 			@include span-columns(6);
+
+							// 		}
+							// 	}
+							// }
 							li {
 								div {
 									@include outer-container;
-									div.sub-name {
-										@include span-columns(6);
-
-									}
-
-									div.sub-price {
-										@include span-columns(6);
-
+									div {
+										@include span-columns(4);										
 									}
 								}
 							}
@@ -142,19 +186,24 @@ body {
 				}
 
 				totaldirective {
-					@include outer-container;
-					div.total-tag {
-						@include span-columns(6);
-						margin: 0;
-					}
+					div.total-container {
+						@include outer-container;							
+						div.total-tag {
+							@include span-columns(4);
+							@include shift(4);	
+							color: $orange;													
+						}
 
-					div.total-price {
-						@include span-columns(6);
+						div.total-price {
+							@include span-columns(4);							
+							color: $orange;
+						}
 					}
 				}
 			}
 
 			div.place-order-container {
+				margin-top: 23px;
 				placeorder {
 					div.order-button-div {
 						button {
@@ -173,6 +222,27 @@ body {
 							cursor: pointer;
 						}
 					}
+				}
+			}
+		}
+
+		div.myorders-button, div.total-button {
+			padding: 0 10%;
+			a {
+				button {
+					font-family: "Russo One", sans-serif;
+					border: 1px solid $light-blue;					
+				    padding: 13px;
+				    margin: 19px 0;
+				    width: 100%;
+				    border-radius: 7px;
+				    font-size: 1.5em;
+				    color: $light-blue;				    
+				    background: transparent;
+				}
+
+				button:hover {
+					cursor: pointer;
 				}
 			}
 		}

@@ -1,0 +1,18 @@
+<div class="myorders-container">
+	<div class="headings">
+		<p>Order ID</p>
+		<p>Total Price</p>
+		<p>Status</p>			
+	</div>
+	<div ng-repeat="order in orders" class="data-list">				
+		<div><span class="id">{{order.id}}</span></div>		
+		<div><span>$ {{order.totalprice}}</span></div>				
+		<div><span class={{!order.complete}}>{{order.complete ? 'Done' : 'In Progress'}}</span></div>			
+	</div>	
+</div>
+
+<div class="myorders-button">
+	<a href="/#/">
+		<button>Back to Home</button>
+	</a>
+</div>

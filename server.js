@@ -6,12 +6,15 @@ var bodyParser = require('body-parser');
 var routes = require('./routes');
 var nodemailer = require('nodemailer');
 exports.nodemailer = nodemailer;
-
 var jwt = require('jsonwebtoken');
-
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/pjmydb';
-
 var secret = 'menyourocks';
+var url = require('url');
+
+// var helper = require('sendgrid').mail;
+// var sg = require('sendgrid')(process.env.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);
+
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
+
 
 var routes = require('./routes');
 
@@ -138,32 +141,46 @@ app.get('/orders', function(req, res, next) {
 });
 
 app.post('/email', function(req, res, next) {
-    console.log(req.body, 'HERE!!!');
-    var add = req.body.email;
-    console.log(add + ' ' + typeof add)
-    let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'caroham29@gmail.com',
-        pass: 'Verizon7!'
+  console.log(req.body, 'HERE!!!');
+  var add = req.body.email;
+  console.log(add + ' ' + typeof add);
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'caroham29@gmail.com',
+      pass: 'Verizon7!'
+    }
+  });
+
+  let mailOptions = {
+    from: '"MenYou" <foo@blurdybloop.com>', // sender address
+    to: add, // list of receivers
+    subject: "Here's your first coupon! ✔", // Subject line
+    text: 'Whatever we want to tell the client', // plain text body
+    html: '<b>Hello world ?</b>' // html body
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+      return console.log(error);
+  }
+  console.log('Message %s sent: %s', info.messageId, info.response);
+  });
+}
+
+app.get('/userorders', function(req, res, next) {
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  var ids = JSON.parse(query.orders_ids);
+  var userOrders = [];
+  ids.forEach(function(id) {
+    client.query("SELECT * FROM orders WHERE id = ($1)", [id], function(err, result) {
+      userOrders.push(result.rows[0]);
+      if(userOrders.length === ids.length) {        
+        res.send(userOrders);  
       }
     });
-
-    let mailOptions = {
-      from: '"MenYou" <foo@blurdybloop.com>', // sender address
-      to: add, // list of receivers
-      subject: "Here's your first coupon! ✔", // Subject line
-      text: 'Whatever we want to tell the client', // plain text body
-      html: '<b>Hello world ?</b>' // html body
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.log(error);
-    }
-    console.log('Message %s sent: %s', info.messageId, info.response);
-    });
-
+  });
 });
 
 app.get('/deeporders', function(req, res, next) {
@@ -177,7 +194,7 @@ app.get('/deeporders', function(req, res, next) {
         deeporder.push(order);
 
         if(deeporder.length === coll.length) {
-           console.log(deeporder);
+           //console.log(deeporder);
            res.send(deeporder);
         };
       });
@@ -197,18 +214,19 @@ app.post('/orders', function(req, res, next) {
     if(err) {
       console.log(err);
       res.send('FAIL POST');
-    }
+    }    
 
     menuitems.forEach(function(suborder) {
       client.query("INSERT INTO \
                     suborders(description, subtotalprice, quantity, id_orders, id_menuitems) VALUES($1, $2, $3, $4, $5)",
                     [suborder.name, suborder.price, suborder.quantity, result.rows[0].id, suborder.category_id],
-                    function(err, result) {
-                      if(err) {
-                        console.log(err);
-                      }
+                    function(err, menuResults) {
+                    if(err) {
+                      console.log(err);                        
+                    }                    
       });
     });
+    res.send(result.rows[0]);
   });
 });
 
