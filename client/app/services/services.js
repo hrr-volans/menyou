@@ -57,6 +57,7 @@ angular.module('services', [])
       return currentCategory;
     };
     var getMenuItemsInCurrentCategory = function() {
+      console.log('get menu items')
       return currentMenuItems;
     };
     var getAllCategoryData= function() {
@@ -77,7 +78,7 @@ angular.module('services', [])
     return {
       setCurrentCategory: setCurrentCategory,
       getCurrentCategory: getCurrentCategory,
-      getMenuItemsInCurrentCategory: getMenuItemsInCurrentCategory,
+      getMenuItemsInCurrentCategory: currentMenuItems,      
       getAllCategoryNames: getAllCategoryNames,
       setAllCategoryData: setAllCategoryData,
       setInitialCategories: setInitialCategories,
@@ -184,8 +185,7 @@ angular.module('services', [])
 
     var logIn = function(type) {
       isLoggedIn.status = true;
-      isLoggedIn.type = type;
-      console.log('login = ', isLoggedIn.status);
+      isLoggedIn.type = type;      
     }
 
     var logOut = function() {
@@ -208,8 +208,7 @@ angular.module('services', [])
       if($window.localStorage.token) {
         $http.post('/authenticate', {token: $window.localStorage.token}).then(function(response){
           logIn(response.data.type);
-          if(callback) {
-            console.log('callbacl called services')
+          if(callback) {            
             callback(isLoggedIn);
           }
         }, function(err){

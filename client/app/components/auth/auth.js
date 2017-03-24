@@ -3,8 +3,7 @@ angular.module('authentication', ['services'])
 
     $scope.formData = {};
 
-    $scope.isLoggedIn = authenticationService.getLoginStatus();
-    console.log('Logged in from auth?', $scope.isLoggedIn)
+    $scope.isLoggedIn = authenticationService.getLoginStatus();    
 
     $scope.authLogin = function() {
       $http.post('/authenticate', $scope.formData).then(function(response){
@@ -30,7 +29,7 @@ angular.module('authentication', ['services'])
   .directive('login', function(){
       return {
         restrict: 'E',
-        templateUrl: 'app/components/auth/login.html',
+        templateUrl: 'client/app/components/auth/login.html',
         scope:{
           form: '=',
           submit: '&'
@@ -40,7 +39,7 @@ angular.module('authentication', ['services'])
   .directive('logout', function(){
       return {
         restrict: 'E',
-        templateUrl: 'app/components/auth/logout.html',
+        templateUrl: 'client/app/components/auth/logout.html',
         scope:{
           click: '&',
           loginstatus: '='

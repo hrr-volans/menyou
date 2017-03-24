@@ -71,7 +71,7 @@ angular.module('kitchenmodule', ['services'])
   .directive('kitchendirective', function(){
     return {
       restrict: 'E',
-      templateUrl: 'app/components/kitchen/kitchen.html',
+      templateUrl: 'client/app/components/kitchen/kitchen.html',
       scope:{
         id: '@',//@ means string
         allorders: '=', //= means object (or array)

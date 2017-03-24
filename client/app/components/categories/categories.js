@@ -36,6 +36,11 @@ angular.module('categories', ['services'])
         dots: true,
         initialSlide: categoryIndex
       });
+
+      $('.slick-next')[0].onclick = function(){        
+        console.log('click next');
+        //categoriesService.getMenuItemsInCurrentCategory
+      };
     });
   })
   .directive('emitLastRepeaterElement', function(){

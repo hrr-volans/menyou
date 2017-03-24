@@ -6,12 +6,11 @@ angular.module('menulist', ['services'])
       url: '/menuitems'
       }).then(function successCallback(response) {
 
-        menuitemsService.setAllMenuItems(response.data);
-        console.log('menuitems endpoints data', response.data);
+        menuitemsService.setAllMenuItems(response.data);        
         // everything we need access to in the html, we're attaching to the $scope
         categoriesService.setAllCategoryData();
         $scope.category = categoriesService.getCurrentCategory();
-        $scope.data = categoriesService.getMenuItemsInCurrentCategory();
+        $scope.data = categoriesService.getMenuItemsInCurrentCategory;
         $scope.added = menuitemsService.getChosenList();
         categoriesService.setInitialCategories();
       }, function errorCallback(response) {
@@ -42,7 +41,7 @@ angular.module('menulist', ['services'])
       // allows us to create unique html tags
       restrict: 'E',
       // reference to where our html lives
-      templateUrl: 'app/components/menulist/menulist.html',
+      templateUrl: 'client/app/components/menulist/menulist.html',
       // these symbols below tell the scope which type of javascript objects these are. @ is string, click is function, etc.
       scope:{
         name: '@',

@@ -17,30 +17,30 @@ var app = angular.module('app', [
 .config(function($routeProvider, $locationProvider){
   $routeProvider
     .when('/', {
-      templateUrl: 'app/views/main.html'
+      templateUrl: 'client/app/views/main.html'
     })
     .when('/kitchen', {
-      templateUrl: 'app/views/kitchen.html',
+      templateUrl: 'client/app/views/kitchen.html',
       controller: 'kitchenController'
     })
     .when('/admin', {
-      templateUrl: 'app/views/admin.html',
+      templateUrl: 'client/app/views/admin.html',
       controller: 'adminController'
     })
     .when('/confirmation', {
-      templateUrl:"app/confirmation/confirmation.html",
+      templateUrl:"client/app/confirmation/confirmation.html",
       controller: 'confirmationController'
     })
     .when('/login', {
-      templateUrl: 'app/views/login.html',
+      templateUrl: 'client/app/views/login.html',
       controller: 'authController'
     })
     .when('/email', {
-      templateUrl:"app/confirmation/confirmation.html",
+      templateUrl:"client/app/confirmation/confirmation.html",
       controller: 'confirmationController'
     })
     .when('/myorders', {
-      templateUrl:"app/views/myorders.html",
+      templateUrl:"client/app/views/myorders.html",
       controller: 'myOrdersController'
     });
 
@@ -50,8 +50,7 @@ var app = angular.module('app', [
   .run(function($location, authenticationService){
 
     authenticationService.getLoginStatus(authVerify);
-    function authVerify(isLoggedIn) {
-      console.log('running authVerify app.js')
+    function authVerify(isLoggedIn) {      
       if($location.$$path === '/admin') {
         if(isLoggedIn.status === false || isLoggedIn.type !== 'admin') {
           // debugger;

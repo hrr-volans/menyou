@@ -93,7 +93,8 @@ app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static(path.join(__dirname, '/client')));
+app.use(express.static(path.join(__dirname, '/')));
+console.log('path: ', path.join(__dirname, '/'))
 
 app.use(function(req, res, next){
   console.log(req.method, req.url);
@@ -105,7 +106,7 @@ app.listen(app.get('port'), function() {
 });
 
 app.get('/', function(req, res, next) {
-  res.sendfile('index.html');
+  res.sendfile('client/index.html');
 });
 
 app.get('/kitchen', function(req, res, next) {
