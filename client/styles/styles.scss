@@ -7,20 +7,115 @@ $orange:  #f4b556;
 $success-green: #1fd91f;
 $font-russo: 'Russo One', sans-serif;
 
+// $color--green: #7ac142;
+// $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+//
+// .checkmark__circle {
+//   stroke-dasharray: 166;
+//   stroke-dashoffset: 166;
+//   stroke-width: 2;
+//   stroke-miterlimit: 10;
+//   stroke: $color--green;
+//   fill: none;
+//   animation: stroke .6s $curve forwards;
+// }
+//
+// .checkmark {
+//   width: 56px;
+//   height: 56px;
+//   border-radius: 50%;
+//   display: block;
+//   stroke-width: 2;
+//   stroke: #fff;
+//   stroke-miterlimit: 10;
+//   margin: 10% auto;
+//   box-shadow: inset 0px 0px 0px $color--green;
+//   animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+// }
+//
+// .checkmark__check {
+//   transform-origin: 50% 50%;
+//   stroke-dasharray: 48;
+//   stroke-dashoffset: 48;
+//   animation: stroke .3s $curve .8s forwards;
+// }
+//
+// @keyframes stroke {
+//   100% {
+//     stroke-dashoffset: 0;
+//   }
+// }
+//
+// @keyframes scale {
+//   0%, 100% {
+//     transform: none;
+//   }
+//   50% {
+//     transform: scale3d(1.1, 1.1, 1);
+//   }
+// }
+//
+// @keyframes fill {
+//   100% {
+//     box-shadow: inset 0px 0px 0px 30px $color--green;
+//   }
+// }
 
 body {
 	@include outer-container;
 	background: $dark-blue;
 	color: $light-blue;
 	font-family: $font-russo;
-	text-align: center;	
+	text-align: center;
 	overflow: scroll;
 	letter-spacing: 1px;
 }
 
 //MOBILE
-@include media(max-width 480px) {
+// @include media(max-width 600px) {
 	div.app-container {
+
+    //HEADER
+    .nav-utility{
+      margin: 25px;
+    }
+    .logout-button{
+      font-family: $font-russo;
+      border: none;
+      font-size: 1em;
+      color: #79d7f3;
+      background: transparent;
+      padding: 0px;
+      cursor: pointer;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+    #logo-text{
+      margin-left: 30px;
+      margin-top: 20px;
+    }
+    #logo-svg{
+      position: absolute;
+      margin-left: -110px;
+      margin-top: -5px;
+    }
+    #logo{
+      display: block;
+      height: 75px;
+    }
+    //GLOBAL STYLES
+    ul{
+      padding: 0px;
+    }
+    a{
+      color: $light-blue;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+
 		div.myorders-container {
 			padding: 0 5%;
 			div.headings {
@@ -30,7 +125,7 @@ body {
 				}
 			}
 
-			div.data-list {				
+			div.data-list {
 				@include outer-container;
 				margin: 30px 0;
 				div {
@@ -63,6 +158,8 @@ body {
 
 		div.confirmation-container {
 			padding: 0 10%;
+      max-width: 800px;
+      margin: 0 auto;
 			h2 {
 				span.customer-name {
 					color: $orange;
@@ -70,14 +167,14 @@ body {
 			}
 
 			ul {
-				list-style-type: none; 
+				list-style-type: none;
 				border: solid;
 				padding: 18px 0;
 
 				li {
 					margin-bottom: 7px;
 				}
-			}	
+			}
 
 			input {
 				height: 33px;
@@ -87,36 +184,77 @@ body {
 			confirmation {
 				div {
 					button#submit {
-						background-color: $orange; 						
+						background-color: $orange;
 					    font-size: 12px;
 					    border: 0;
 					    margin-top: 15px;
 					    padding: 7px 43px;
 					    font-size: 18px;
 					    font-family: $font-russo;
-					}					
+					}
 				}
-			}		
+			}
 		}
 
 		div.menu-list-container {
+      .menu-list{
+        max-width: 1000px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center; //flex-start | flex-end | center | space-between | space-around;
+        // align-items: center; //flex-start | flex-end | center | baseline | stretch;
+      }
+
+      .menu-li-div{
+        &:active{
+          color: $light-blue !important;
+        }
+      }
+
+      .menu-li-element {
+        display: flex;
+        padding: 20px;
+        margin: 10px;
+        background: #f4b556;
+        color: #020022;
+        letter-spacing: 0;
+        flex-basis: 200px;
+        justify-content: center;
+        flex-direction: column;
+        border: 3px solid $orange;
+        cursor: pointer;
+        .item-title{
+          font-size: 24px;
+          padding-bottom: 10px;
+        }
+        .item-description{
+          font-size: 14px;
+          padding-top: 10px;
+        }
+        &:hover{
+          border: 3px solid $light-blue;
+        }
+      }
+
 			menu {
 				padding: 0;
 				ul.menu-list {
-					@include outer-container;
+					// @include outer-container;
 					list-style-type: none;
 					padding: 0 10%;
+          margin: 0 auto;
 
 					li.menu-li-element {
-						@include span-columns(6);
-						@include omega();
-						padding: 2px;
+						// @include span-columns(6);
+						// @include omega();
+						// padding: 2px;
 
 						div.menu-li-div {
-						    padding: 6px;
+						  padding: 6px;
 							background: $orange;
 							color: $dark-blue;
-							height: 153px;
+							// height: 153px;
 							letter-spacing: 0;
 
 							div.item-title {
@@ -125,7 +263,7 @@ body {
 
 							div.item-description {
 								font-size: 13px;
-							}							    
+							}
 						}
 
 						div.menu-li-div:hover {
@@ -139,6 +277,8 @@ body {
 
 		div.total-controller-div {
 			padding: 0 10%;
+      max-width: 800px;
+      margin: 0 auto;
 			div.suborders-container {
 				border: 1px solid $light-blue;
 				border-radius: 7px;
@@ -146,11 +286,19 @@ body {
 
 				chosenitem {
 					div.suborders-screen {
+            .sub-item{
+              padding: 25px 0;
+              border-bottom: 1px solid #79d7f3;
+              .sub-item-remove{
+                &:hover{
+                  cursor: pointer;
+                }
+              }
+            }
 						ul.suborders-ul {
 							list-style-type: none;
-						  	padding: 6px;
-						  	margin-top: 0;
-
+						  	// margin-top: 0;
+                padding: 10px;
 						  	div.headings {
 						  		@include outer-container;
 						  		margin-bottom: 13px;
@@ -177,7 +325,7 @@ body {
 								div {
 									@include outer-container;
 									div {
-										@include span-columns(4);										
+										@include span-columns(4);
 									}
 								}
 							}
@@ -187,15 +335,17 @@ body {
 
 				totaldirective {
 					div.total-container {
-						@include outer-container;							
+						@include outer-container;
+            margin-bottom: 15px !important;
 						div.total-tag {
 							@include span-columns(4);
-							@include shift(4);	
-							color: $orange;													
+							@include shift(4);
+							color: $orange;
+              padding-bottom: 10px !important;
 						}
 
 						div.total-price {
-							@include span-columns(4);							
+							@include span-columns(4);
 							color: $orange;
 						}
 					}
@@ -209,6 +359,7 @@ body {
 						button {
 						font-family: $font-russo;
 						padding: 13px;
+            max-width: 200px;
 					    margin: 19px 0;
 					    width: 100%;
 					    border-radius: 7px;
@@ -231,13 +382,14 @@ body {
 			a {
 				button {
 					font-family: "Russo One", sans-serif;
-					border: 1px solid $light-blue;					
+					border: 1px solid $light-blue;
 				    padding: 13px;
 				    margin: 19px 0;
+            max-width: 200px;
 				    width: 100%;
 				    border-radius: 7px;
 				    font-size: 1.5em;
-				    color: $light-blue;				    
+				    color: $light-blue;
 				    background: transparent;
 				}
 
@@ -247,7 +399,7 @@ body {
 			}
 		}
 	}
-}
+// }
 
 
 
@@ -281,7 +433,7 @@ body {
 					}
 					h3 {
 
-					}							
+					}
 
 					ul.order-row {
 						li.order-row-li {
@@ -302,15 +454,20 @@ body {
 
 
 // DESKTOP
-@include media(min-width 992px) {
+@include media(min-width 601px) {
+  li{
+    list-style: none;
+    text-align: inherit;
+  }
+  menu, .menu-list {
+    // padding-left: 0px !important;
+  }
+
 	div.app-container {
 		div.categories-container {
 			margin: 0 6%;
 		}
 
-		div.menu-list-container {
-
-		}
 
 		div.total-controller-div {
 
@@ -318,7 +475,7 @@ body {
 
 		.ng-scope {
 			kitchendirective {
-				div.kitchen-container {		
+				div.kitchen-container {
 					div.kitchen-header {
 						@include outer-container;
 						h1.kitchen-title {
@@ -339,13 +496,13 @@ body {
 		    					font-family: $font-russo;
 		    					background: $light-blue;
 		    					border: 0;
-							}					
+							}
 
 							button.toggle-orders:hover {
 								cursor: pointer;
-							}		
-						}						
-					}			
+							}
+						}
+					}
 
 					ul.order-row {
 						li.order-row-li {
@@ -359,9 +516,10 @@ body {
 								@include span-columns(2);
 								p.id-number {
 									font-size: 2em;
+                  min-width: 30px;
 									background: $light-blue;
 								    margin: 0 63px;
-								    color: $dark-blue;									
+								    color: $dark-blue;
 								}
 							}
 
@@ -391,13 +549,13 @@ body {
 							}
 
 							div.mark-complete-block {
-								@include span-columns(3); 
+								@include span-columns(3);
 								button.done {
 									background: $orange;
 									padding: 15px 55px;
 								    font-size: 1.5em;
 								    font-weight: bold;
-								    margin: 12% 0; 
+								    margin: 12% 0;
 								    border: 0;
 								    font-family: $font-russo;
 								}
@@ -412,9 +570,9 @@ body {
 									padding: 15px 55px;
 								    font-size: 1.5em;
 								    font-weight: bold;
-								    margin: 12% 0; 
+								    margin: 12% 0;
 								    border: 0;
-								    font-family: $font-russo;	
+								    font-family: $font-russo;
 								    border: 1px solid $light-blue;
 								}
 							}
@@ -454,8 +612,8 @@ body {
 						button:hover {
 						 	cursor: pointer;
 						}
-					}					
-					
+					}
+
 					p.success {
 						color: $success-green;
 					}
@@ -467,4 +625,23 @@ body {
 			}
 		}
 	}
+}
+
+//MOBILE
+@media (max-width: 600px) {
+  .menu-li-element {
+    flex-basis: 120px !important;
+    color: red !important;
+    width: 120px;
+    padding: 5px !important;
+    .item-title{
+      font-size: 16px !important;
+    }
+  }
+  .menu-list{
+    padding: 0px !important;
+  }
+  .admin-forms div{
+    margin: 10px;
+  }
 }

@@ -13,7 +13,7 @@ var url = require('url');
 // var helper = require('sendgrid').mail;
 // var sg = require('sendgrid')(process.env.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);
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/pjmydb';
 
 
 var routes = require('./routes');
