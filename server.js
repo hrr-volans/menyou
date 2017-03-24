@@ -4,9 +4,8 @@ var pg = require('pg');
 var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
 var routes = require('./routes');
-
-// var helper = require('sendgrid').mail;
-// var sg = require('sendgrid')(process.env.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);
+var nodemailer = require('nodemailer');
+exports.nodemailer = nodemailer;
 
 var jwt = require('jsonwebtoken');
 
@@ -138,6 +137,35 @@ app.get('/orders', function(req, res, next) {
   });
 });
 
+app.post('/email', function(req, res, next) {
+    console.log(req.body, 'HERE!!!');
+    var add = req.body.email;
+    console.log(add + ' ' + typeof add)
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'caroham29@gmail.com',
+        pass: 'Verizon7!'
+      }
+    });
+
+    let mailOptions = {
+      from: '"MenYou" <foo@blurdybloop.com>', // sender address
+      to: add, // list of receivers
+      subject: "Here's your first coupon! ✔", // Subject line
+      text: 'Whatever we want to tell the client', // plain text body
+      html: '<b>Hello world ?</b>' // html body
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+        return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
+    });
+
+});
+
 app.get('/deeporders', function(req, res, next) {
   var deeporder = [];
   client.query("SELECT * FROM orders", function(err, result) {
@@ -232,6 +260,7 @@ app.post('/createMenuItem', function(req, res, next) {
                       res.send('Success');
                     }
                   });
+
 });
 
 app.post('/authenticate', function(req, res, next) {
@@ -255,3 +284,4 @@ app.post('/authenticate', function(req, res, next) {
     res.status(401).send('Invalid credentials');
   }
 });
+
