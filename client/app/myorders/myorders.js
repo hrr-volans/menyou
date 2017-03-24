@@ -1,6 +1,7 @@
 angular.module('myorders', [])
   .controller('myOrdersController', function($scope, $window, $http){    
     var ids = $window.localStorage.menyouUser;
+    console.log('myorders controller');
     $http({
       method: 'GET',
       url: '/userorders',
