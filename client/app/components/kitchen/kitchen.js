@@ -62,7 +62,7 @@ angular.module('kitchenmodule', ['services'])
       console.log('last index', lastItemId)   
       refresh = true;
       $http({
-        method: 'GET',                
+        method: 'GET',
         url: '/kitchenorders',
         params: {last_id: lastItemId}
       }).then(function successCallback(response) {        
