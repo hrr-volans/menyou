@@ -4,7 +4,7 @@ angular.module('services', [])
     var initialCategory;
     if(current_time < 12) {
       initialCategory = 'Breakfast';
-    } else if (current_time < 13) {
+    } else if (current_time < 16) {
       initialCategory = 'Lunch';
     } else if (current_time < 24) {
       initialCategory = 'Dinner';
