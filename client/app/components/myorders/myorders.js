@@ -15,7 +15,7 @@ angular.module('myorders', [])
   .directive('myorders', function(){
     return {
       restrict: 'EA',
-      templateUrl: 'app/myorders/myorders.html',
+      templateUrl: 'app/components/myorders/myorders.html',
       scope: {
         orders: '='
       }
