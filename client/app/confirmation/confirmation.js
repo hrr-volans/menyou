@@ -13,7 +13,7 @@ angular.module('confirmation', ['services'])
           $http.post('/email', JSON.stringify({email : data, name : name}))
             .then(function(response){
           });
-          setTimeout(function(){window.location = "http://localhost:5000/";}, 10000);
+          setTimeout(function(){window.location = "/";}, 10000);
         } else {
           alert("Please enter a valid email address for coupons and spnecial offers!");
         }
