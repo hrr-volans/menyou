@@ -8,11 +8,8 @@ html {
   box-sizing: inherit;
 }
 
-/* line 10, styles.scss */
+/* line 11, styles.scss */
 body {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
   background: #020022;
   color: #79d7f3;
   font-family: "Russo One", sans-serif;
@@ -20,35 +17,41 @@ body {
   overflow: scroll;
   letter-spacing: 1px;
 }
+
+/* line 23, styles.scss */
+div.app-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
 /* line 20, neat/mixins/_clearfix.scss */
-body::after {
+div.app-container::after {
   clear: both;
   content: "";
   display: block;
 }
-
-/* line 24, styles.scss */
+/* line 26, styles.scss */
 div.app-container ul {
   padding: 0px;
 }
-/* line 27, styles.scss */
+/* line 29, styles.scss */
 div.app-container a {
   color: #79d7f3;
   text-decoration: none;
 }
-/* line 30, styles.scss */
+/* line 32, styles.scss */
 div.app-container a:hover {
   text-decoration: underline;
 }
-/* line 35, styles.scss */
+/* line 37, styles.scss */
 div.app-container * {
   outline: none !important;
 }
-/* line 40, styles.scss */
+/* line 42, styles.scss */
 div.app-container .nav-utility {
   margin: 25px;
 }
-/* line 43, styles.scss */
+/* line 45, styles.scss */
 div.app-container .logout-button {
   font-family: "Russo One", sans-serif;
   border: none;
@@ -58,31 +61,31 @@ div.app-container .logout-button {
   padding: 0px;
   cursor: pointer;
 }
-/* line 51, styles.scss */
+/* line 53, styles.scss */
 div.app-container .logout-button:hover {
   text-decoration: underline;
 }
-/* line 55, styles.scss */
+/* line 57, styles.scss */
 div.app-container #logo-text {
   margin-left: 30px;
   margin-top: 25px;
 }
-/* line 59, styles.scss */
+/* line 61, styles.scss */
 div.app-container #logo-svg {
   position: absolute;
   margin-left: -110px;
   margin-top: -3px;
 }
-/* line 64, styles.scss */
+/* line 66, styles.scss */
 div.app-container #logo {
   display: block;
   height: 75px;
 }
-/* line 69, styles.scss */
+/* line 71, styles.scss */
 div.app-container div.myorders-container {
   padding: 0 5%;
 }
-/* line 71, styles.scss */
+/* line 73, styles.scss */
 div.app-container div.myorders-container div.headings {
   max-width: 1200px;
   margin-left: auto;
@@ -94,7 +97,7 @@ div.app-container div.myorders-container div.headings::after {
   content: "";
   display: block;
 }
-/* line 73, styles.scss */
+/* line 75, styles.scss */
 div.app-container div.myorders-container div.headings p {
   float: left;
   display: block;
@@ -105,7 +108,7 @@ div.app-container div.myorders-container div.headings p {
 div.app-container div.myorders-container div.headings p:last-child {
   margin-right: 0;
 }
-/* line 78, styles.scss */
+/* line 80, styles.scss */
 div.app-container div.myorders-container div.data-list {
   max-width: 1200px;
   margin-left: auto;
@@ -118,7 +121,7 @@ div.app-container div.myorders-container div.data-list::after {
   content: "";
   display: block;
 }
-/* line 81, styles.scss */
+/* line 83, styles.scss */
 div.app-container div.myorders-container div.data-list div {
   float: left;
   display: block;
@@ -129,60 +132,60 @@ div.app-container div.myorders-container div.data-list div {
 div.app-container div.myorders-container div.data-list div:last-child {
   margin-right: 0;
 }
-/* line 83, styles.scss */
+/* line 85, styles.scss */
 div.app-container div.myorders-container div.data-list div span.id {
   background: #79d7f3;
   padding: 5px;
   color: #020022;
 }
-/* line 88, styles.scss */
+/* line 90, styles.scss */
 div.app-container div.myorders-container div.data-list div span.true {
   color: #f4b556;
 }
-/* line 99, styles.scss */
+/* line 101, styles.scss */
 div.app-container div.categories-container {
   padding: 0 10%;
 }
-/* line 102, styles.scss */
+/* line 104, styles.scss */
 div.app-container div.categories-container .category-item {
   cursor: pointer;
   border: 0;
 }
-/* line 108, styles.scss */
+/* line 110, styles.scss */
 div.app-container div.categories-container div.category-slider button.slick-arrow:before {
   color: #79d7f3;
 }
-/* line 114, styles.scss */
+/* line 116, styles.scss */
 div.app-container div.confirmation-container {
   padding: 0 10%;
   max-width: 800px;
   margin: 0 auto;
 }
-/* line 115, styles.scss */
+/* line 117, styles.scss */
 div.app-container div.confirmation-container .order-number {
   font-size: 21px;
   color: #f4b556;
 }
-/* line 123, styles.scss */
+/* line 125, styles.scss */
 div.app-container div.confirmation-container h2 span.customer-name {
   color: #f4b556;
 }
-/* line 128, styles.scss */
+/* line 130, styles.scss */
 div.app-container div.confirmation-container ul {
   list-style-type: none;
   border: solid;
   padding: 18px 0;
 }
-/* line 133, styles.scss */
+/* line 135, styles.scss */
 div.app-container div.confirmation-container ul li {
   margin-bottom: 7px;
 }
-/* line 138, styles.scss */
+/* line 140, styles.scss */
 div.app-container div.confirmation-container input {
   height: 33px;
   font-size: 14px;
 }
-/* line 145, styles.scss */
+/* line 147, styles.scss */
 div.app-container div.confirmation-container confirmation div button#submit {
   background-color: #f4b556;
   font-size: 12px;
@@ -192,7 +195,7 @@ div.app-container div.confirmation-container confirmation div button#submit {
   font-size: 18px;
   font-family: "Russo One", sans-serif;
 }
-/* line 159, styles.scss */
+/* line 161, styles.scss */
 div.app-container div.menu-list-container .menu-list {
   max-width: 1000px;
   display: flex;
@@ -200,11 +203,11 @@ div.app-container div.menu-list-container .menu-list {
   flex-wrap: wrap;
   justify-content: center;
 }
-/* line 169, styles.scss */
+/* line 171, styles.scss */
 div.app-container div.menu-list-container .menu-li-div:active {
   color: #79d7f3 !important;
 }
-/* line 174, styles.scss */
+/* line 176, styles.scss */
 div.app-container div.menu-list-container .menu-li-element {
   display: flex;
   position: relative;
@@ -219,73 +222,73 @@ div.app-container div.menu-list-container .menu-li-element {
   border: 3px solid #f4b556;
   cursor: pointer;
 }
-/* line 187, styles.scss */
+/* line 189, styles.scss */
 div.app-container div.menu-list-container .menu-li-element .item-title {
   font-size: 24px;
   padding-bottom: 10px;
 }
-/* line 191, styles.scss */
+/* line 193, styles.scss */
 div.app-container div.menu-list-container .menu-li-element .item-description {
   font-size: 14px;
   padding-top: 10px;
 }
-/* line 195, styles.scss */
+/* line 197, styles.scss */
 div.app-container div.menu-list-container .menu-li-element:hover {
   border: 3px solid #79d7f3;
 }
-/* line 200, styles.scss */
+/* line 202, styles.scss */
 div.app-container div.menu-list-container menu {
   padding: 0;
 }
-/* line 202, styles.scss */
+/* line 204, styles.scss */
 div.app-container div.menu-list-container menu ul.menu-list {
   list-style-type: none;
   padding: 0 10%;
   margin: 0 auto;
 }
-/* line 213, styles.scss */
+/* line 215, styles.scss */
 div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div {
   padding: 6px;
   background: #f4b556;
   color: #020022;
   letter-spacing: 0;
 }
-/* line 220, styles.scss */
+/* line 222, styles.scss */
 div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div div.item-title {
   font-size: 19px;
 }
-/* line 224, styles.scss */
+/* line 226, styles.scss */
 div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div div.item-description {
   font-size: 13px;
 }
-/* line 229, styles.scss */
+/* line 231, styles.scss */
 div.app-container div.menu-list-container menu ul.menu-list li.menu-li-element div.menu-li-div:hover {
   cursor: pointer;
 }
-/* line 238, styles.scss */
+/* line 240, styles.scss */
 div.app-container div.total-controller-div {
   padding: 0 10%;
   max-width: 800px;
   margin: 0 auto;
 }
-/* line 242, styles.scss */
+/* line 244, styles.scss */
 div.app-container div.total-controller-div div.suborders-container {
   border: 1px solid #79d7f3;
   border-radius: 7px;
   padding-bottom: 5px;
 }
-/* line 249, styles.scss */
+/* line 251, styles.scss */
 div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen .sub-item {
   cursor: pointer;
   padding: 25px 0;
   border-bottom: 1px solid #79d7f3;
 }
-/* line 254, styles.scss */
+/* line 256, styles.scss */
 div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul {
   list-style-type: none;
   padding: 10px;
 }
-/* line 258, styles.scss */
+/* line 260, styles.scss */
 div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul div.headings {
   max-width: 1200px;
   margin-left: auto;
@@ -298,7 +301,7 @@ div.app-container div.total-controller-div div.suborders-container chosenitem di
   content: "";
   display: block;
 }
-/* line 261, styles.scss */
+/* line 263, styles.scss */
 div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul div.headings div {
   float: left;
   display: block;
@@ -309,7 +312,7 @@ div.app-container div.total-controller-div div.suborders-container chosenitem di
 div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul div.headings div:last-child {
   margin-right: 0;
 }
-/* line 281, styles.scss */
+/* line 283, styles.scss */
 div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div {
   max-width: 1200px;
   margin-left: auto;
@@ -321,7 +324,7 @@ div.app-container div.total-controller-div div.suborders-container chosenitem di
   content: "";
   display: block;
 }
-/* line 283, styles.scss */
+/* line 285, styles.scss */
 div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div {
   float: left;
   display: block;
@@ -332,7 +335,7 @@ div.app-container div.total-controller-div div.suborders-container chosenitem di
 div.app-container div.total-controller-div div.suborders-container chosenitem div.suborders-screen ul.suborders-ul li div div:last-child {
   margin-right: 0;
 }
-/* line 293, styles.scss */
+/* line 295, styles.scss */
 div.app-container div.total-controller-div div.suborders-container totaldirective div.total-container {
   max-width: 1200px;
   margin-left: auto;
@@ -345,7 +348,7 @@ div.app-container div.total-controller-div div.suborders-container totaldirectiv
   content: "";
   display: block;
 }
-/* line 296, styles.scss */
+/* line 298, styles.scss */
 div.app-container div.total-controller-div div.suborders-container totaldirective div.total-container div.total-tag {
   float: left;
   display: block;
@@ -359,7 +362,7 @@ div.app-container div.total-controller-div div.suborders-container totaldirectiv
 div.app-container div.total-controller-div div.suborders-container totaldirective div.total-container div.total-tag:last-child {
   margin-right: 0;
 }
-/* line 303, styles.scss */
+/* line 305, styles.scss */
 div.app-container div.total-controller-div div.suborders-container totaldirective div.total-container div.total-price {
   float: left;
   display: block;
@@ -371,11 +374,11 @@ div.app-container div.total-controller-div div.suborders-container totaldirectiv
 div.app-container div.total-controller-div div.suborders-container totaldirective div.total-container div.total-price:last-child {
   margin-right: 0;
 }
-/* line 311, styles.scss */
+/* line 313, styles.scss */
 div.app-container div.total-controller-div div.place-order-container {
   margin-top: 23px;
 }
-/* line 315, styles.scss */
+/* line 317, styles.scss */
 div.app-container div.total-controller-div div.place-order-container placeorder div.order-button-div button {
   font-family: "Russo One", sans-serif;
   padding: 13px;
@@ -387,15 +390,15 @@ div.app-container div.total-controller-div div.place-order-container placeorder 
   border: 0;
   background: #f4b556;
 }
-/* line 327, styles.scss */
+/* line 329, styles.scss */
 div.app-container div.total-controller-div div.place-order-container placeorder div.order-button-div button:hover {
   cursor: pointer;
 }
-/* line 335, styles.scss */
+/* line 337, styles.scss */
 div.app-container div.myorders-button, div.app-container div.total-button {
   padding: 0 10%;
 }
-/* line 338, styles.scss */
+/* line 340, styles.scss */
 div.app-container div.myorders-button a button, div.app-container div.total-button a button {
   font-family: "Russo One", sans-serif;
   border: 1px solid #79d7f3;
@@ -408,30 +411,30 @@ div.app-container div.myorders-button a button, div.app-container div.total-butt
   color: #79d7f3;
   background: transparent;
 }
-/* line 351, styles.scss */
+/* line 353, styles.scss */
 div.app-container div.myorders-button a button:hover, div.app-container div.total-button a button:hover {
   cursor: pointer;
 }
 
 @media screen and (min-width: 480px) and (max-width: 992px) {
-  /* line 394, styles.scss */
+  /* line 396, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li {
     list-style-type: none;
     border: 1px solid blue;
   }
 }
 @media screen and (min-width: 601px) {
-  /* line 413, styles.scss */
+  /* line 415, styles.scss */
   li {
     list-style: none;
     text-align: inherit;
   }
 
-  /* line 422, styles.scss */
+  /* line 424, styles.scss */
   div.app-container div.categories-container {
     margin: 0 6%;
   }
-  /* line 434, styles.scss */
+  /* line 436, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container div.kitchen-header {
     max-width: 1200px;
     margin-left: auto;
@@ -443,7 +446,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
     content: "";
     display: block;
   }
-  /* line 436, styles.scss */
+  /* line 438, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container div.kitchen-header h1.kitchen-title {
     float: left;
     display: block;
@@ -455,7 +458,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   div.app-container .ng-scope kitchendirective div.kitchen-container div.kitchen-header h1.kitchen-title:last-child {
     margin-right: 0;
   }
-  /* line 441, styles.scss */
+  /* line 443, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container div.kitchen-header div.toggle-container {
     float: left;
     display: block;
@@ -467,11 +470,11 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   div.app-container .ng-scope kitchendirective div.kitchen-container div.kitchen-header div.toggle-container:last-child {
     margin-right: 0;
   }
-  /* line 444, styles.scss */
+  /* line 446, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container div.kitchen-header div.toggle-container h3.showing-orders {
     color: #f4b556;
   }
-  /* line 448, styles.scss */
+  /* line 450, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container div.kitchen-header div.toggle-container button.toggle-orders {
     padding: 8px 51px;
     font-size: 20px;
@@ -479,11 +482,11 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
     background: #79d7f3;
     border: 0;
   }
-  /* line 456, styles.scss */
+  /* line 458, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container div.kitchen-header div.toggle-container button.toggle-orders:hover {
     cursor: pointer;
   }
-  /* line 463, styles.scss */
+  /* line 465, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li {
     max-width: 1200px;
     margin-left: auto;
@@ -499,7 +502,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
     content: "";
     display: block;
   }
-  /* line 470, styles.scss */
+  /* line 472, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.id-block {
     float: left;
     display: block;
@@ -510,7 +513,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.id-block:last-child {
     margin-right: 0;
   }
-  /* line 472, styles.scss */
+  /* line 474, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.id-block p.id-number {
     font-size: 2em;
     min-width: 30px;
@@ -518,7 +521,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
     margin: 0 63px;
     color: #020022;
   }
-  /* line 481, styles.scss */
+  /* line 483, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.customer-name-block {
     float: left;
     display: block;
@@ -529,12 +532,12 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.customer-name-block:last-child {
     margin-right: 0;
   }
-  /* line 483, styles.scss */
+  /* line 485, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.customer-name-block p.name-paragraph {
     font-size: 20px;
     color: #f4b556;
   }
-  /* line 489, styles.scss */
+  /* line 491, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block {
     float: left;
     display: block;
@@ -545,11 +548,11 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block:last-child {
     margin-right: 0;
   }
-  /* line 491, styles.scss */
+  /* line 493, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul {
     list-style-type: none;
   }
-  /* line 493, styles.scss */
+  /* line 495, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li {
     max-width: 1200px;
     margin-left: auto;
@@ -561,7 +564,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
     content: "";
     display: block;
   }
-  /* line 495, styles.scss */
+  /* line 497, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li div.qty {
     float: left;
     display: block;
@@ -572,7 +575,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li div.qty:last-child {
     margin-right: 0;
   }
-  /* line 498, styles.scss */
+  /* line 500, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li div.description {
     float: left;
     display: block;
@@ -584,7 +587,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.menu-items-block ul li div.description:last-child {
     margin-right: 0;
   }
-  /* line 506, styles.scss */
+  /* line 508, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.mark-complete-block {
     float: left;
     display: block;
@@ -595,7 +598,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.mark-complete-block:last-child {
     margin-right: 0;
   }
-  /* line 508, styles.scss */
+  /* line 510, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.mark-complete-block button.done {
     background: #f4b556;
     padding: 15px 55px;
@@ -605,11 +608,11 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
     border: 0;
     font-family: "Russo One", sans-serif;
   }
-  /* line 518, styles.scss */
+  /* line 520, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.mark-complete-block button.done:hover {
     cursor: pointer;
   }
-  /* line 522, styles.scss */
+  /* line 524, styles.scss */
   div.app-container .ng-scope kitchendirective div.kitchen-container ul.order-row li.order-row-li div.mark-complete-block button.back {
     background: transparent;
     color: #79d7f3;
@@ -622,7 +625,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
     font-family: "Russo One", sans-serif;
     border: 1px solid #79d7f3;
   }
-  /* line 540, styles.scss */
+  /* line 542, styles.scss */
   div.app-container .ng-scope div.admin-container {
     max-width: 1200px;
     margin-left: auto;
@@ -634,7 +637,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
     content: "";
     display: block;
   }
-  /* line 543, styles.scss */
+  /* line 545, styles.scss */
   div.app-container .ng-scope div.admin-container div.add-menuitem-container, div.app-container .ng-scope div.admin-container div.add-category-container {
     float: left;
     display: block;
@@ -645,22 +648,22 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   div.app-container .ng-scope div.admin-container div.add-menuitem-container:last-child, div.app-container .ng-scope div.admin-container div.add-category-container:last-child {
     margin-right: 0;
   }
-  /* line 545, styles.scss */
+  /* line 547, styles.scss */
   div.app-container .ng-scope div.admin-container div.add-menuitem-container form.admin-forms, div.app-container .ng-scope div.admin-container div.add-category-container form.admin-forms {
     padding: 0 22%;
   }
-  /* line 548, styles.scss */
+  /* line 550, styles.scss */
   div.app-container .ng-scope div.admin-container div.add-menuitem-container form.admin-forms div, div.app-container .ng-scope div.admin-container div.add-category-container form.admin-forms div {
     text-align: left;
     margin-top: 10px;
     margin-bottom: 5px;
   }
-  /* line 552, styles.scss */
+  /* line 554, styles.scss */
   div.app-container .ng-scope div.admin-container div.add-menuitem-container form.admin-forms div label, div.app-container .ng-scope div.admin-container div.add-menuitem-container form.admin-forms div select, div.app-container .ng-scope div.admin-container div.add-menuitem-container form.admin-forms div input, div.app-container .ng-scope div.admin-container div.add-category-container form.admin-forms div label, div.app-container .ng-scope div.admin-container div.add-category-container form.admin-forms div select, div.app-container .ng-scope div.admin-container div.add-category-container form.admin-forms div input {
     width: 100%;
     height: 33px;
   }
-  /* line 558, styles.scss */
+  /* line 560, styles.scss */
   div.app-container .ng-scope div.admin-container div.add-menuitem-container form.admin-forms button, div.app-container .ng-scope div.admin-container div.add-category-container form.admin-forms button {
     background: #f4b556;
     border: 0;
@@ -670,15 +673,15 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
     font-size: 1.2em;
     font-family: "Russo One", sans-serif;
   }
-  /* line 568, styles.scss */
+  /* line 570, styles.scss */
   div.app-container .ng-scope div.admin-container div.add-menuitem-container form.admin-forms button:hover, div.app-container .ng-scope div.admin-container div.add-category-container form.admin-forms button:hover {
     cursor: pointer;
   }
-  /* line 573, styles.scss */
+  /* line 575, styles.scss */
   div.app-container .ng-scope div.admin-container div.add-menuitem-container p.success, div.app-container .ng-scope div.admin-container div.add-category-container p.success {
     color: #1fd91f;
   }
-  /* line 578, styles.scss */
+  /* line 580, styles.scss */
   div.app-container .ng-scope div.admin-container div.add-category-container {
     float: left;
     display: block;
@@ -691,41 +694,41 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   }
 }
 @media (max-width: 600px) {
-  /* line 588, styles.scss */
+  /* line 590, styles.scss */
   .menu-li-element {
     flex-basis: 120px !important;
     color: red !important;
     width: 120px;
     padding: 5px !important;
   }
-  /* line 593, styles.scss */
+  /* line 595, styles.scss */
   .menu-li-element .item-title {
     font-size: 16px !important;
   }
 
-  /* line 597, styles.scss */
+  /* line 599, styles.scss */
   .menu-list {
     padding: 0px !important;
   }
 
-  /* line 600, styles.scss */
+  /* line 602, styles.scss */
   .admin-forms div {
     margin: 10px;
   }
 }
-/* line 606, styles.scss */
+/* line 608, styles.scss */
 .checkmark {
   display: none;
   z-index: 100;
   position: relative;
   top: 15%;
 }
-/* line 611, styles.scss */
+/* line 613, styles.scss */
 .checkmark :active {
   display: block;
 }
 
-/* line 615, styles.scss */
+/* line 617, styles.scss */
 .menuitem-select {
   position: absolute;
   background-color: transparent;
@@ -735,7 +738,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   height: 100%;
 }
 
-/* line 625, styles.scss */
+/* line 627, styles.scss */
 .checkmark__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
@@ -746,7 +749,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   animation: stroke 0.5s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
 
-/* line 634, styles.scss */
+/* line 636, styles.scss */
 .checkmark {
   width: 56px;
   height: 56px;
@@ -760,7 +763,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   animation: fill .3s ease-in-out .3s forwards, scale .2s ease-in-out .6s both;
 }
 
-/* line 646, styles.scss */
+/* line 648, styles.scss */
 .checkmark__check {
   transform-origin: 50% 50%;
   stroke-dasharray: 48;

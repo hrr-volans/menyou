@@ -7,8 +7,9 @@ $orange:  #f4b556;
 $success-green: #1fd91f;
 $font-russo: 'Russo One', sans-serif;
 
+//OUTSIDE APP DIV
 body {
-	@include outer-container;
+	// @include outer-container;
 	background: $dark-blue;
 	color: $light-blue;
 	font-family: $font-russo;
@@ -20,6 +21,7 @@ body {
 //MOBILE
 // @include media(max-width 600px) {
 	div.app-container {
+    @include outer-container;
     //GLOBAL STYLES
     ul{
       padding: 0px;
