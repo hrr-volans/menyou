@@ -1,6 +1,8 @@
 <div ng-controller='categoriesController' class="categories-container">
   <div class="category-slider">
-    <div ng-repeat="category in data track by $index" ng-click="setCurrentCategory(category)" emit-last-repeater-element>{{category}}</div>
+    <div ng-repeat="category in data track by $index" ng-click="setCurrentCategory(category)" emit-last-repeater-element>
+      <div ng-bind="category"></div>
+  </div>
   </div>
 </div>
 

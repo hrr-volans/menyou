@@ -7,6 +7,10 @@ $orange:  #f4b556;
 $success-green: #1fd91f;
 $font-russo: 'Russo One', sans-serif;
 
+.ng-cloak {
+display: none !important;
+}
+
 // $color--green: #7ac142;
 // $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 //
@@ -567,6 +571,7 @@ body {
 								button.back {
 									background: transparent;
 									color: $light-blue;
+                  cursor: pointer;
 									padding: 15px 55px;
 								    font-size: 1.5em;
 								    font-weight: bold;
