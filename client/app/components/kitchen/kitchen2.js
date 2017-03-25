@@ -3,10 +3,10 @@ var refresh = false; //seting via closure to avoid duplicate setInterval calls
 angular.module('kitchenmodule', ['services'])
   .controller('kitchenController', function($http, $scope, menuitemsService){
 
-    //NOTE: Turn back on once Ignacio adds efficient version -- currently causes page to blip out
-    // if(refresh === false) {
-    //   setInterval(getOrders, 10000);
-    // }
+
+    if(refresh === false) {
+      setInterval(getOrders, 10000);
+    }
 
     getOrders();
 
@@ -15,7 +15,8 @@ angular.module('kitchenmodule', ['services'])
       }, function(err){
         console.log('POST error: ', err);
       });
-      // setTimeout(getOrders, 1000);
+      //timeout allows card to fadeout before getOrder refresh
+      setTimeout(getOrders, 1000);
     }
 
     $scope.reAddOrder = function(order) {
@@ -23,7 +24,8 @@ angular.module('kitchenmodule', ['services'])
       }, function(err){
         console.log('POST error: ', err);
       });
-      // getOrders();
+      //timeout allows card to fadeout before getOrder refresh
+      setTimeout(getOrders, 1000);
     }
 
     $scope.filterbool = {status: false, prefix: 'Incomplete'};
@@ -37,6 +39,7 @@ angular.module('kitchenmodule', ['services'])
       } else {
         $scope.filterbool.prefix = "Incomplete";
       }
+      initFadeOutCards();
     }
 
     function getOrders() {
@@ -45,28 +48,27 @@ angular.module('kitchenmodule', ['services'])
         method: 'GET',
         url: '/deeporders'
       }).then(function successCallback(response) {
-        console.log('DEEP ORDERS', response)
-        // if(!$scope.orders || response.data.length > $scope.orders.length) {
+        if(!$scope.orders || response.data.length > $scope.orders.length) {
           $scope.orders = response.data;
-          initFadeOutCards();
-        // }
+        }
+        initFadeOutCards();
       }, function errorCallback(response) {
         console.log('Error getting orders', response);
       });
     }
 
+    function initFadeOutCards(){
+      setTimeout(function(){
+        $('.mark-complete-block button').on('click', function(){
+          var $parent = $(this).parent();
+          var $grandparent = $($parent).parent();
+          $($grandparent).fadeOut();
+        })
+      }, 700);
+    }
 
-  function initFadeOutCards(){
-    setTimeout(function(){
-      $('.mark-complete-block button').on('click', function(){
-        var $parent = $(this).parent();
-        var $grandparent = $($parent).parent();
-        $($grandparent).fadeOut();
-      })
-    }, 700);
-  }
+  })
 
-})
 
   .directive('kitchendirective', function(){
     return {
