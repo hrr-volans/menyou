@@ -8,13 +8,25 @@ angular.module('categories', ['services'])
           return category.name[0].toUpperCase() + category.name.slice(1);
         });
         //first arg exists
-        categoriesService.setAllCategoryData(response.data);        
+        categoriesService.setAllCategoryData(response.data);
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     });
 
     $scope.setCurrentCategory = function(category){
       categoriesService.setCurrentCategory(category);
+
+      //This takes care of the checkmark for any new menu items appended to screen after category change
+      setTimeout(function(){
+        $('.menuitem-select').click(function(){
+          var $svg = $(this)[0].childNodes[1];
+          $($svg).css('display', 'block');
+          setTimeout(function(){
+            $($svg).fadeOut()
+          }, 1500);
+        });
+      }, 500);
+      
     }
 
     $scope.$on('LastRepeaterElement', function(){
