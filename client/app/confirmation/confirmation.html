@@ -1,15 +1,22 @@
-<div ng-controller='confirmationController'>
-<h1> Thank you <span style="color:yellow">{{customer}}</span></h1>
+<div ng-controller='confirmationController' class="confirmation-container">
+<h2> Thank you <span class="customer-name">{{church}}</span></h2>
 <h3> Our kitchen staff is perparing on your order! </h3>
-<ul style="list-style-type: none; border: solid;border-radius: 18px"> 
-  <li style="margin-bottom: 7px">Order number <span style="color:yellow">{{orderid }}</span></li>
-      <li ng-repeat='item in neworder' style="list-style-type: none; text-align:center; margin-bottom:7px">{{item.quantity }} {{item.description}} </li>
-  <li>Total : ${{totalprice}} </li> 
+<ul>
+  <li class="order-number">Order number <span>{{orderid }}</span></li>
+      <li ng-repeat='item in neworder' style="list-style-type: none; text-align:center; margin-bottom: 7px ">{{item.quantity }} {{item.description}} </li>
+  <li>Total : ${{totalprice}} </li>
 </ul>
 <h2>Enter your name and email for discounts and special offers! </h2>
 <input ng-model="church" type="text" name="name" placeholder="Name">
 <input ng-model="form.categoryname" type="text" name="name" placeholder="Email">
-<confirmation><button style="background-color:yellow; font-size:12px; border-radius: 8px" ng-click='sendEmail(form.categoryname, church); form.categoryname = null; church = null' id="submit">
-Submit</button></confirmation>
+<confirmation>
+  <button style="background-color:#f4b556; font-size:12px; border-radius: 8px" ng-click='sendEmail(form.categoryname, church); form.categoryname = null; church = null' id="submit">
+    Submit
+  </button>
+</confirmation>
 </div>
-BUTTON COMING SOON!
+<div class="total-button">
+ 	<a href="/#/">
+ 		<button>Back to Home</button>
+ 	</a>
+</div>
