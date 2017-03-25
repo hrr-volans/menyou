@@ -6,8 +6,7 @@ angular.module('myorders', [])
       method: 'GET',
       url: '/userorders',
       params: {orders_ids: ids}      
-    }).then(function successCallback(response) {      
-      console.log(response.data);
+    }).then(function successCallback(response) {            
       $scope.data = response.data;
     }, function errorCallback(response) {
       console.log('Error getting orders', response);

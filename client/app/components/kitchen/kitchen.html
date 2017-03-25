@@ -26,8 +26,8 @@
 		    </ul>
 	  	</div>
 	 	<div class="block mark-complete-block">
-	 		<button ng-hide="bool.status" ng-click="completeorder({order: order})" class="done">Done</button>
-	 		<button ng-hide="!bool.status" ng-click="readdorder({order: order})" class="back">Put Back</button>
+	 		<button ng-hide="bool.status" ng-click="completeorder({order: order, allorders: allorders})" class="done">Done</button>
+	 		<button ng-hide="!bool.status" ng-click="readdorder({order: order, allorders: allorders})" class="back">Put Back</button>
 	 	</div>
 	  </li>
 	</ul>
