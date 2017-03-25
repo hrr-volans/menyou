@@ -1,7 +1,7 @@
 <div ng-controller='categoriesController' class="categories-container">
   <div class="category-slider">
     <div ng-repeat="category in data track by $index" ng-click="setCurrentCategory(category)" emit-last-repeater-element>
-      <div ng-bind="category"></div>
+      <div class='category-item' ng-bind="category"></div>
   </div>
   </div>
 </div>
@@ -16,6 +16,7 @@
 
 <div ng-hide="totalscope.total === 0" ng-controller="totalController" class="total-controller-div">
   <h1>Your Order</h1>
+  <p>(Click item to remove)</p>
   <div ng-hide="data.items.length === 0" ng-controller='chosenItemsController' class="suborders-container">
     <chosenitem name={{category.name}} added="data.items" click="addMenuItemToChosenList(item)" removeclick="removeMenuItemFromChosenList(index)"></chosenitem>
     <totaldirective totaldirectivescope={{totalscope.total}}></totaldirective>

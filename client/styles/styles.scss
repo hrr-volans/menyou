@@ -7,7 +7,6 @@ $orange:  #f4b556;
 $success-green: #1fd91f;
 $font-russo: 'Russo One', sans-serif;
 
-
 body {
 	@include outer-container;
 	background: $dark-blue;
@@ -31,6 +30,10 @@ body {
       &:hover{
         text-decoration: underline;
       }
+    }
+
+    * {
+      outline: none !important; //removes default link outline
     }
 
     //HEADER
@@ -95,6 +98,11 @@ body {
 
 		div.categories-container {
 			padding: 0 10%;
+
+      .category-item{
+        cursor: pointer;
+        border: 0;
+      }
 
 			div.category-slider {
 				button.slick-arrow:before {
@@ -239,13 +247,9 @@ body {
 				chosenitem {
 					div.suborders-screen {
             .sub-item{
+              cursor: pointer;
               padding: 25px 0;
               border-bottom: 1px solid #79d7f3;
-              .sub-item-remove{
-                &:hover{
-                  cursor: pointer;
-                }
-              }
             }
 						ul.suborders-ul {
 							list-style-type: none;
