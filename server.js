@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes');
 var nodemailer = require('nodemailer');
 exports.nodemailer = nodemailer;
+var validator = require('validator');
+
 var jwt = require('jsonwebtoken');
 var secret = 'menyourocks';
 var url = require('url');
@@ -141,31 +143,37 @@ app.get('/orders', function(req, res, next) {
   });
 });
 
+app.post('/valid', function(req, res, next) {
+  var email = req.body.email;
+  res.send(validator.isEmail(email));
+});
+
 app.post('/email', function(req, res, next) {
-  var add = req.body.email;
-  console.log(add + ' ' + typeof add);
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'caroham29@gmail.com',
-      pass: 'Verizon7!'
+    var add = req.body.email;
+    var name = req.body.name;
+    console.log(add + ' ' + typeof add)
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'volansmenyou@gmail.com',
+        pass: 'Verizon7'
+      }
+    });
+
+    let mailOptions = {
+      from: '"MenYou" <foo@blurdybloop.com>', // sender address
+      to: add, // list of receivers
+      subject: "Hey " + name + "! Here's your first coupon! ✔", // Subject line
+      text: 'Whatever we want to tell the client', // plain text body
+      html: '<b>Enjoy your savings!</b>' // html body
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+        return console.log(error);
     }
-  });
-
-  let mailOptions = {
-    from: '"MenYou" <foo@blurdybloop.com>', // sender address
-    to: add, // list of receivers
-    subject: "Here's your first coupon! ✔", // Subject line
-    text: 'Whatever we want to tell the client', // plain text body
-    html: '<b>Hello world ?</b>' // html body
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-  if (error) {
-      return console.log(error);
-  }
-  console.log('Message %s sent: %s', info.messageId, info.response);
-  });
+    console.log('Message %s sent: %s', info.messageId, info.response);
+    });
 });
 
 app.get('/userorders', function(req, res, next) {
@@ -192,7 +200,6 @@ app.get('/deeporders', function(req, res, next) {
         if(err) { console.log(err) }
         order.menuitems = result.rows;
         deeporder.push(order);
-
         if(deeporder.length === coll.length) {
            //console.log(deeporder);
            res.send(deeporder);
@@ -202,6 +209,19 @@ app.get('/deeporders', function(req, res, next) {
   });
 });
 
+app.get('/getMax', function(req, response, next) {
+  client.query("SELECT * FROM orders WHERE id = (SELECT MAX(id) FROM orders)", function(err, res) {
+    var data = [];
+    var maxId = res.rows[0].id; 
+    data.push(res.rows[0].id);
+    data.push(res.rows[0].customer);
+    data.push(res.rows[0].totalprice); 
+    client.query("SELECT * FROM suborders WHERE id_orders = ($1)",[maxId], function(err, res) {
+      data.push(res.rows);
+      response.send(data);
+    });
+  });
+});
 
 
 app.post('/orders', function(req, res, next) {
@@ -304,6 +324,9 @@ app.post('/authenticate', function(req, res, next) {
   }
 });
 
+
 app.get('/*', function(req, res, next) {
   res.redirect('/');
 });
+
+
