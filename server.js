@@ -323,11 +323,10 @@ app.post('/authenticate', function(req, res, next) {
     res.status(401).send('Invalid credentials');
   }
 });
-<<<<<<< 3e1db14f58c24ea4a006269612d492a864ade4b2
+
 
 app.get('/*', function(req, res, next) {
   res.redirect('/');
 });
-=======
-});
->>>>>>> Email confirmation, optional name on confirmation
+
+

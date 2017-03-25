@@ -115,11 +115,6 @@ angular.module('services', [])
         menuitems: addedItems.items
       }
 
-<<<<<<< 3e1db14f58c24ea4a006269612d492a864ade4b2
-=======
-      console.log(orderObj, 777);
-
->>>>>>> Email confirmation, optional name on confirmation
       $http.post('/orders', JSON.stringify(orderObj)).then(function(response){
         console.log('post order response: ', response.data);
         if( $window.localStorage.menyouUser ) {

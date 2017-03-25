@@ -21,7 +21,7 @@ angular.module('confirmation', ['services'])
     };
     //iterate through orders 
     function getOrders() {
-      setTimeout(function(){window.location = "http://localhost:5000/";}, 30000);
+      // setTimeout(function(){window.location = "http://localhost:5000/";}, 30000);
       $http({
         method: 'GET',
         url: '/getmax'
