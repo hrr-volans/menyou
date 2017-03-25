@@ -125,6 +125,7 @@ angular.module('services', [])
           var storageArray = [response.data.id];
           $window.localStorage.menyouUser = JSON.stringify(storageArray);
         }
+        addedItems = {};
       }, function(err){
         console.log('POST error: ', err);
       });
