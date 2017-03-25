@@ -15,7 +15,8 @@ angular.module('kitchenmodule', ['services'])
       }, function(err){
         console.log('POST error: ', err);
       });
-      getOrders();
+      //timeout allows card to fadeout before getOrder refresh
+      setTimeout(getOrders, 1000);
     }
 
     $scope.reAddOrder = function(order) {
@@ -23,7 +24,8 @@ angular.module('kitchenmodule', ['services'])
       }, function(err){
         console.log('POST error: ', err);
       });
-      getOrders();
+      //timeout allows card to fadeout before getOrder refresh
+      setTimeout(getOrders, 1000);
     }
 
     $scope.filterbool = {status: false, prefix: 'Incomplete'};
@@ -36,6 +38,7 @@ angular.module('kitchenmodule', ['services'])
       } else {
         $scope.filterbool.prefix = "Incomplete";
       }
+      initFadeOutCards();
     }
 
     function getOrders() {
@@ -44,11 +47,24 @@ angular.module('kitchenmodule', ['services'])
         method: 'GET',
         url: '/deeporders'
       }).then(function successCallback(response) {
-        console.log('DEEP ORDERS', response)
-        $scope.orders = response.data;
+        if(!$scope.orders || response.data.length > $scope.orders.length) {
+          $scope.orders = response.data;
+        }
+        initFadeOutCards();
       }, function errorCallback(response) {
         console.log('Error getting orders', response);
       });
+      $('body').removeClass('fade');
+    }
+
+    function initFadeOutCards(){
+      setTimeout(function(){
+        $('.mark-complete-block button').on('click', function(){
+          var $parent = $(this).parent();
+          var $grandparent = $($parent).parent();
+          $($grandparent).fadeOut();
+        })
+      }, 700);
     }
 
   })

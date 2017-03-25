@@ -21,6 +21,17 @@ body {
 //MOBILE
 // @include media(max-width 600px) {
 	div.app-container {
+    //GLOBAL STYLES
+    ul{
+      padding: 0px;
+    }
+    a{
+      color: $light-blue;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
 
     //HEADER
     .nav-utility{
@@ -50,17 +61,6 @@ body {
     #logo{
       display: block;
       height: 75px;
-    }
-    //GLOBAL STYLES
-    ul{
-      padding: 0px;
-    }
-    a{
-      color: $light-blue;
-      text-decoration: none;
-      &:hover{
-        text-decoration: underline;
-      }
     }
 
 		div.myorders-container {
