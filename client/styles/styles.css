@@ -730,11 +730,12 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   position: absolute;
   background-color: transparent;
   left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
 }
 
-/* line 624, styles.scss */
+/* line 625, styles.scss */
 .checkmark__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
@@ -745,7 +746,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   animation: stroke 0.5s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
 
-/* line 633, styles.scss */
+/* line 634, styles.scss */
 .checkmark {
   width: 56px;
   height: 56px;
@@ -759,7 +760,7 @@ div.app-container div.myorders-button a button:hover, div.app-container div.tota
   animation: fill .3s ease-in-out .3s forwards, scale .2s ease-in-out .6s both;
 }
 
-/* line 645, styles.scss */
+/* line 646, styles.scss */
 .checkmark__check {
   transform-origin: 50% 50%;
   stroke-dasharray: 48;
