@@ -28,7 +28,7 @@ var app = angular.module('app', [
       controller: 'adminController'
     })
     .when('/confirmation', {
-      templateUrl:"app/components/confirmation/confirmation.html",
+      templateUrl:"app/confirmation/confirmation.html",
       controller: 'confirmationController'
     })
     .when('/login', {
