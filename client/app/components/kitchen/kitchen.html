@@ -7,7 +7,8 @@
 		</div>
 	</div>
 	<ul class="order-row">
-	  <li ng-repeat="order in allorders | filter: { complete: bool.status }" class="order-row-li">
+	  <!-- <li ng-repeat="order in allorders | filter: { complete: bool.status } | orderBy:'-order.id'" class="order-row-li"> -->
+	  <li ng-repeat="order in allorders | filter: { complete: bool.status } " class="order-row-li">
 	  	<div class="block id-block">
 	  		<p>Order ID</p>
 	  		<p class="id-number">{{order.id}}</p>

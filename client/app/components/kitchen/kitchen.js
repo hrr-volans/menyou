@@ -12,35 +12,30 @@ angular.module('kitchenmodule', ['services'])
 
     $scope.completeOrder = function(order, allorders) {
       var completeIndex = allorders.indexOf(order);            
-      $http.post('/complete', order).then(function(response){                
-        $scope.orders.splice(completeIndex, 1);
+      $http.post('/complete', order).then(function(response){           
+        setTimeout(function(){
+          $scope.orders[completeIndex].complete = true;
+        }, 2000);                             
       }, function(err){
         console.log('POST error: ', err);
-      });
-      //timeout allows card to fadeout before getOrder refresh
-      //setTimeout(getOrders, 1000);
+      });      
     }
 
     $scope.reAddOrder = function(order, allorders) {
       var reAddIndex = allorders.indexOf(order);            
-      $http.post('/incomplete', order).then(function(response){
-        $scope.orders.splice(reAddIndex, 1);
+      $http.post('/incomplete', order).then(function(response){        
+        $scope.orders[reAddIndex].complete = false;
       }, function(err){
         console.log('POST error: ', err);
-      });
-      //timeout allows card to fadeout before getOrder refresh
-      // setTimeout(getOrders, 1000);
-      //getOrders();
+      });      
     }
 
     $scope.filterbool = {status: false, prefix: 'Incomplete'};
 
-    $scope.toggleorderstatus = function() {
-      getOrders();
-      console.log('hit togle')
-      lastItemId = 0;
-      getOrders();
+    $scope.toggleorderstatus = function() {      
+      console.log('hit togle')  
       $scope.filterbool.status = !$scope.filterbool.status;
+      initFadeOutCards();
       if($scope.filterbool.status === true) {
         $scope.filterbool.prefix = "Complete";
       } else {
@@ -57,8 +52,7 @@ angular.module('kitchenmodule', ['services'])
           // return the new orders
           // prepend the new ones by unshifting to $scope.orders
     var firstTime = true;
-    function getOrders() {   
-      //initFadeOutCards();
+    function getOrders() {         
       console.log('last index', lastItemId)   
       refresh = true;
       $http({
@@ -69,6 +63,7 @@ angular.module('kitchenmodule', ['services'])
         if(response.status === 200 && firstTime === true) {                            
           lastItemId = response.data[0].id;          
           $scope.orders = response.data;
+          initFadeOutCards();
           firstTime = false;          
         } else if (response.status === 200 && firstTime === false) {
           lastItemId = response.data[0].id;          
@@ -87,6 +82,7 @@ angular.module('kitchenmodule', ['services'])
     setTimeout(function(){
       $('.mark-complete-block button').on('click', function(){
         var $parent = $(this).parent();
+        console.log($(this).parent());
         var $grandparent = $($parent).parent();
         $($grandparent).fadeOut();
       })
