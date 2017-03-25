@@ -2,34 +2,41 @@ var refresh = false; //seting via closure to avoid duplicate setInterval calls
 
 angular.module('kitchenmodule', ['services'])
   .controller('kitchenController', function($http, $scope, menuitemsService){
+    var lastItemId = 0;
 
-    //NOTE: Turn back on once Ignacio adds efficient version -- currently causes page to blip out
-    // if(refresh === false) {
-    //   setInterval(getOrders, 10000);
-    // }
+    if(refresh === false) {
+      setInterval(getOrders, 5000);
+    }
 
     getOrders();
 
-    $scope.completeOrder = function(order) {
+    $scope.completeOrder = function(order, allorders) {
+      var completeIndex = allorders.indexOf(order);
       $http.post('/complete', order).then(function(response){
+        setTimeout(function(){
+          $scope.orders[completeIndex].complete = true;
+          getOrders();
+        }, 500);
       }, function(err){
         console.log('POST error: ', err);
       });
-      // setTimeout(getOrders, 1000);
     }
 
-    $scope.reAddOrder = function(order) {
+    $scope.reAddOrder = function(order, allorders) {
+      var reAddIndex = allorders.indexOf(order);
       $http.post('/incomplete', order).then(function(response){
+        setTimeout(function(){
+          $scope.orders[reAddIndex].complete = false;
+          getOrders();
+        }, 500);
       }, function(err){
         console.log('POST error: ', err);
       });
-      // getOrders();
     }
 
     $scope.filterbool = {status: false, prefix: 'Incomplete'};
 
     $scope.toggleorderstatus = function() {
-      getOrders();
       console.log('hit togle')
       $scope.filterbool.status = !$scope.filterbool.status;
       if($scope.filterbool.status === true) {
@@ -37,19 +44,30 @@ angular.module('kitchenmodule', ['services'])
       } else {
         $scope.filterbool.prefix = "Incomplete";
       }
+      initFadeOutCards();
     }
 
+    var firstTime = true;
     function getOrders() {
+      console.log('last index', lastItemId)
       refresh = true;
       $http({
         method: 'GET',
-        url: '/deeporders'
+        url: '/kitchenorders',
+        params: {last_id: lastItemId}
       }).then(function successCallback(response) {
-        console.log('DEEP ORDERS', response)
-        // if(!$scope.orders || response.data.length > $scope.orders.length) {
+        if(response.status === 200 && firstTime === true) {
+          lastItemId = response.data[0].id;
           $scope.orders = response.data;
+          firstTime = false;
           initFadeOutCards();
-        // }
+        } else if (response.status === 200 && firstTime === false) {
+          lastItemId = response.data[0].id;
+          var lastOrders = response.data;
+          lastOrders.forEach(function(newOrder) {
+            $scope.orders.unshift(newOrder)
+          })
+        }
       }, function errorCallback(response) {
         console.log('Error getting orders', response);
       });
@@ -63,7 +81,7 @@ angular.module('kitchenmodule', ['services'])
         var $grandparent = $($parent).parent();
         $($grandparent).fadeOut();
       })
-    }, 700);
+    }, 200);
   }
 
 })

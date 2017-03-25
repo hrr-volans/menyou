@@ -77,7 +77,7 @@ angular.module('services', [])
     return {
       setCurrentCategory: setCurrentCategory,
       getCurrentCategory: getCurrentCategory,
-      getMenuItemsInCurrentCategory: getMenuItemsInCurrentCategory,
+      getMenuItemsInCurrentCategory: currentMenuItems,
       getAllCategoryNames: getAllCategoryNames,
       setAllCategoryData: setAllCategoryData,
       setInitialCategories: setInitialCategories,

@@ -149,8 +149,18 @@ app.post('/valid', function(req, res, next) {
 });
 
 app.post('/email', function(req, res, next) {
+    var orderid = req.body.orderid;
     var add = req.body.email;
     var name = req.body.name;
+    if(name.length) {
+      client.query(`UPDATE orders SET customer = ($1) WHERE id = ($2)`, [name, orderid],
+        function(err, result) {
+          if(err) {console.log("ERROR! ", err) }
+            console.log('UPDATING customer name');
+            res.send("Name updated");
+        }
+      );
+    }
     console.log(add + ' ' + typeof add)
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -212,10 +222,10 @@ app.get('/deeporders', function(req, res, next) {
 app.get('/getMax', function(req, response, next) {
   client.query("SELECT * FROM orders WHERE id = (SELECT MAX(id) FROM orders)", function(err, res) {
     var data = [];
-    var maxId = res.rows[0].id; 
+    var maxId = res.rows[0].id;
     data.push(res.rows[0].id);
     data.push(res.rows[0].customer);
-    data.push(res.rows[0].totalprice); 
+    data.push(res.rows[0].totalprice);
     client.query("SELECT * FROM suborders WHERE id_orders = ($1)",[maxId], function(err, res) {
       data.push(res.rows);
       response.send(data);
@@ -224,6 +234,41 @@ app.get('/getMax', function(req, response, next) {
 });
 
 
+app.get('/kitchenorders', function(req, res, next) {
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  var lastIdFromClient = query.last_id;
+  var deeporder = [];
+  var lastOrderId;
+
+  client.query("SELECT * FROM orders ORDER BY id DESC LIMIT 1", function(err, lastRecord) {
+    lastOrderId = lastRecord.rows[0].id;
+    if (lastIdFromClient < lastOrderId) {
+      var offset = lastOrderId - lastIdFromClient;
+
+      client.query("SELECT * FROM orders ORDER BY id DESC LIMIT ($1)", [offset], function(err, offsetRecords) {
+        if(err) {console.log(err)};
+        var orders = offsetRecords.rows;
+
+        orders.forEach(function(order, index, array){
+          client.query("SELECT * FROM suborders WHERE id_orders = ($1)", [order.id], function(err, subOrders){
+            if(err) { console.log(err) }
+            order.menuitems = subOrders.rows;
+            deeporder.push(order);
+            if(deeporder.length === offset) {
+              res.send(deeporder);
+            };
+          });
+        });
+      });
+    } else {
+      res.status(204);
+      res.send();
+    }
+  })
+});
+
+var orderCount = 0;
 app.post('/orders', function(req, res, next) {
   console.log('order post request');
   var menuitems = req.body.menuitems;
@@ -328,5 +373,3 @@ app.post('/authenticate', function(req, res, next) {
 app.get('/*', function(req, res, next) {
   res.redirect('/');
 });
-
-

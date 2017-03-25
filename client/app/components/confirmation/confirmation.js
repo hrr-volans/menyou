@@ -10,7 +10,7 @@ angular.module('confirmation', ['services'])
       $http.post('/valid',JSON.stringify({email : data})).then(function(response){
         if(response.data) {
           alert("You're savings are on the way! Check your email " + data + " for details.");
-          $http.post('/email', JSON.stringify({email : data, name : name}))
+          $http.post('/email', JSON.stringify({email : data, name : name, orderid: $scope.orderid}))
             .then(function(response){
           });
           setTimeout(function(){window.location = "/";}, 10000);
@@ -41,7 +41,7 @@ angular.module('confirmation', ['services'])
   .directive('confirmationdirective', function(){
     return {
       restrict: 'E',
-      templateUrl: 'app/confirmation/confirmation.html',
+      templateUrl: 'app/components/confirmation/confirmation.html',
       scope:{
         id: '@',
         allorders: '=',

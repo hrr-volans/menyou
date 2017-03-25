@@ -1,11 +1,11 @@
 angular.module('myorders', [])
-  .controller('myOrdersController', function($scope, $window, $http){    
+  .controller('myOrdersController', function($scope, $window, $http){
     var ids = $window.localStorage.menyouUser;
     $http({
       method: 'GET',
       url: '/userorders',
-      params: {orders_ids: ids}      
-    }).then(function successCallback(response) {      
+      params: {orders_ids: ids}
+    }).then(function successCallback(response) {
       console.log(response.data);
       $scope.data = response.data;
     }, function errorCallback(response) {
@@ -15,7 +15,7 @@ angular.module('myorders', [])
   .directive('myorders', function(){
     return {
       restrict: 'EA',
-      templateUrl: 'app/myorders/myorders.html',
+      templateUrl: 'app/components/myorders/myorders.html',
       scope: {
         orders: '='
       }
