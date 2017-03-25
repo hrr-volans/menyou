@@ -44,14 +44,14 @@ angular.module('services', [])
         });
       }
     }
-    var getAllCategoryNames = function(){      
+    var getAllCategoryNames = function(){
       return categoryData.map(function(category){
         return category.name[0].toUpperCase() + category.name.slice(1);
       });
     }
     var setCurrentCategory = function(category) {
       currentCategory.name = category;
-      currentMenuItems.items = menuItemsByCategory[category];      
+      currentMenuItems.items = menuItemsByCategory[category];
     };
     var getCurrentCategory = function() {
       return currentCategory;
@@ -69,9 +69,9 @@ angular.module('services', [])
         input.value = '';
       });
       $('.add-' + target + '-container').append('<p class="success">' + target + ' ' +response.data[0].name+' successfully created!</p>')
-      setTimeout(function(){  
-        $('.success').fadeOut(300, function() { $(this).remove(); });       
-      }, 1500);        
+      setTimeout(function(){
+        $('.success').fadeOut(300, function() { $(this).remove(); });
+      }, 1500);
     }
 
     return {
@@ -113,17 +113,17 @@ angular.module('services', [])
         customer: currentCustomer.name,
         totalprice: total.total,
         menuitems: addedItems.items
-      }      
+      }
 
       $http.post('/orders', JSON.stringify(orderObj)).then(function(response){
         console.log('post order response: ', response.data);
-        if( $window.localStorage.menyouUser ) {          
+        if( $window.localStorage.menyouUser ) {
           var localStorageArray = JSON.parse($window.localStorage.menyouUser);
           localStorageArray.push(response.data.id);
-          $window.localStorage.menyouUser = JSON.stringify(localStorageArray);                    
+          $window.localStorage.menyouUser = JSON.stringify(localStorageArray);
         } else {
           var storageArray = [response.data.id];
-          $window.localStorage.menyouUser = JSON.stringify(storageArray);                    
+          $window.localStorage.menyouUser = JSON.stringify(storageArray);
         }
       }, function(err){
         console.log('POST error: ', err);

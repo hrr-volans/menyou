@@ -1,10 +1,13 @@
 <h1>{{name}} Menu</h1>
 <ul class="menu-list">
   <li ng-repeat="item in data track by $index" class="menu-li-element">
-    <div ng-click="click({item: item})" class="menu-li-div">
+    <div class="menu-li-div">
     	<div class="item-title">{{item.name}}</div>
     	<div>${{item.price}}</div>
     	<div class="item-description">{{item.description}}</div>
+    </div>
+    <div ng-click="click({item: item})" class="menuitem-select">
+      <svg style="display:none" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
     </div>
   </li>
 </ul>

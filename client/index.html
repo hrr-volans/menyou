@@ -18,7 +18,6 @@
   <base href="/">
 </head>
 <body>
-<svg style="display:none;" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
 
   <div ng-app="app" class="app-container">
     <div class="nav-utility" ng-hide="isLoggedIn.status === false" id="logout-button" ng-controller="authController">
@@ -57,16 +56,6 @@
 
   </div>
 
-  <script>
-    $('.menu-li-div').on('click', function(){
-      console.log('text', text);
-      // var text = $(this).innerHTML;
-    });
-    $('.menu-li-element').on('click', function(){
-      console.log('text', text);
-      // var text = $(this).innerHTML;
-    });
-  </script>
   <script src="app/app.js"></script>
   <script src="app/services/services.js"></script>
   <script src="app/components/categories/categories.js"></script>
