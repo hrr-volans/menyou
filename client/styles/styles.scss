@@ -161,6 +161,10 @@ body {
 		}
 
 		div.confirmation-container {
+      .order-number{
+        font-size: 21px;
+        color: $orange;
+      }
 			padding: 0 10%;
       max-width: 800px;
       margin: 0 auto;
