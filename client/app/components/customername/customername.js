@@ -11,7 +11,7 @@ angular.module('customername', ['services'])
   .directive('name', function(){
     return {
       restrict: 'E',
-      templateUrl: 'app/components/customername/customername.html',
+      templateUrl: 'client/app/components/customername/customername.html',
       scope: {
         customer: '='
       }

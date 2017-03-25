@@ -7,7 +7,8 @@
 		</div>
 	</div>
 	<ul class="order-row">
-	  <li ng-repeat="order in allorders | filter: { complete: bool.status }" class="order-row-li">
+	  <!-- <li ng-repeat="order in allorders | filter: { complete: bool.status } | orderBy:'-order.id'" class="order-row-li"> -->
+	  <li ng-repeat="order in allorders | filter: { complete: bool.status } " class="order-row-li">
 	  	<div class="block id-block">
 	  		<p>Order ID</p>
 	  		<p class="id-number">{{order.id}}</p>
@@ -26,8 +27,8 @@
 		    </ul>
 	  	</div>
 	 	<div class="block mark-complete-block">
-	 		<button ng-hide="bool.status" ng-click="completeorder({order: order})" class="done">Done</button>
-	 		<button ng-hide="!bool.status" ng-click="readdorder({order: order})" class="back">Put Back</button>
+	 		<button ng-hide="bool.status" ng-click="completeorder({order: order, allorders: allorders})" class="done">Done</button>
+	 		<button ng-hide="!bool.status" ng-click="readdorder({order: order, allorders: allorders})" class="back">Put Back</button>
 	 	</div>
 	  </li>
 	</ul>

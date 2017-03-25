@@ -16,7 +16,7 @@ angular.module('chosenitems', ['services'])
   .directive('chosenitem', function(){
     return {
       restrict: 'E',
-      templateUrl: 'app/components/chosenitems/chosenitems.html',
+      templateUrl: 'client/app/components/chosenitems/chosenitems.html',
       scope:{
         name: '@',
         added: '=',

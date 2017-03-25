@@ -12,10 +12,11 @@ var jwt = require('jsonwebtoken');
 var secret = 'menyourocks';
 var url = require('url');
 
+
 // var helper = require('sendgrid').mail;
 // var sg = require('sendgrid')(process.env.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);
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/pjmydb';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
 
 
 var routes = require('./routes');
@@ -93,7 +94,8 @@ app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 5000));
 
-app.use(express.static(path.join(__dirname, '/client')));
+app.use(express.static(path.join(__dirname, '/')));
+console.log('path: ', path.join(__dirname, '/'))
 
 app.use(function(req, res, next){
   console.log(req.method, req.url);
@@ -105,7 +107,7 @@ app.listen(app.get('port'), function() {
 });
 
 app.get('/', function(req, res, next) {
-  res.sendfile('index.html');
+  res.sendfile('client/index.html');
 });
 
 app.get('/kitchen', function(req, res, next) {
@@ -200,14 +202,15 @@ app.get('/deeporders', function(req, res, next) {
         if(err) { console.log(err) }
         order.menuitems = result.rows;
         deeporder.push(order);
-        if(deeporder.length === coll.length) {
-           //console.log(deeporder);
+
+        if(deeporder.length === coll.length) {           
            res.send(deeporder);
         };
       });
     });
   });
 });
+
 
 app.get('/getMax', function(req, response, next) {
   client.query("SELECT * FROM orders WHERE id = (SELECT MAX(id) FROM orders)", function(err, res) {
@@ -223,7 +226,41 @@ app.get('/getMax', function(req, response, next) {
   });
 });
 
+app.get('/kitchenorders', function(req, res, next) {
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  var lastIdFromClient = query.last_id;  
+  var deeporder = [];
+  var lastOrderId;
 
+  client.query("SELECT * FROM orders ORDER BY id DESC LIMIT 1", function(err, lastRecord) {
+    lastOrderId = lastRecord.rows[0].id;
+    if (lastIdFromClient < lastOrderId) {
+      var offset = lastOrderId - lastIdFromClient;
+      
+      client.query("SELECT * FROM orders ORDER BY id DESC LIMIT ($1)", [offset], function(err, offsetRecords) {
+        if(err) {console.log(err)};        
+        var orders = offsetRecords.rows;
+
+        orders.forEach(function(order, index, array){
+          client.query("SELECT * FROM suborders WHERE id_orders = ($1)", [order.id], function(err, subOrders){
+            if(err) { console.log(err) }
+            order.menuitems = subOrders.rows;          
+            deeporder.push(order);          
+            if(deeporder.length === offset) {                         
+              res.send(deeporder);
+            };
+          });
+        });
+      });
+    } else {
+      res.status(204);
+      res.send();
+    }    
+  })
+});
+
+var orderCount = 0;
 app.post('/orders', function(req, res, next) {
   console.log('order post request');
   var menuitems = req.body.menuitems;
@@ -251,6 +288,7 @@ app.post('/orders', function(req, res, next) {
 });
 
 app.post('/complete', function(req, res, next) {
+  console.log('complete', req.body)
   client.query("UPDATE orders SET complete = true WHERE id = ($1)", [req.body.id],
     function(err, result) {
       if(err) {console.log("ERROR! ", err) }

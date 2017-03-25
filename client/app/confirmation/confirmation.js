@@ -41,7 +41,7 @@ angular.module('confirmation', ['services'])
   .directive('confirmationdirective', function(){
     return {
       restrict: 'E',
-      templateUrl: 'app/confirmation/confirmation.html',
+      templateUrl: 'client/app/confirmation/confirmation.html',
       scope:{
         id: '@',
         allorders: '=',
