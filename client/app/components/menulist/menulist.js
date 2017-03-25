@@ -16,7 +16,18 @@ angular.module('menulist', ['services'])
         categoriesService.setInitialCategories();
       }, function errorCallback(response) {
         console.log('Error getting data', response);
-    });
+    })
+    .then(function(){
+      setTimeout(function(){
+        $('.menuitem-select').click(function(){
+          var $svg = $(this)[0].childNodes[1];
+          $($svg).css('display', 'block');
+          setTimeout(function(){
+            $($svg).fadeOut()
+          }, 1500);
+        });
+      }, 500);
+    })
 
     $scope.addMenuItemToChosenList = function(item){
       menuitemsService.addMenuItemToChosenList(item);
