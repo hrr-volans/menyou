@@ -303,3 +303,7 @@ app.post('/authenticate', function(req, res, next) {
     res.status(401).send('Invalid credentials');
   }
 });
+
+app.get('/*', function(req, res, next) {
+  res.redirect('/');
+});
