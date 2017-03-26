@@ -5,19 +5,18 @@ angular.module('menulist', ['services'])
       method: 'GET',
       url: '/menuitems'
       }).then(function successCallback(response) {
-
         menuitemsService.setAllMenuItems(response.data);
         console.log('menuitems endpoints data', response.data);
         // everything we need access to in the html, we're attaching to the $scope
-        categoriesService.setAllCategoryData();
-        $scope.category = categoriesService.getCurrentCategory();
-        $scope.data = categoriesService.getMenuItemsInCurrentCategory;
-        $scope.added = menuitemsService.getChosenList();
-        categoriesService.setInitialCategories();
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     })
     .then(function(){
+      categoriesService.setAllCategoryData();
+      $scope.category = categoriesService.getCurrentCategory();
+      $scope.data = categoriesService.getMenuItemsInCurrentCategory;
+      $scope.added = menuitemsService.getChosenList();
+      categoriesService.setInitialCategories();
       setTimeout(function(){
         $('.menuitem-select').click(function(){
           var $svg = $(this)[0].childNodes[1];

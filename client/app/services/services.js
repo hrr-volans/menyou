@@ -33,6 +33,7 @@ angular.module('services', [])
       //This section organizes the menu items by category name
       menuItemsByCategory = {};
       menuItems.forEach(function(menuObj){
+        console.log('menuObj ', menuObj);
         var key = findCategoryById(menuObj.category_id)[0].name;
         var formattedKey = key[0].toUpperCase() + key.slice(1);
         menuItemsByCategory[formattedKey] = menuItemsByCategory[formattedKey] || [];
