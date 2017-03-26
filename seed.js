@@ -1,5 +1,6 @@
 var express = require('express');
 var pg = require('pg');
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
 var client = new pg.Client(connectionString);
 
 client.connect(function (err) {
