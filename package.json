@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/Ignaciopalma/menyou#readme",
   "dependencies": {
+    "alert-alert": "^1.0.10",
     "angular": "^1.6.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
+    "bootbox": "^4.4.0",
     "bourbon-neat": "^2.0.0",
     "bower": "^1.8.0",
     "express": "^4.15.2",
@@ -33,6 +35,8 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-nodemon": "^0.4.2",
     "grunt-shell": "^2.1.0",
+    "jquery": "^3.2.1",
+    "js-alert": "^1.0.4",
     "jsonwebtoken": "^7.3.0",
     "jwt-simple": "^0.5.0",
     "knex": "^0.12.8",
@@ -45,6 +49,7 @@
     "q": "^1.4.1",
     "request": "^2.36.0",
     "require": "^2.4.20",
+    "ripple-js": "^1.4.4",
     "sendgrid": "^4.8.4",
     "validator": "^7.0.0"
   }
