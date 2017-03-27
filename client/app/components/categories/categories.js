@@ -7,6 +7,7 @@ angular.module('categories', ['services'])
         $scope.data = response.data.map(function(category){
           return category.name[0].toUpperCase() + category.name.slice(1);
         });
+        //$scope.data = [1, 2, 3, 4];
         console.log('category response', $scope.data)
         //first arg exists
         categoriesService.setAllCategoryData(response.data);
@@ -31,12 +32,14 @@ angular.module('categories', ['services'])
     }
 
     $scope.$on('LastRepeaterElement', function(){
-      var categoryIndex = $scope.data.indexOf(categoriesService.initialCategory);
-      $('.category-slider').slick({
-        arrows: true,
-        dots: true,
-        initialSlide: categoryIndex
-      });
+      categoriesService.newGetCurrentData().then(function(response) {
+        var categoryIndex = $scope.data.indexOf(response.data.categoryName.name);        
+        $('.category-slider').slick({
+          arrows: true,
+          dots: true,
+          initialSlide: categoryIndex
+        });
+      })
     });
   })
   .directive('emitLastRepeaterElement', function(){
