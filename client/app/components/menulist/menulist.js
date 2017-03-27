@@ -8,7 +8,7 @@ angular.module('menulist', ['services'])
       console.log('new res', result)
       $scope.data = categoriesService.getMenuItemsInCurrentCategory; 
       console.log('scope data: ', $scope.data);
-      $scope.category = result.data.categoryName;     
+      $scope.category = result.getCurrentCategory;     
     })
     categoriesService.newSetMenuByCategories();
 
