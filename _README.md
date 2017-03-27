@@ -61,7 +61,7 @@ Here is a summary of the endpoints
 
 ```GET /newGetCurrentData```
 
-```GET /menuByCategory - Fetches all menu items associated with given Category\n``` 
+```GET /menuByCategory - Fetches all menu items associated with given Category``` 
 
 
 User
