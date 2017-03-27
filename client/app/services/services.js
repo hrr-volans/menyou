@@ -26,7 +26,7 @@ angular.module('services', [])
         params: {current_time: time}
         }).then(function successCallback(response) {                              
           currentMenuItems.items = response.data.menuItems;             
-          console.log('servcie res', currentMenuItems)                 
+          console.log('servcie res', response.data)                 
           return response;
         }, function errorCallback(response) {
           console.log('Error getting data', response);
