@@ -1,6 +1,6 @@
 # menYOU
 
-Say goodbye to clunky, paper menus covered with food stains. Now it's on your phone! 
+> Say goodbye to clunky, paper menus covered with food stains. Now it's on your phone! 
 
 It's menYOU - the mobile app that puts YOU in charge of the menu
 
@@ -14,31 +14,21 @@ Peruse food and beverage items, see the daily specials, place your order and pay
 
 ## Table of Contents
 
+1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
-1. [Usage](#Usage)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
+## Usage
 
-
-## Requirements
-
-You must have Postgres Database installed (9.4.x), npm and node (6.1.x)
-
-## Development
-
-### Installing Dependencies
-
-After forking and cloning the app to your local machine, you must install the dependencies with npm install 
+After forking and cloning the app to your local machine, you must install the dependencies with npm install. You must have Postgres Database installed, npm and node.
 
 ```> sudo npm install```
 
-### Tasks
-
-In order make it work locally you must create a database called "menyoudb" so the app can interact with. We have some sample data so you can get started. The database must be created before you run the following command. In the terminal, from the main folder you can run:
+In order make it work locally you must create a database called "menyoudb" so the app can interact with. We have some sample data so can get started, the database must be created before you run the following command. In the terminal, from the main folder you can run:
 
 ```> node seed.js```
 
@@ -46,10 +36,7 @@ Now you can start the server (nodemon recommended)
 
 ```> nodemon server.js``` 
 
-## Usage
-
 Here is a summary of the endpoints
-
 ```GET /categories```
 
 ```GET /menuitems```
@@ -58,13 +45,11 @@ Here is a summary of the endpoints
 
 ```GET /valid```
 
-```GET /email```
-
 ```GET /useroders```
 
 ```GET /deeporders```
 
-```GET /getMax```
+```GET /getMax - Gets most recent order ```
 
 ```GET /kitchenorders```
 
@@ -74,8 +59,34 @@ Here is a summary of the endpoints
 
 ```GET /newGetCurrentData```
 
-```GET /menuByCategory - Fetches all menu items associated with given Category and displays them on the main page``` 
+```
+GET /menuByCategory 
+  // Fetches all menu items associated with given Category, returns JSON
+  {
+    "Dinner": [
+      {
+        "id": 1,
+        "name": "Walker Texas Brisket",
+        "description": "Texas sized burger in walker sauce",
+        "price": "12.99",
+        "category_id": 3
+      }
+    ],
+    "Deserts": [
+      {
+        "id": 12,
+        "name": "Mango Spritzer",
+        "description": "Mango and orange juice in champagne",
+        "price": "7.99",
+        "category_id": 4
+      }
+    ]
+  }
+``` 
 
+``` POST /email - Sends validated email ``` 
+
+```POST /valid - Validates an email address```
 
 User
 
@@ -97,9 +108,18 @@ Kitchen users can toggle between a list of completed orders or pending orders.
 
 The display lists the Order ID, customer name, the menu items associated with the order and a "Done" button which moves a pending order to a "completed" status.
 
+## Requirements
 
+- Node 6.10.x
+- Postgresql 9.4.x
 
+## Development
 
+### Installing Dependencies
+
+From within the root directory:
+
+npm install
 
 ### Roadmap
 
