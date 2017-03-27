@@ -1,4 +1,4 @@
-var express = require('express');
+ var express = require('express');
 var path = require('path');
 var pg = require('pg');
 var bcrypt = require('bcrypt-nodejs');
@@ -7,22 +7,17 @@ var routes = require('./routes');
 var nodemailer = require('nodemailer');
 exports.nodemailer = nodemailer;
 var validator = require('validator');
-
 var jwt = require('jsonwebtoken');
 var secret = 'menyourocks';
 var url = require('url');
-
-// var helper = require('sendgrid').mail;
-// var sg = require('sendgrid')(process.env.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);
-
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/pjmydb';
-
-
 var routes = require('./routes');
+var JSAlert = require("js-alert");
 
 var app = express();
 
 var client = new pg.Client(connectionString);
+
 
 client.connect(function (err) {
 

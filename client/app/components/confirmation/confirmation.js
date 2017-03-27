@@ -1,5 +1,5 @@
 angular.module('confirmation', ['services'])
-  .controller('confirmationController', function($http, $scope, menuitemsService) {
+  .controller('confirmationController', function($http, $scope, $timeout, menuitemsService) {
     getOrders();
     $scope.data = menuitemsService.getChosenList();
     $scope.lastOrder;
@@ -9,17 +9,15 @@ angular.module('confirmation', ['services'])
       $scope.data = {};
       $http.post('/valid',JSON.stringify({email : data})).then(function(response){
         if(response.data) {
-          alert("You're savings are on the way! Check your email " + data + " for details.");
-          $http.post('/email', JSON.stringify({email : data, name : name, orderid: $scope.orderid}))
+          JSAlert.alert("You're savings are on the way! Check your email " + data + " for details.").dismissIn(700 * 10);
+          $http.post('/email', JSON.stringify({email : data, name : name, orderid:$scope.orderid}))
             .then(function(response){
           });
-          setTimeout(function(){window.location = "/";}, 10000);
         } else {
-          alert("Please enter a valid email address for coupons and spnecial offers!");
+          JSAlert.confirm("That email address is invalid. Please enter reenter you email address and submit again.").dismissIn(1000*10);
         }
       });
     };
-    //iterate through orders
     function getOrders() {
       // setTimeout(function(){window.location = "http://localhost:5000/";}, 30000);
       $http({
