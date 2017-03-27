@@ -32,6 +32,10 @@ In order make it work locally you must create a database called "menyoudb" so th
 
 ```> node seed.js```
 
+Now you can start the server (nodemon recommended)
+
+```> nodemon server.js``` 
+
 User
 
 Upon opening app, user chooses which menu they'd like to access via a slider - Breakfast, Lunch, Dinner or Drinks. User touch/clicks the items they wish to purchase. 
