@@ -156,8 +156,7 @@ app.get('/deeporders', function(req, res, next) {
 });
 
 app.get('/getMax', function(req, response, next) {
-  client.query("SELECT * FROM orders WHERE id = (SELECT MAX(id) FROM orders)", function(err, res) {
-    console.log('getmax', res.rows);
+  client.query("SELECT * FROM orders WHERE id = (SELECT MAX(id) FROM orders)", function(err, res) {    
     var data = [];
     var maxId = res.rows[0].id;
     data.push(res.rows[0].id);
