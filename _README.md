@@ -63,7 +63,7 @@ Here is a summary of the endpoints
 
 ``` POST /email - Sends validated email ``` 
 
-```POST /valid - Validates an email address``
+```POST /valid - Validates an email address```
 
 User
 
