@@ -5,22 +5,21 @@ angular.module('menulist', ['services'])
     categoriesService.newGetCurrentData(current_time).then(function(result) {
       console.log('new res', result)
       $scope.data = categoriesService.getMenuItemsInCurrentCategory; 
+      console.log('scope data: ', $scope.data);
       $scope.category = result.data.categoryName;     
     })
     categoriesService.newSetMenuByCategories();
-    
+
     $http({
       method: 'GET',
       url: '/menuitems'
       }).then(function successCallback(response) {
-        menuitemsService.setAllMenuItems(response.data);
-        console.log('menuitems endpoints data', response.data);
+        menuitemsService.setAllMenuItems(response.data);        
         // everything we need access to in the html, we're attaching to the $scope
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     })
-    .then(function(){      
-      console.log('scope category', $scope.category)
+    .then(function(){            
       $scope.added = menuitemsService.getChosenList();
       categoriesService.setInitialCategories();
       setTimeout(function(){
