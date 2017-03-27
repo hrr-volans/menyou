@@ -319,6 +319,8 @@ app.get('/newGetCurrentData', function(req, res, next) {
     initialCategory = 'Lunch';
   } else if (current_time < 24) {
     initialCategory = 'Dinner';
+  } else {
+    initialCategory = 'Lunch';
   }
 
   client.query('SELECT * FROM categories WHERE name = ($1)', [initialCategory], function(err, currentCategory) {
