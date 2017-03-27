@@ -25,6 +25,7 @@ angular.module('services', [])
       if(data) {
         categoryData = data;
       }
+
       menuItems = [];
       menuitemsService.getAllMenuItems().forEach(item => menuItems.push(item));
       createMenuItemsByCategory();

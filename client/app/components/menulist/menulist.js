@@ -12,11 +12,7 @@ angular.module('menulist', ['services'])
         console.log('Error getting data', response);
     })
     .then(function(){
-      categoriesService.setAllCategoryData();
-      $scope.category = categoriesService.getCurrentCategory();
-      $scope.data = categoriesService.getMenuItemsInCurrentCategory;
-      $scope.added = menuitemsService.getChosenList();
-      categoriesService.setInitialCategories();
+      categoriesService.setAllCategoryData();      
       setTimeout(function(){
         $('.menuitem-select').click(function(){
           var $svg = $(this)[0].childNodes[1];
@@ -26,6 +22,11 @@ angular.module('menulist', ['services'])
           }, 1500);
         });
       }, 500);
+    }).then(function() {
+      $scope.category = categoriesService.getCurrentCategory();
+      $scope.data = categoriesService.getMenuItemsInCurrentCategory;
+      $scope.added = menuitemsService.getChosenList();
+      categoriesService.setInitialCategories();
     })
 
     $scope.addMenuItemToChosenList = function(item){
