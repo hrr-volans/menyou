@@ -24,10 +24,13 @@ Peruse food and beverage items, see the daily specials, place your order and pay
 
 ## Usage
 
-After forking and cloning the app to your local machine, you must install the dependencies with npm install. 
+After forking and cloning the app to your local machine, you must install the dependencies with npm install. You must have Postgres Database installed, npm and node.
 
 ```> sudo npm install```
 
+In order make it work locally you must create a database called "menyoudb" so the app can interact with. We have some sample data so can get started, the database must be created before you run the following command. In the terminal, from the main folder you can run:
+
+```> node seed.js```
 
 User
 
