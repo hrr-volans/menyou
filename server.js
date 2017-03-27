@@ -332,7 +332,7 @@ app.get('/newGetCurrentData', function(req, res, next) {
         console.log('server menu items ', currentMenuItems.rows)
       res.send({
         menuItems: currentMenuItems.rows,
-        categoryName: {name: initialCategory}
+        categoryName: {name: initialCategory, id: categoryId}
       });
     })
   })

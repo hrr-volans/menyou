@@ -6,6 +6,7 @@ angular.module('services', [])
     var menuItems = [];
     var currentMenuItems =  {items: []};
     var currentCategory = {name: undefined};
+    var currentCategoryIndex = 0;
 
     var newGetCurrentData = function(time) {
       return $http({
@@ -14,6 +15,7 @@ angular.module('services', [])
         params: {current_time: time}
         }).then(function successCallback(response) {                                        
           console.log('servcie res', response.data);                 
+          currentCategoryIndex = response.data.categoryName.id;
           currentCategory.name = response.data.categoryName.name;
           currentMenuItems.items = response.data.menuItems;
           return response;
@@ -106,7 +108,8 @@ angular.module('services', [])
       setInitialCategories: setInitialCategories,      
       reactToSuccessfulPost: reactToSuccessfulPost,
       newGetCurrentData: newGetCurrentData,
-      newSetMenuByCategories: newSetMenuByCategories      
+      newSetMenuByCategories: newSetMenuByCategories,
+      currentCategoryIndex: currentCategoryIndex
     };
   })
 

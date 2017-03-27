@@ -1,14 +1,23 @@
 angular.module('categories', ['services'])
   .controller('categoriesController', function($http, $scope, categoriesService){
+    var current_time = moment().format("HH");
+    var initialCategory;
+    if(current_time < 12) {
+      initialCategory = 'Breakfast';
+    } else if (current_time < 16) {
+      initialCategory = 'Lunch';
+    } else if (current_time < 24) {
+      initialCategory = 'Dinner';
+    } else {
+      initialCategory = 'Lunch';
+    }
     $http({
       method: 'GET',
       url: '/categories'
       }).then(function successCallback(response) {
         $scope.data = response.data.map(function(category){
           return category.name[0].toUpperCase() + category.name.slice(1);
-        });
-        //$scope.data = [1, 2, 3, 4];
-        console.log('category response', $scope.data)
+        });                
         //first arg exists
         categoriesService.setAllCategoryData(response.data);
       }, function errorCallback(response) {
@@ -31,15 +40,13 @@ angular.module('categories', ['services'])
       
     }
 
-    $scope.$on('LastRepeaterElement', function(){
-      categoriesService.newGetCurrentData().then(function(response) {
-        var categoryIndex = $scope.data.indexOf(response.data.categoryName.name);        
-        $('.category-slider').slick({
-          arrows: true,
-          dots: true,
-          initialSlide: categoryIndex
-        });
-      })
+    $scope.$on('LastRepeaterElement', function(){      
+      var categoryIndex = $scope.data.indexOf(initialCategory);        
+      $('.category-slider').slick({
+        arrows: true,
+        dots: true,
+        initialSlide: categoryIndex
+      });      
     });
   })
   .directive('emitLastRepeaterElement', function(){
