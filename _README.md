@@ -36,6 +36,32 @@ Now you can start the server (nodemon recommended)
 
 ```> nodemon server.js``` 
 
+Here is a summary of the endpoints
+```GET /categories```
+
+```GET /menuitems```
+
+```GET /orders```
+
+```GET /valid```
+
+```GET /email```
+
+```GET /useroders```
+
+```GET /deeporders```
+
+```GET /getMax```
+
+```GET /kitchenorders```
+
+```GET /ceateMenuItem```
+
+```GET /authenticate```
+
+```GET /newGetCurrentData```
+
+```GET /menuByCategory```
 User
 
 Upon opening app, user chooses which menu they'd like to access via a slider - Breakfast, Lunch, Dinner or Drinks. User touch/clicks the items they wish to purchase. 
