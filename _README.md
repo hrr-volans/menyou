@@ -51,7 +51,7 @@ Here is a summary of the endpoints
 
 ```GET /deeporders```
 
-```GET /getMax```
+```GET /getMax/Gets most recent order ```
 
 ```GET /kitchenorders```
 
