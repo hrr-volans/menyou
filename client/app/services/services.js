@@ -24,8 +24,7 @@ angular.module('services', [])
         method: 'GET',
         url: '/newGetCurrentData',
         params: {current_time: time}
-        }).then(function successCallback(response) {                              
-          currentMenuItems.items = response.data.menuItems;             
+        }).then(function successCallback(response) {                                        
           console.log('servcie res', response.data)                 
           return response;
         }, function errorCallback(response) {
@@ -108,6 +107,7 @@ angular.module('services', [])
     }
 
     return {
+      currentMenuItems: currentMenuItems,
       setCurrentCategory: setCurrentCategory,
       getCurrentCategory: getCurrentCategory,
       getMenuItemsInCurrentCategory: currentMenuItems,

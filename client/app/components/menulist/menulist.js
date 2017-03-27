@@ -3,6 +3,7 @@ angular.module('menulist', ['services'])
   .controller('menulistController', function($http, $scope, categoriesService, menuitemsService){
     var current_time = moment().format("HH");
     categoriesService.newGetCurrentData(current_time).then(function(result) {
+      categoriesService.currentMenuItems = response.data.menuItems;             
       console.log('new res', result)
       $scope.data = categoriesService.getMenuItemsInCurrentCategory; 
       console.log('scope data: ', $scope.data);
