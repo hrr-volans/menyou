@@ -24,7 +24,7 @@ Peruse food and beverage items, see the daily specials, place your order and pay
 
 ## Usage
 
-After forking and cloning the app to your local machine, you must install the dependencies with npm install. \n
+After forking and cloning the app to your local machine, you must install the dependencies with npm install. 
 
 ```> sudo npm install```
 
