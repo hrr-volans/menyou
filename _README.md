@@ -61,7 +61,10 @@ Here is a summary of the endpoints
 
 ```GET /menuByCategory - Fetches all menu items associated with given Category``` 
 
-``` POST /email - Handles/sends validated email ``` 
+``` POST /email - Sends validated email ``` 
+
+```POST /valid - Validates an email address``
+
 User
 
 Upon opening app, user chooses which menu they'd like to access via a slider - Breakfast, Lunch, Dinner or Drinks. User touch/clicks the items they wish to purchase. 
