@@ -47,7 +47,7 @@ Here is a summary of the endpoints
 
 ```GET /useroders```
 
-```GET /deeporders```
+```GET /deeporders - Fetches orders by id. Subsequent suborders included.  ```
 
 ```GET /getMax - Gets most recent order ```
 
@@ -59,30 +59,7 @@ Here is a summary of the endpoints
 
 ```GET /newGetCurrentData```
 
-```
-GET /menuByCategory 
-  // Fetches all menu items associated with given Category, returns JSON
-  {
-    "Dinner": [
-      {
-        "id": 1,
-        "name": "Walker Texas Brisket",
-        "description": "Texas sized burger in walker sauce",
-        "price": "12.99",
-        "category_id": 3
-      }
-    ],
-    "Deserts": [
-      {
-        "id": 12,
-        "name": "Mango Spritzer",
-        "description": "Mango and orange juice in champagne",
-        "price": "7.99",
-        "category_id": 4
-      }
-    ]
-  }
-``` 
+```GET /menuByCategory - Fetches all menu items associated with given Category``` 
 
 ``` POST /email - Sends validated email ``` 
 
