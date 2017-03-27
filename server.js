@@ -306,7 +306,58 @@ app.post('/authenticate', function(req, res, next) {
   }
 });
 
+app.get('/newGetCurrentData', function(req, res, next) {
+  var initialCategory;
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  var current_time = query.current_time;
+
+  var initialCategory;
+  if(current_time < 12) {
+    initialCategory = 'Breakfast';
+  } else if (current_time < 16) {
+    initialCategory = 'Lunch';
+  } else if (current_time < 24) {
+    initialCategory = 'Dinner';
+  }
+
+  client.query('SELECT * FROM categories WHERE name = ($1)', [initialCategory], function(err, currentCategory) {
+    if(err) {console.log(err)}
+      console.log(initialCategory)
+    var categoryId = currentCategory.rows[0].id;
+
+    client.query('SELECT * FROM menuitems WHERE category_id = ($1)', [categoryId], function(err, currentMenuItems) {
+      if(err) {console.log(err)}
+
+      res.send({
+        menuItems: currentMenuItems.rows,
+        categoryName: {name: initialCategory}
+      });
+    })
+  })
+});
+
+app.get('/menuByCategory', function(req, res, next) {
+  var menuByCategory = {};
+  client.query('SELECT * FROM categories', function(err, categories) {
+    console.log('length', categories.rows.length)
+    categories.rows.forEach(function(category, index) {
+      client.query('SELECT * FROM menuitems WHERE category_id = ($1)', [category.id], function(err, menuitems) {        
+        menuByCategory[category.name] = menuitems.rows;        
+
+        if(index === categories.rows.length - 1) {
+          console.log('menu', menuByCategory);
+          res.send(menuByCategory);
+        }
+      });
+    })
+
+  })
+});
 
 app.get('/*', function(req, res, next) {
   res.redirect('/');
 });
+
+
+

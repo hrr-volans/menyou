@@ -1,5 +1,6 @@
 angular.module('services', [])
   .factory('categoriesService', function ($http, menuitemsService) {
+
     var current_time = moment().format("HH");
     var initialCategory;
     if(current_time < 12) {
@@ -9,6 +10,7 @@ angular.module('services', [])
     } else if (current_time < 24) {
       initialCategory = 'Dinner';
     }
+
     //These variables hold the 'state' of current category & menu items in that category
     var categoryData = [];
     var menuItemsByCategory = {};
@@ -16,6 +18,32 @@ angular.module('services', [])
     var currentMenuItems =  {items: []};
     var currentCategory = {name: undefined};
 
+
+    var newGetCurrentData = function(time) {
+      return $http({
+        method: 'GET',
+        url: '/newGetCurrentData',
+        params: {current_time: time}
+        }).then(function successCallback(response) {                              
+          currentMenuItems.items = response.data.menuItems;             
+          console.log('servcie res', currentMenuItems)                 
+          return response;
+        }, function errorCallback(response) {
+          console.log('Error getting data', response);
+      })
+    }
+
+    var newSetMenuByCategories = function() {
+      $http({
+        method: 'GET',
+        url: '/menuByCategory',        
+        }).then(function successCallback(response) {                    
+          console.log('menu by cat method', response.data);
+          menuItemsByCategory = response.data;
+        }, function errorCallback(response) {
+          console.log('Error getting data', response);
+      })
+    }
     //Helper functions
     var setInitialCategories = function() {
       setCurrentCategory(initialCategory);
@@ -28,7 +56,8 @@ angular.module('services', [])
 
       menuItems = [];
       menuitemsService.getAllMenuItems().forEach(item => menuItems.push(item));
-      createMenuItemsByCategory();
+      console.log('menu', data)
+      //createMenuItemsByCategory();
     }
     var createMenuItemsByCategory = function() {
       //This section organizes the menu items by category name
@@ -39,6 +68,7 @@ angular.module('services', [])
         var formattedKey = key[0].toUpperCase() + key.slice(1);
         menuItemsByCategory[formattedKey] = menuItemsByCategory[formattedKey] || [];
         menuItemsByCategory[formattedKey].push(menuObj);
+        console.log('by category', menuItemsByCategory)
       });
       function findCategoryById(id){
         return categoryData.filter(function(category){
@@ -56,12 +86,13 @@ angular.module('services', [])
       currentMenuItems.items = menuItemsByCategory[category];
     };
     var getCurrentCategory = function() {
+      console.log('currentCategory', currentCategory)
       return currentCategory;
     };
     var getMenuItemsInCurrentCategory = function() {
       return currentMenuItems;
     };
-    var getAllCategoryData= function() {
+    var getAllCategoryData= function() {    
       return categoryData;
     };
 
@@ -84,7 +115,9 @@ angular.module('services', [])
       setAllCategoryData: setAllCategoryData,
       setInitialCategories: setInitialCategories,
       initialCategory: initialCategory,
-      reactToSuccessfulPost: reactToSuccessfulPost
+      reactToSuccessfulPost: reactToSuccessfulPost,
+      newGetCurrentData: newGetCurrentData,
+      newSetMenuByCategories: newSetMenuByCategories
     };
   })
 

@@ -1,6 +1,14 @@
 angular.module('menulist', ['services'])
   // we define $scope in controller
   .controller('menulistController', function($http, $scope, categoriesService, menuitemsService){
+    var current_time = moment().format("HH");
+    categoriesService.newGetCurrentData(current_time).then(function(result) {
+      console.log('new res', result)
+      $scope.data = categoriesService.getMenuItemsInCurrentCategory; 
+      $scope.category = result.data.categoryName;     
+    })
+    categoriesService.newSetMenuByCategories();
+    
     $http({
       method: 'GET',
       url: '/menuitems'
@@ -11,8 +19,10 @@ angular.module('menulist', ['services'])
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     })
-    .then(function(){
-      categoriesService.setAllCategoryData();      
+    .then(function(){      
+      console.log('scope category', $scope.category)
+      $scope.added = menuitemsService.getChosenList();
+      categoriesService.setInitialCategories();
       setTimeout(function(){
         $('.menuitem-select').click(function(){
           var $svg = $(this)[0].childNodes[1];
@@ -22,11 +32,6 @@ angular.module('menulist', ['services'])
           }, 1500);
         });
       }, 500);
-    }).then(function() {
-      $scope.category = categoriesService.getCurrentCategory();
-      $scope.data = categoriesService.getMenuItemsInCurrentCategory;
-      $scope.added = menuitemsService.getChosenList();
-      categoriesService.setInitialCategories();
     })
 
     $scope.addMenuItemToChosenList = function(item){
