@@ -330,7 +330,7 @@ app.get('/newGetCurrentData', function(req, res, next) {
 
     client.query('SELECT * FROM menuitems WHERE category_id = ($1)', [categoryId], function(err, currentMenuItems) {
       if(err) {console.log(err)}
-
+        console.log('server menu items ', currentMenuItems)
       res.send({
         menuItems: currentMenuItems.rows,
         categoryName: {name: initialCategory}
