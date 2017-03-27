@@ -34,7 +34,7 @@ In order make it work locally you must create a database called "menyoudb" so th
 
 User
 
-Upon opening app, user chooses which menu they'd like to access via a slider - Breakfast, Lunch, Dinner or Drinks. User enters a name and touch/clicks the items they wish to purchase. 
+Upon opening app, user chooses which menu they'd like to access via a slider - Breakfast, Lunch, Dinner or Drinks. User touch/clicks the items they wish to purchase. 
 
 Upon touch/clicking any menu item, a suborder component appears below the menu item list displaying the chosen item, its quantity, the cost per item and the total amount of all items. Subsequent touch/clicks to the same menu item increases the quantity in the suborder section. Touch/clicking the item in the suborder component decreases the quantity (if > 1) or removes the item altogether. 
 
