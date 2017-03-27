@@ -125,6 +125,7 @@ app.post('/email', function(req, res, next) {
 app.get('/userorders', function(req, res, next) {
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
+  console.log('userorders query: ', query)
   var ids = JSON.parse(query.orders_ids);
   var userOrders = [];
   ids.forEach(function(id) {
@@ -206,7 +207,7 @@ app.get('/kitchenorders', function(req, res, next) {
 
 var orderCount = 0;
 app.post('/orders', function(req, res, next) {
-  console.log('order post request');
+  console.log('order post request', req.body);
   var menuitems = req.body.menuitems;
 
   client.query("INSERT INTO \

@@ -39,11 +39,11 @@ client.connect(function (err) {
 
   client.query("INSERT INTO \
                   categories(name) \
-                    VALUES('breakfast'), \
-                          ('lunch'), \
-                          ('dinner'), \
-                          ('desert'), \
-                          ('drinks')");
+                    VALUES('Breakfast'), \
+                          ('Lunch'), \
+                          ('Dinner'), \
+                          ('Desert'), \
+                          ('Drinks')");
 
 client.query("INSERT INTO \
                   menuitems(name, description, price, category_id) \

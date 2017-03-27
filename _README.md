@@ -24,9 +24,147 @@ Peruse food and beverage items, see the daily specials, place your order and pay
 
 ## Usage
 
+After forking and cloning the app to your local machine, you must install the dependencies with npm install. You must have Postgres Database installed, npm and node.
+
+```> sudo npm install```
+
+In order make it work locally you must create a database called "menyoudb" so the app can interact with. We have some sample data so can get started, the database must be created before you run the following command. In the terminal, from the main folder you can run:
+
+```> node seed.js```
+
+Now you can start the server (nodemon recommended)
+
+```> nodemon server.js``` 
+
+Here is a summary of the endpoints
+```GET /categories```
+
+```GET /menuitems```
+
+```
+  POST /orders
+    // Creates a new order record and its related suborders
+    // It expects a JSON object containing the order and a menuitems 
+    // property with its suborders associated:
+
+    { customer: 'Alice Green',
+      totalprice: '20.22',
+      menuitems: [ 
+        { id: 13,
+          name: 'cool lunch',
+          description: 'bla bla bla',
+          price: '12.23',
+          category_id: 2,
+          quantity: 1 },
+        { id: 7,
+          name: 'Grilled Cheese Sandwich',
+          description: 'Tasty grilled cheese sandwich',
+          price: '7.99',
+          category_id: 2,
+          quantity: 1 
+        } 
+      ] 
+    }
+```
+
+```GET /valid```
+
+```
+  GET /useroders
+    // This endpoint will return orders for a specific client.
+    // Since we are not login in clients nor storing them in DB
+    // the data comes from the local Storage in the browser.
+    // it expect an array of orders id. Returns JSON in this shape:
+
+    { orders_ids: '[88,89,90]' } 
+```
+
+```GET /deeporders - Fetches orders by id. Subsequent suborders included.  ```
+
+```GET /getMax - Gets most recent order ```
+
+```
+	GET /kitchenorders?last_id=20
+		// This endpoint will return the last orders since the previous request
+		// When opening the kitchen page, will default to 0 it will bring them all
+		// subsequent request must specify the last order id so it will return only the new ones
+		[
+		  {
+		    "id": 24,
+		    "customer": "Bryce",
+		    "totalprice": "12.99",
+		    "complete": false,
+		    "menuitems": [
+		      {
+		        "id": 38,
+		        "description": "Philly Cheese Sandwich",
+		        "subtotalprice": "12.99",
+		        "quantity": 1,
+		        "id_orders": 24,
+		        "id_menuitems": 2
+		      }
+		    ]
+		  }
+		]
+```
+
+```GET /ceateMenuItem```
+
+```GET /authenticate```
+
+```
+  GET /newGetCurrentData?current_time=22
+  	// This endpoint is expecting a query params related to current time
+  	// It returns proper data to the specific time of the day
+
+  	{
+		  "menuItems": [
+		    {
+		      "id": 1,
+		      "name": "Walker Texas Brisket",
+		      "description": "Texas sized burger in walker sauce",
+		      "price": "12.99",
+		      "category_id": 3
+		    }
+		  ],
+		  "categoryName": {
+		    "name": "Dinner",
+		    "id": 3
+		  }
+		}
+```
+```
+GET /menuByCategory 
+  // Fetches all menu items associated with given Category, returns JSON
+  {
+    "Dinner": [
+      {
+        "id": 1,
+        "name": "Walker Texas Brisket",
+        "description": "Texas sized burger in walker sauce",
+        "price": "12.99",
+        "category_id": 3
+      }
+    ],
+    "Deserts": [
+      {
+        "id": 12,
+        "name": "Mango Spritzer",
+        "description": "Mango and orange juice in champagne",
+        "price": "7.99",
+        "category_id": 4
+      }
+    ]
+  }
+``` 
+
+``` POST /email - Sends validated email ``` 
+
+```POST /valid - Validates an email address```
+
 User
 
-Upon opening app, user chooses which menu they'd like to access via a slider - Breakfast, Lunch, Dinner or Drinks. User enters a name and touch/clicks the items they wish to purchase. 
+Upon opening app, user chooses which menu they'd like to access via a slider - Breakfast, Lunch, Dinner or Drinks. User touch/clicks the items they wish to purchase. 
 
 Upon touch/clicking any menu item, a suborder component appears below the menu item list displaying the chosen item, its quantity, the cost per item and the total amount of all items. Subsequent touch/clicks to the same menu item increases the quantity in the suborder section. Touch/clicking the item in the suborder component decreases the quantity (if > 1) or removes the item altogether. 
 
