@@ -9,20 +9,7 @@ angular.module('menulist', ['services'])
       console.log('scope data: ', $scope.data);
       $scope.category = categoriesService.getCurrentCategory();     
       console.log('scope category: ', $scope.category);
-    })
-    categoriesService.newSetMenuByCategories();
-    $http({
-      method: 'GET',
-      url: '/menuitems'
-      }).then(function successCallback(response) {
-        //menuitemsService.setAllMenuItems(response.data);        
-        // everything we need access to in the html, we're attaching to the $scope
-      }, function errorCallback(response) {
-        console.log('Error getting data', response);
-    })
-    .then(function(){            
       $scope.added = menuitemsService.getChosenList();
-      //categoriesService.setInitialCategories();
       setTimeout(function(){
         $('.menuitem-select').click(function(){
           var $svg = $(this)[0].childNodes[1];
@@ -33,6 +20,7 @@ angular.module('menulist', ['services'])
         });
       }, 500);
     })
+    categoriesService.newSetMenuByCategories();
 
     $scope.addMenuItemToChosenList = function(item){
       menuitemsService.addMenuItemToChosenList(item);

@@ -103,8 +103,7 @@ angular.module('services', [])
       getMenuItemsInCurrentCategory: currentMenuItems,
       getAllCategoryNames: getAllCategoryNames,
       setAllCategoryData: setAllCategoryData,
-      setInitialCategories: setInitialCategories,
-      //initialCategory: initialCategory,
+      setInitialCategories: setInitialCategories,      
       reactToSuccessfulPost: reactToSuccessfulPost,
       newGetCurrentData: newGetCurrentData,
       newSetMenuByCategories: newSetMenuByCategories      
