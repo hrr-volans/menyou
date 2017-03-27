@@ -25,7 +25,10 @@ Peruse food and beverage items, see the daily specials, place your order and pay
 ## Usage
 
 After forking and cloning the app to your local machine, you must install the dependencies with npm install.
-```$> sudo npm install```
+
+```\n$> sudo npm install```
+
+
 User
 
 Upon opening app, user chooses which menu they'd like to access via a slider - Breakfast, Lunch, Dinner or Drinks. User enters a name and touch/clicks the items they wish to purchase. 
