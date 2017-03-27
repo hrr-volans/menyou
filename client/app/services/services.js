@@ -1,16 +1,5 @@
 angular.module('services', [])
   .factory('categoriesService', function ($http, menuitemsService) {
-
-    var current_time = moment().format("HH");
-    var initialCategory;
-    if(current_time < 12) {
-      initialCategory = 'Breakfast';
-    } else if (current_time < 16) {
-      initialCategory = 'Lunch';
-    } else if (current_time < 24) {
-      initialCategory = 'Dinner';
-    }
-
     //These variables hold the 'state' of current category & menu items in that category
     var categoryData = [];
     var menuItemsByCategory = {};
@@ -18,14 +7,15 @@ angular.module('services', [])
     var currentMenuItems =  {items: []};
     var currentCategory = {name: undefined};
 
-
     var newGetCurrentData = function(time) {
       return $http({
         method: 'GET',
         url: '/newGetCurrentData',
         params: {current_time: time}
         }).then(function successCallback(response) {                                        
-          console.log('servcie res', response.data)                 
+          console.log('servcie res', response.data);                 
+          currentCategory.name = response.data.categoryName.name;
+          currentMenuItems.items = response.data.menuItems;
           return response;
         }, function errorCallback(response) {
           console.log('Error getting data', response);
@@ -114,10 +104,10 @@ angular.module('services', [])
       getAllCategoryNames: getAllCategoryNames,
       setAllCategoryData: setAllCategoryData,
       setInitialCategories: setInitialCategories,
-      initialCategory: initialCategory,
+      //initialCategory: initialCategory,
       reactToSuccessfulPost: reactToSuccessfulPost,
       newGetCurrentData: newGetCurrentData,
-      newSetMenuByCategories: newSetMenuByCategories
+      newSetMenuByCategories: newSetMenuByCategories      
     };
   })
 

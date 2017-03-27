@@ -7,6 +7,7 @@ angular.module('categories', ['services'])
         $scope.data = response.data.map(function(category){
           return category.name[0].toUpperCase() + category.name.slice(1);
         });
+        console.log('category response', $scope.data)
         //first arg exists
         categoriesService.setAllCategoryData(response.data);
       }, function errorCallback(response) {

@@ -2,29 +2,27 @@ angular.module('menulist', ['services'])
   // we define $scope in controller
   .controller('menulistController', function($http, $scope, categoriesService, menuitemsService){
     var current_time = moment().format("HH");
-    categoriesService.newGetCurrentData(current_time).then(function(result) {
-      categoriesService.currentMenuItems = result.data.menuItems;             
-      categoriesService.setCurrentCategory(result.data.categoryName);             
-      console.log('new res', result)
+    categoriesService.newGetCurrentData(current_time).then(function(result) {      
+      console.log('new res', result);
+      console.log('scope data: ', categoriesService.getMenuItemsInCurrentCategory);
       $scope.data = categoriesService.getMenuItemsInCurrentCategory; 
       console.log('scope data: ', $scope.data);
       $scope.category = categoriesService.getCurrentCategory();     
       console.log('scope category: ', $scope.category);
     })
     categoriesService.newSetMenuByCategories();
-
     $http({
       method: 'GET',
       url: '/menuitems'
       }).then(function successCallback(response) {
-        menuitemsService.setAllMenuItems(response.data);        
+        //menuitemsService.setAllMenuItems(response.data);        
         // everything we need access to in the html, we're attaching to the $scope
       }, function errorCallback(response) {
         console.log('Error getting data', response);
     })
     .then(function(){            
       $scope.added = menuitemsService.getChosenList();
-      categoriesService.setInitialCategories();
+      //categoriesService.setInitialCategories();
       setTimeout(function(){
         $('.menuitem-select').click(function(){
           var $svg = $(this)[0].childNodes[1];
