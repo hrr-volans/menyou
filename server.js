@@ -341,8 +341,7 @@ app.get('/newGetCurrentData', function(req, res, next) {
 
 app.get('/menuByCategory', function(req, res, next) {
   var menuByCategory = {};
-  client.query('SELECT * FROM categories', function(err, categories) {
-    console.log('length', categories.rows.length)
+  client.query('SELECT * FROM categories', function(err, categories) {    
     categories.rows.forEach(function(category, index) {
       client.query('SELECT * FROM menuitems WHERE category_id = ($1)', [category.id], function(err, menuitems) {        
         menuByCategory[category.name] = menuitems.rows;        
