@@ -345,8 +345,7 @@ app.get('/menuByCategory', function(req, res, next) {
       client.query('SELECT * FROM menuitems WHERE category_id = ($1)', [category.id], function(err, menuitems) {        
         menuByCategory[category.name] = menuitems.rows;        
 
-        if(index === categories.rows.length - 1) {
-          console.log('menu', menuByCategory);
+        if(index === categories.rows.length - 1) {          
           res.send(menuByCategory);
         }
       });
