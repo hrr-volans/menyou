@@ -1,10 +1,8 @@
 # menYOU
 
-> Say goodbye to clunky, paper menus covered with food stains. Now it's on your phone! 
+MenYOU is a web-based ordering system for use on an in-store kiosk or on a mobile device that lets restaurants take orders, track orders and communicate with their customers. 
 
-It's menYOU - the mobile app that puts YOU in charge of the menu
-
-Peruse food and beverage items, see the daily specials, place your order and pay for your meal all from the convenience of your mobile device!
+It's menYOU - the mobile app that puts YOU in charge of the menu! Peruse food and beverage items, see the daily specials, place your order and pay for your meal all from the convenience of your mobile device!
 
 ## Team
 
