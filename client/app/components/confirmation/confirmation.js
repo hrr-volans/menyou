@@ -25,8 +25,7 @@ angular.module('confirmation', ['services'])
       $http({
         method: 'GET',
         url: '/getmax'
-      }).then(function successCallback(response) {
-        console.log('DEEP ORDERS', response);
+      }).then(function successCallback(response) {        
         var data = response.data;
         $scope.orderid = data[0];
         $scope.customer = data[1];

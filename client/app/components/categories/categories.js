@@ -17,8 +17,7 @@ angular.module('categories', ['services'])
       }).then(function successCallback(response) {
         $scope.data = response.data.map(function(category){
           return category.name[0].toUpperCase() + category.name.slice(1);
-        });                
-        //first arg exists
+        });                        
         categoriesService.setAllCategoryData(response.data);
       }, function errorCallback(response) {
         console.log('Error getting data', response);

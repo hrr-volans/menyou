@@ -36,8 +36,7 @@ angular.module('kitchenmodule', ['services'])
 
     $scope.filterbool = {status: false, prefix: 'Incomplete'};
 
-    $scope.toggleorderstatus = function() {
-      console.log('hit togle')
+    $scope.toggleorderstatus = function() {      
       $scope.filterbool.status = !$scope.filterbool.status;
       if($scope.filterbool.status === true) {
         $scope.filterbool.prefix = "Complete";
@@ -48,8 +47,7 @@ angular.module('kitchenmodule', ['services'])
     }
 
     var firstTime = true;
-    function getOrders() {
-      console.log('last index', lastItemId)
+    function getOrders() {      
       refresh = true;
       $http({
         method: 'GET',

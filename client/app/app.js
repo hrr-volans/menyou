@@ -1,8 +1,6 @@
-
 var app = angular.module('app', [
   'ngRoute',
-  'categories',
-  'customername',
+  'categories',  
   'menulist',
   'chosenitems',
   'placeorder',
@@ -50,16 +48,12 @@ var app = angular.module('app', [
   .run(function($location, authenticationService){
 
     authenticationService.getLoginStatus(authVerify);
-    function authVerify(isLoggedIn) {
-      console.log('running authVerify app.js')
+    function authVerify(isLoggedIn) {      
       if($location.$$path === '/admin') {
-        if(isLoggedIn.status === false || isLoggedIn.type !== 'admin') {
-          // debugger;
-          console.log('about to redirect')
+        if(isLoggedIn.status === false || isLoggedIn.type !== 'admin') {                    
           $location.path('/');
         }
-      } else if ($location.$$path === '/kitchen' && !isLoggedIn.status) {
-        console.log('about to redirect')
+      } else if ($location.$$path === '/kitchen' && !isLoggedIn.status) {        
         $location.path('/');
       }
     }

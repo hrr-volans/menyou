@@ -1,10 +1,7 @@
 angular.module('authentication', ['services'])
   .controller('authController', function($http, $window, $scope, $location, authenticationService){
-
     $scope.formData = {};
-
-    $scope.isLoggedIn = authenticationService.getLoginStatus();
-    console.log('Logged in from auth?', $scope.isLoggedIn)
+    $scope.isLoggedIn = authenticationService.getLoginStatus();    
 
     $scope.authLogin = function() {
       $http.post('/authenticate', $scope.formData).then(function(response){

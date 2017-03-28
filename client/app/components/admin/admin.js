@@ -1,10 +1,9 @@
 angular.module('admin', ['services'])
   .controller('adminController', function($http, $scope, categoriesService){
-
     getCategories();
-
     $scope.formData = {};
     $scope.test = 'Hola';
+
     $scope.addCategory = function() {
       $http.post('/createCategory', JSON.stringify({name: $scope.formData.categoryname})).then(function(response){        
         categoriesService.reactToSuccessfulPost('category', response);        
@@ -29,8 +28,7 @@ angular.module('admin', ['services'])
       $http({
         method: 'GET',
         url: '/categories'
-        }).then(function successCallback(response) {
-          // console.log('category data', response)
+        }).then(function successCallback(response) {          
           $scope.allcategories = response.data.map(function(category){
             return {name: category.name[0].toUpperCase() + category.name.slice(1), id: category.id};
           });
