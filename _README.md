@@ -34,6 +34,8 @@ We have some sample data so can get started. Once you have created the DB, in th
 
 ```> node seed.js```
 
+This may appear to freeze your console. Hit Ctrl-C to exit out and your DB should be seeded fine
+
 Now you can start the server (nodemon recommended)
 
 ```> nodemon server.js``` 
