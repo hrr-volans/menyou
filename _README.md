@@ -2,7 +2,7 @@
 
 MenYOU is a web-based ordering system for use on an in-store kiosk or on a mobile device that lets restaurants take orders, track orders and communicate with their customers. 
 
-menYOU puts YOU in charge of the menu! Peruse food and beverage items, see the daily specials, place your order and pay for your meal all from the convenience of your mobile device!
+MenYOU puts YOU in charge of the menu! Peruse food and beverage items, see the daily specials, place your order and pay for your meal all from the convenience of your mobile device!
 
 ## Team
 
@@ -208,7 +208,7 @@ npm install
 
 (Optional) - The app currently uses SCSS, and moving forward you can either continue to use the SCSS or make edits directly in the CSS files and abondon SCSS. To compile SCSS you'll need Compass installed on your computer. Once installed just run ```grunt compass``` or ```grunt --watch compass``` to compile.
 
-##Additional Dependencies (outside of package.json)
+### Additional Dependencies (outside of package.json)
 - Neat 1.8.0 (currently pulled in via script in index.html)
 - Bourbon 4.2.7 (currently pulled in via script in index.html)
 - Angular (currently pulled in via script in index.html)
@@ -216,7 +216,7 @@ npm install
 
 ### Roadmap
 
-View the project roadmap [https://docs.google.com/document/d/1J3KLJxPpNJb4BoB06lMeAijSEvicMkEbhOcOA-jlQmo/edit#]
+View the project backlog [https://waffle.io/hrr-volans/menyou]
 
 ## Contributing
 
@@ -267,5 +267,5 @@ For more detail, see _CONTRIBUTING.md in the project root directory
 Get the linter! https://github.com/hackreactor-labs/eslint-config-hackreactor
 
 
-Got something that falls outside of what's here but you're sure it'll add value to menYOU? Reach out to bryce.dooley@menyou.com
+Got something that falls outside of what's here but you're sure it'll add value to menYOU? Reach out to volansmenyou@gmail.com
 
