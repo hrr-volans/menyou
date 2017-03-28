@@ -209,7 +209,7 @@ View the project roadmap [https://docs.google.com/document/d/1J3KLJxPpNJb4BoB06l
 
 *** First off, THANKS for your contribution! *** 
 
-The following is a set of guidelines for adding your kick-ass ideas to an already kick-ass app. Welcome to the club! We're glad to have you...
+The following is a set of guidelines for adding your great idea to an already great app. Welcome to the club! We're glad to have you...
 
 
 Code of Conduct
@@ -247,9 +247,9 @@ You MUST MUST MUST rebase (git pull --rebase upstream master) and resolve any is
 
 **************************************************
 
-*** Javascript
+For more detail, see _CONTRIBUTING.md in the project root directory
 
-See _STYLE-GUIDE.md in the project root directory
+*** Javascript
 
 Get the linter! https://github.com/hackreactor-labs/eslint-config-hackreactor
 
