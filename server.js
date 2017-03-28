@@ -159,14 +159,19 @@ app.get('/deeporders', function(req, res, next) {
 app.get('/getMax', function(req, response, next) {
   client.query("SELECT * FROM orders WHERE id = (SELECT MAX(id) FROM orders)", function(err, res) {    
     var data = [];
-    var maxId = res.rows[0].id;
-    data.push(res.rows[0].id);
-    data.push(res.rows[0].customer);
-    data.push(res.rows[0].totalprice);
-    client.query("SELECT * FROM suborders WHERE id_orders = ($1)",[maxId], function(err, res) {
-      data.push(res.rows);
-      response.send(data);
-    });
+    if (res.rows[0] === undefined) {
+      response.status(204);
+      response.send();
+    } else {
+      var maxId = res.rows[0].id;
+      data.push(res.rows[0].id);
+      data.push(res.rows[0].customer);
+      data.push(res.rows[0].totalprice);
+      client.query("SELECT * FROM suborders WHERE id_orders = ($1)",[maxId], function(err, res) {
+        data.push(res.rows);
+        response.send(data);
+      });
+    };
   });
 });
 
