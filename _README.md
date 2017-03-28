@@ -28,7 +28,11 @@ After forking and cloning the app to your local machine, you must install the de
 
 ```> sudo npm install```
 
-In order make it work locally you must create a database called "menyoudb" so the app can interact with. We have some sample data so can get started, the database must be created before you run the following command. In the terminal, from the main folder you can run:
+In order make it work locally you must create a database called "menyoudb" so the app will have a DB to interact with. Once you have installed PostgreSQL, enter this in the terminal command line:
+
+```> createdb menyoudb```
+
+We have some sample data so can get started. Once you have created the DB, in the terminal, from the main folder run:
 
 ```> node seed.js```
 
