@@ -34,13 +34,17 @@ We have some sample data so can get started. Once you have created the DB, in th
 
 ```> node seed.js```
 
-This may appear to freeze your console. Hit Ctrl-C to exit out and your DB should be seeded fine
+Note: Currently, category names need to be stored in sentence case (first letter capitalized).
+
+This may appear to freeze your console. Hit Ctrl-C to exit out and your DB should be seeded fine.
 
 Now you can start the server (nodemon recommended)
 
 ```> nodemon server.js``` 
 
-In your browswer, go to localhost:5000
+In your browswer, go to localhost:5000. 
+
+Note: if this is the first time you are running the app locally, make sure your local  storage does not have anything saved from the app. This can be done by clearing your cache, or manually deleting from local storage in your browser. 
 
 Here is a summary of the endpoints
 ```GET /categories```
@@ -194,12 +198,21 @@ The display lists the Order ID, customer name, the menu items associated with th
 - Postgresql 9.4.x
 
 ## Development
+![diagram](https://drive.google.com/uc?export=view&id=0B25X__DxySt2M3JyTGt6dW5mMkk)
 
 ### Installing Dependencies
 
 From within the root directory:
 
 npm install
+
+(Optional) - The app currently uses SCSS, and moving forward you can either continue to use the SCSS or make edits directly in the CSS files and abondon SCSS. To compile SCSS you'll need Compass installed on your computer. Once installed just run ```grunt compass``` or ```grunt --watch compass``` to compile.
+
+##Additional Dependencies (outside of package.json)
+- Neat 1.8.0 (currently pulled in via script in index.html)
+- Bourbon 4.2.7 (currently pulled in via script in index.html)
+- Angular (currently pulled in via script in index.html)
+- Slick Slider (currently pulled in via script in index.html)
 
 ### Roadmap
 
