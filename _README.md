@@ -40,6 +40,8 @@ Now you can start the server (nodemon recommended)
 
 ```> nodemon server.js``` 
 
+In your browswer, go to localhost:5000
+
 Here is a summary of the endpoints
 ```GET /categories```
 
