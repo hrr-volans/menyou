@@ -2,7 +2,6 @@ angular.module('admin', ['services'])
   .controller('adminController', function($http, $scope, categoriesService){
     getCategories();
     $scope.formData = {};
-    $scope.test = 'Hola';
 
     $scope.addCategory = function() {
       $http.post('/createCategory', JSON.stringify({name: $scope.formData.categoryname})).then(function(response){        

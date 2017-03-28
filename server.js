@@ -175,19 +175,26 @@ app.get('/kitchenorders', function(req, res, next) {
   var deeporder = [];
   var lastOrderId;
 
+  // This combination of queries are created to only grab the new orders
+  // that might be stored in the DB. Kitchen client will check every 5 seconds 
   client.query("SELECT * FROM orders ORDER BY id DESC LIMIT 1", function(err, lastRecord) {
+    // First we pick the id from the last order stored in the DB
     lastOrderId = lastRecord.rows[0].id;
+    // compare it with the id sent through params from the client
     if (lastIdFromClient < lastOrderId) {
       var offset = lastOrderId - lastIdFromClient;
-
+      // Only query the amount of records that are offset in descending order
+      // a.k.a. new orders in the DB.
       client.query("SELECT * FROM orders ORDER BY id DESC LIMIT ($1)", [offset], function(err, offsetRecords) {
         if(err) {console.log(err)};
         var orders = offsetRecords.rows;
-
+        // use the id of each order to look in the suborders table
+        // using their foreign key
         orders.forEach(function(order, index, array){
           client.query("SELECT * FROM suborders WHERE id_orders = ($1)", [order.id], function(err, subOrders){
             if(err) { console.log(err) }
             order.menuitems = subOrders.rows;
+            // builds the response object that the client expects.
             deeporder.push(order);
             if(deeporder.length === offset) {
               res.send(deeporder);
@@ -196,13 +203,14 @@ app.get('/kitchenorders', function(req, res, next) {
         });
       });
     } else {
+      // if no new records are found
       res.status(204);
       res.send();
     }
   })
 });
 
-var orderCount = 0;
+//var orderCount = 0;
 app.post('/orders', function(req, res, next) {  
   var menuitems = req.body.menuitems;
 
@@ -299,6 +307,8 @@ app.get('/getCurrentData', function(req, res, next) {
   var query = url_parts.query;
   var current_time = query.current_time;
 
+  // this takes care of sending the intial data
+  // accorgind to your local time time
   var initialCategory;
   if(current_time < 12) {
     initialCategory = 'Breakfast';
