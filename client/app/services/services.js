@@ -8,13 +8,12 @@ angular.module('services', [])
     var currentCategory = {name: undefined};
     var currentCategoryIndex = 0;
 
-    var newGetCurrentData = function(time) {
+    var getCurrentData = function(time) {
       return $http({
         method: 'GET',
-        url: '/newGetCurrentData',
+        url: '/getCurrentData',
         params: {current_time: time}
-        }).then(function successCallback(response) {                                        
-          console.log('servcie res', response.data);                 
+        }).then(function successCallback(response) {                                                
           currentCategoryIndex = response.data.categoryName.id;
           currentCategory.name = response.data.categoryName.name;
           currentMenuItems.items = response.data.menuItems;
@@ -24,18 +23,17 @@ angular.module('services', [])
       })
     }
 
-    var newSetMenuByCategories = function() {
+    var setMenuByCategories = function() {
       $http({
         method: 'GET',
         url: '/menuByCategory',        
-        }).then(function successCallback(response) {                    
-          console.log('menu by cat method', response.data);
+        }).then(function successCallback(response) {                              
           menuItemsByCategory = response.data;
         }, function errorCallback(response) {
           console.log('Error getting data', response);
       })
     }
-    //Helper functions
+    
     var setInitialCategories = function() {
       setCurrentCategory(initialCategory);
     }
@@ -46,12 +44,11 @@ angular.module('services', [])
       }
 
       menuItems = [];
-      menuitemsService.getAllMenuItems().forEach(item => menuItems.push(item));
-      console.log('menu', data)
-      //createMenuItemsByCategory();
+      menuitemsService.getAllMenuItems().forEach(item => menuItems.push(item));            
     }
+
+    //This section organizes the menu items by category name
     var createMenuItemsByCategory = function() {
-      //This section organizes the menu items by category name
       menuItemsByCategory = {};
       menuItems.forEach(function(menuObj){
         console.log('menuObj ', menuObj);
@@ -67,22 +64,26 @@ angular.module('services', [])
         });
       }
     }
+
     var getAllCategoryNames = function(){
       return categoryData.map(function(category){
         return category.name[0].toUpperCase() + category.name.slice(1);
       });
     }
+
     var setCurrentCategory = function(category) {
       currentCategory.name = category;
       currentMenuItems.items = menuItemsByCategory[category];
     };
-    var getCurrentCategory = function() {
-      console.log('currentCategory', currentCategory)
+
+    var getCurrentCategory = function() {      
       return currentCategory;
     };
+
     var getMenuItemsInCurrentCategory = function() {
       return currentMenuItems;
     };
+
     var getAllCategoryData= function() {    
       return categoryData;
     };
@@ -107,8 +108,8 @@ angular.module('services', [])
       setAllCategoryData: setAllCategoryData,
       setInitialCategories: setInitialCategories,      
       reactToSuccessfulPost: reactToSuccessfulPost,
-      newGetCurrentData: newGetCurrentData,
-      newSetMenuByCategories: newSetMenuByCategories,
+      getCurrentData: getCurrentData,
+      setMenuByCategories: setMenuByCategories,
       currentCategoryIndex: currentCategoryIndex
     };
   })
@@ -116,14 +117,11 @@ angular.module('services', [])
   .factory('menuitemsService', function ($http, $window) {
     // This is the 'state' of all items added to current order
     var addedItems = {items: []};
-
     var total = {total: 0};
     var currentCustomer = {name: ''};
-
     // data variable to hold on to all menu items
-    var data = [];
-
     // above creates state and below are functions which act on it (like setState)
+    var data = [];
 
     //Helper functions
     function getCustomerName(name) {
@@ -163,15 +161,17 @@ angular.module('services', [])
       total.total = addedItems.items.reduce(function(acc, curr){
         acc = acc + (Number(curr.price) * curr.quantity);
         return acc;
-      }, 0).toFixed(2);
-      // console.log('TOTAL FROM services', total.total);
+      }, 0).toFixed(2);      
     }
+
     function getTotalPrice(){
       return total;
     }
+
     var getAllMenuItems = function() {
       return data;
     };
+
     var addMenuItemToChosenList = function(item){
       var ind = addedItems.items.indexOf(item);
       if(ind !== -1) {
@@ -182,10 +182,12 @@ angular.module('services', [])
       }
       updateTotalPrice();
     }
+
     // give access to chosenItemList module will eventually use to place order
     var getChosenList = function(){
       return addedItems;
     }
+
     var removeMenuItemFromChosenList = function(index){
       if(addedItems.items[index].quantity > 1) {
         addedItems.items[index].quantity -= 1;
@@ -206,13 +208,13 @@ angular.module('services', [])
       getCustomerName: getCustomerName
     };
   })
+
   .factory('authenticationService', function ($window, $http, $location) {
     var isLoggedIn = {status: false};
 
     var logIn = function(type) {
       isLoggedIn.status = true;
-      isLoggedIn.type = type;
-      console.log('login = ', isLoggedIn.status);
+      isLoggedIn.type = type;      
     }
 
     var logOut = function() {
@@ -222,21 +224,11 @@ angular.module('services', [])
       $location.path('/');
     }
 
-    // if($window.localStorage.token) {
-    //   $http.post('/authenticate', {token: $window.localStorage.token}).then(function(response){
-    //     logIn(response.data.type);
-    //   }, function(err){
-    //     console.log('Auth error: ', err);
-    //     logOut();
-    //   });
-    // }
-
     var getLoginStatus = function(callback) {
       if($window.localStorage.token) {
         $http.post('/authenticate', {token: $window.localStorage.token}).then(function(response){
           logIn(response.data.type);
-          if(callback) {
-            console.log('callbacl called services')
+          if(callback) {            
             callback(isLoggedIn);
           }
         }, function(err){

@@ -17,8 +17,7 @@ angular.module('categories', ['services'])
       }).then(function successCallback(response) {
         $scope.data = response.data.map(function(category){
           return category.name[0].toUpperCase() + category.name.slice(1);
-        });                
-        //first arg exists
+        });                        
         categoriesService.setAllCategoryData(response.data);
       }, function errorCallback(response) {
         console.log('Error getting data', response);
@@ -42,6 +41,10 @@ angular.module('categories', ['services'])
 
     $scope.$on('LastRepeaterElement', function(){      
       var categoryIndex = $scope.data.indexOf(initialCategory);        
+      // This is the invocation for the "slick slider" plugin 
+      // Check out the documentation for additional features
+      // It targets a div with the class ".category-slider"
+      // all the inner divs will be part of the slider
       $('.category-slider').slick({
         arrows: true,
         dots: true,
@@ -49,6 +52,12 @@ angular.module('categories', ['services'])
       });      
     });
   })
+  // This is for making the slider works.
+  // The fact is that Angular's ng-repeat creates the DOM elements
+  // even after document.ready event, so the slider cannot be 
+  // fired in a regular way because it interacts with elements
+  // created by ng-repeat. We found the solution this way
+  // check more info (https://www.linkedin.com/pulse/20140822090331-106754325-execute-code-after-ng-repeat-renders-the-items)
   .directive('emitLastRepeaterElement', function(){
     return function(scope) {
       if (scope.$last){

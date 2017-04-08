@@ -1,6 +1,5 @@
 angular.module('chosenitems', ['services'])
   .controller('chosenItemsController', function($scope, menuitemsService){
-
     $scope.data = menuitemsService.getChosenList();
 
     $scope.addMenuItemToChosenList = function(item){      
@@ -9,9 +8,7 @@ angular.module('chosenitems', ['services'])
     $scope.removeMenuItemFromChosenList = function(index){
       menuitemsService.removeMenuItemFromChosenList(index);
     }
-
-  }) // directives are essentially react components
-  // they are custom HTML
+  }) 
 
   .directive('chosenitem', function(){
     return {

@@ -19,14 +19,12 @@ angular.module('confirmation', ['services'])
         }
       });
     };
-    //iterate through orders
+    
     function getOrders() {
-      // setTimeout(function(){window.location = "http://localhost:5000/";}, 30000);
       $http({
         method: 'GET',
         url: '/getmax'
-      }).then(function successCallback(response) {
-        console.log('DEEP ORDERS', response);
+      }).then(function successCallback(response) {        
         var data = response.data;
         $scope.orderid = data[0];
         $scope.customer = data[1];

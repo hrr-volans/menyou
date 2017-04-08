@@ -3,7 +3,6 @@ var path = require('path');
 var pg = require('pg');
 var bcrypt = require('bcrypt-nodejs');
 var bodyParser = require('body-parser');
-var routes = require('./routes');
 var nodemailer = require('nodemailer');
 exports.nodemailer = nodemailer;
 var validator = require('validator');
@@ -11,9 +10,6 @@ var validator = require('validator');
 var jwt = require('jsonwebtoken');
 var secret = 'menyourocks';
 var url = require('url');
-
-// var helper = require('sendgrid').mail;
-// var sg = require('sendgrid')(process.env.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);
 
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/menyoudb';
 
@@ -60,8 +56,7 @@ app.get('/login', function(req, res, next) {
   res.redirect('/#/login');
 });
 
-app.get('/categories', function(req, res, next) {
-  console.log('get categories test');
+app.get('/categories', function(req, res, next) {  
   client.query("SELECT * FROM categories", function(err, result) {
     res.send(result.rows);
   });
@@ -91,8 +86,7 @@ app.post('/email', function(req, res, next) {
     if(name.length) {
       client.query(`UPDATE orders SET customer = ($1) WHERE id = ($2)`, [name, orderid],
         function(err, result) {
-          if(err) {console.log("ERROR! ", err) }
-            console.log('UPDATING customer name');
+          if(err) {console.log("ERROR! ", err) }            
             res.send("Name updated");
         }
       );
@@ -124,10 +118,10 @@ app.post('/email', function(req, res, next) {
 
 app.get('/userorders', function(req, res, next) {
   var url_parts = url.parse(req.url, true);
-  var query = url_parts.query;
-  console.log('userorders query: ', query)
+  var query = url_parts.query;  
   var ids = JSON.parse(query.orders_ids);
   var userOrders = [];
+
   ids.forEach(function(id) {
     client.query("SELECT * FROM orders WHERE id = ($1)", [id], function(err, result) {
       userOrders.push(result.rows[0]);
@@ -147,8 +141,7 @@ app.get('/deeporders', function(req, res, next) {
         if(err) { console.log(err) }
         order.menuitems = result.rows;
         deeporder.push(order);
-        if(deeporder.length === coll.length) {
-           //console.log(deeporder);
+        if(deeporder.length === coll.length) {           
            res.send(deeporder);
         };
       });
@@ -170,11 +163,10 @@ app.get('/getMax', function(req, response, next) {
       client.query("SELECT * FROM suborders WHERE id_orders = ($1)",[maxId], function(err, res) {
         data.push(res.rows);
         response.send(data);
-      });
-    };
+      });      
+    }
   });
 });
-
 
 app.get('/kitchenorders', function(req, res, next) {
   var url_parts = url.parse(req.url, true);
@@ -183,19 +175,26 @@ app.get('/kitchenorders', function(req, res, next) {
   var deeporder = [];
   var lastOrderId;
 
+  // This combination of queries are created to only grab the new orders
+  // that might be stored in the DB. Kitchen client will check every 5 seconds 
   client.query("SELECT * FROM orders ORDER BY id DESC LIMIT 1", function(err, lastRecord) {
+    // First we pick the id from the last order stored in the DB
     lastOrderId = lastRecord.rows[0].id;
+    // compare it with the id sent through params from the client
     if (lastIdFromClient < lastOrderId) {
       var offset = lastOrderId - lastIdFromClient;
-
+      // Only query the amount of records that are offset in descending order
+      // a.k.a. new orders in the DB.
       client.query("SELECT * FROM orders ORDER BY id DESC LIMIT ($1)", [offset], function(err, offsetRecords) {
         if(err) {console.log(err)};
         var orders = offsetRecords.rows;
-
+        // use the id of each order to look in the suborders table
+        // using their foreign key
         orders.forEach(function(order, index, array){
           client.query("SELECT * FROM suborders WHERE id_orders = ($1)", [order.id], function(err, subOrders){
             if(err) { console.log(err) }
             order.menuitems = subOrders.rows;
+            // builds the response object that the client expects.
             deeporder.push(order);
             if(deeporder.length === offset) {
               res.send(deeporder);
@@ -204,15 +203,15 @@ app.get('/kitchenorders', function(req, res, next) {
         });
       });
     } else {
+      // if no new records are found
       res.status(204);
       res.send();
     }
   })
 });
 
-var orderCount = 0;
-app.post('/orders', function(req, res, next) {
-  console.log('order post request', req.body);
+//var orderCount = 0;
+app.post('/orders', function(req, res, next) {  
   var menuitems = req.body.menuitems;
 
   client.query("INSERT INTO \
@@ -240,9 +239,8 @@ app.post('/orders', function(req, res, next) {
 app.post('/complete', function(req, res, next) {
   client.query("UPDATE orders SET complete = true WHERE id = ($1)", [req.body.id],
     function(err, result) {
-      if(err) {console.log("ERROR! ", err) }
-        console.log('UPDATING! ', req.customer,"'s  order is complete!");
-        res.send("Order complete");
+      if(err) {console.log("ERROR! ", err) }        
+      res.send("Order complete");
     }
   );
 });
@@ -251,39 +249,31 @@ app.post('/incomplete', function(req, res, next) {
   client.query("UPDATE orders SET complete = false WHERE id = ($1)", [req.body.id],
     function(err, result) {
       if(err) {console.log("ERROR! ", err) }
-        console.log('UPDATING! ', req.customer,"'s  order is incomplete!");
-        res.send("Order re-added");
+        
+      res.send("Order re-added");
     }
   );
 });
 
 
-app.post('/createCategory', function(req, res, next) {
-  //access the database....
-    //add a new category to table categories
-  var newCat = req.body.name;
-  console.log('NEW CAT', newCat);
+app.post('/createCategory', function(req, res, next) {  
+  var newCat = req.body.name;  
   client.query("INSERT INTO \
                   categories(name) VALUES($1) RETURNING name",[newCat],
                     function(err, results) {
-                      if(err) { res.send("POST FAILED") }
-                      console.log(results.rows);
+                      if(err) { res.send("POST FAILED") }                      
                       res.send(results.rows);
                     });
 });
 
-app.post('/createMenuItem', function(req, res, next) {
-  //add a new menue item to the database table, 'menueites'
-    //each item needs  (name, description, price, category_id)
-  var newItem = req.body;
-  console.log(newItem);
+app.post('/createMenuItem', function(req, res, next) {  
+  var newItem = req.body;  
   client.query("INSERT INTO \
                   menuitems(name, description, price, category_id) \
                   VALUES ($1, $2, $3, $4) RETURNING name", [newItem.name, newItem.description, newItem.price, newItem.category_id],
                   function(err, results) {
-
-                    if(err) { res.send("POST FAILED") }
-                    console.log(results.rows);
+                    if(err) { res.send("POST FAILED") }                    
+                    
                     res.send(results.rows);
                   });
 
@@ -311,12 +301,14 @@ app.post('/authenticate', function(req, res, next) {
   }
 });
 
-app.get('/newGetCurrentData', function(req, res, next) {
+app.get('/getCurrentData', function(req, res, next) {
   var initialCategory;
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
   var current_time = query.current_time;
 
+  // this takes care of sending the intial data
+  // accorgind to your local time time
   var initialCategory;
   if(current_time < 12) {
     initialCategory = 'Breakfast';
@@ -329,13 +321,11 @@ app.get('/newGetCurrentData', function(req, res, next) {
   }
 
   client.query('SELECT * FROM categories WHERE name = ($1)', [initialCategory], function(err, currentCategory) {
-    if(err) {console.log(err)}
-      console.log(initialCategory)
+    if(err) {console.log(err)}      
     var categoryId = currentCategory.rows[0].id;
 
     client.query('SELECT * FROM menuitems WHERE category_id = ($1)', [categoryId], function(err, currentMenuItems) {
-      if(err) {console.log(err)}
-        console.log('server menu items ', currentMenuItems.rows)
+      if(err) {console.log(err)}        
       res.send({
         menuItems: currentMenuItems.rows,
         categoryName: {name: initialCategory, id: categoryId}
