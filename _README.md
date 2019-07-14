@@ -206,7 +206,7 @@ From within the root directory:
 
 npm install
 
-(Optional) - The app currently uses SCSS, and moving forward you can either continue to use the SCSS or make edits directly in the CSS files and abondon SCSS. To compile SCSS you'll need Compass installed on your computer. Once installed just run ```grunt compass``` or ```grunt --watch compass``` to compile.
+(Optional) - The app currently uses SCSS, and moving forward you can either continue to use the SCSS or make edits directly in the CSS files and abandon SCSS. To compile SCSS you'll need Compass installed on your computer. Once installed just run ```grunt compass``` or ```grunt --watch compass``` to compile.
 
 ### Additional Dependencies (outside of package.json)
 - Neat 1.8.0 (currently pulled in via script in index.html)
